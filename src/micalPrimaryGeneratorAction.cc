@@ -496,7 +496,10 @@ void micalPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent) {
 	  G4ParticleDefinition* particle = particleTable->FindParticle(iC_cpid[count]);
 	  particleGun->SetParticleDefinition(particle);
 	  particleGun->SetParticlePosition(G4ThreeVector(0,0,0));
-	  G4ThreeVector tmp3v(iC_cpx[count]*GeV,iC_cpy[count]*GeV,iC_cpz[count]*GeV);
+
+	  /*** Check this properly ---> MeV or GeV ***/
+	  G4ThreeVector tmp3v(iC_cpx[count]*MeV,iC_cpy[count]*MeV,iC_cpz[count]*MeV);
+	  // G4ThreeVector tmp3v(iC_cpx[count]*GeV,iC_cpy[count]*GeV,iC_cpz[count]*GeV);
 	  
 	  double Point2[3];
 	  // double energy;
@@ -622,138 +625,341 @@ void micalPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent) {
     } // if (FirstEvt+g_nevt<TreeCORSIKA->GetEntries()) {
     // Corsika Event By Event
   } else if (InputFlag==4) {
-    // Cosmic Flux 3D hist Corsika
-    if(initialiseCor==0) {
-      FileCORSIKA->cd();
-      corsikaFluxMuP = (TH3D*)FileCORSIKA->Get("hfluxmup3d");
-      corsikaFluxMuM = (TH3D*)FileCORSIKA->Get("hfluxmum3d");
-      MuPProb = 1.42159903375673748e+04;
-      MuMProb = 1.29379099521669268e+04;
-      TotalProb = MuPProb + MuMProb;
-      initialiseCor = 1;
-    }
-    pAnalysis->ievt=g_nevt;
-    pAnalysis->ngent = ((unsigned)particleGun->GetNumberOfParticles() <=pAnalysis->ngenmx) ? particleGun->GetNumberOfParticles() : pAnalysis->ngenmx;
-    for (int ij=0; ij<particleGun->GetNumberOfParticles(); ij++) {
-      G4ParticleTable* particleTable = G4ParticleTable::GetParticleTable();
-      if((G4UniformRand()*TotalProb)<MuPProb) {
-	partId = -13;
-      } else {
-	partId = 13;
-      }
-      G4ParticleDefinition* particle = particleTable->FindParticle(partId);
-      particleGun->SetParticleDefinition(particle);
-      G4ThreeVector ini_Dir(incDirection);
-      double vertexX;
-      double vertexY;
-      double vertexZ;
-      double Ini_Theta = 0;
-      double Ini_Phi = 0;
-      double Ini_Enrgy = 0;
-      double costheta;
-      double phi;
-      double logEnrgy;
-      double theta;
-      double enrgy;
-      int brkpt = 1;
-      double Point2[3];
-      while(brkpt) {
-	vx = 2.0*pargas[0]*(G4UniformRand()-0.5);
-	vy = 2.0*pargas[1]*(G4UniformRand()-0.5);
-	vz = RPCLayerPosZ[toptrgly];
-	if(partId<0) {
-	  corsikaFluxMuP->GetRandom3(logEnrgy,costheta,phi);
-	} else {
-	  corsikaFluxMuM->GetRandom3(logEnrgy,costheta,phi);
-	}
-	phi = phi + 180; //*pivalGA/180;
-	if(phi>360) {
-	  phi = phi - 360;
-	}
-	phi = phi - 180;
-	phi = phi*pivalGA/180;
-	phi = phi*rad;
-	theta = acos(costheta);
-	enrgy = logEnrgy*GeV;
-	double Line1[6];
-	double Plane1[6];
-	double Point1[3] = {-100000.,-100000.,-100000.};
-	Line1[0] = vx;
-	Line1[1] = vy;
-	Line1[2] = vz;
-	Line1[3] = -sin(theta)*cos(phi);
-	Line1[4] = -sin(theta)*sin(phi);
-	Line1[5] = -cos(theta);
-	Plane1[0] =  0;
-	Plane1[1] =  0;
-	Plane1[2] =  RPCLayerPosZ[bottomtrgly];;
-	Plane1[3] = 0;
-	Plane1[4] = 0;
-	Plane1[5] = 1;
-	
-	int trgCheck = LinePlaneInt(Line1,Plane1,Point1);
-	if(trgCheck == 1) {
-	  if(abs(Point1[0])<pargas[0] && abs(Point1[1])<pargas[1]) {
-	    double Line2[6];
-	    double Plane2[6];
-	    for(int xxi=0;xxi<3;xxi++) {Point2[xxi] = -100000000.;}	    
-	    for(int lmn=0;lmn<3;lmn++) {Point2[lmn] = Point1[lmn];}
-	    Line2[0] = StackPosInWorld[0] + vx;
-	    Line2[1] = StackPosInWorld[1] + vy;
-	    Line2[2] = StackPosInWorld[2] + vz;
-	    Line2[3] = -sin(theta)*cos(phi);
-	    Line2[4] = -sin(theta)*sin(phi);
-	    Line2[5] = -cos(theta);
+    if (initialiseCor==0) {
+      FileFLUX->cd();
+      muFlux = (TH3F*)FileFLUX->Get("muFlux");
+      mupFlux = (TH3F*)FileFLUX->Get("mupFlux");
+      munFlux = (TH3F*)FileFLUX->Get("munFlux");
+      initialiseCor=1;
+    } // if (initialiseCor==0) {
+    if(1) {
+      pAnalysis->ievt		= g_nevt;
+      pAnalysis->ievt_wt	= 1.;
+      pAnalysis->ngent = particleGun->GetNumberOfParticles();	// number of particles
+      // cout << " npart " <<  pAnalysis->ngent << endl;
+      for (unsigned int count=0; count<pAnalysis->ngent; count++) {
+	if(1) {
+	  
+	  double Pxx,Pyy,Pzz;
+	  muFlux->GetRandom3(Pxx,Pyy,Pzz);
+	  int gBin = muFlux->FindBin(Pxx,Pyy,Pzz);
+	  double mupCnt = mupFlux->GetBinContent(gBin);
+	  double munCnt = munFlux->GetBinContent(gBin);
+
+	  int partID;
+	  if(G4UniformRand()*(mupCnt+munCnt)>munCnt) {
+	    partID = -13;
+	  } else {
+	    partID = 13;
+	  }
+	  // cout << " partID " << partID << endl;
+	  
+	  G4ParticleTable* particleTable = G4ParticleTable::GetParticleTable();
+	  G4ParticleDefinition* particle = particleTable->FindParticle(partID);
+	  particleGun->SetParticleDefinition(particle);
+	  particleGun->SetParticlePosition(G4ThreeVector(0,0,0));
+
+	  /*** Check this properly ---> MeV or GeV ***/
+	  // G4ThreeVector tmp3v(iC_cpx[count]*MeV,iC_cpy[count]*MeV,iC_cpz[count]*MeV);
+	  G4ThreeVector tmp3v(Pxx*GeV,Pyy*GeV,Pzz*GeV);
+	  
+	  double Point2[3];
+	  // double energy;
+	  double vertexX;
+	  double vertexY;
+	  double vertexZ;
+	  double Ini_Theta = 0;
+	  double Ini_Phi = 0;
+	  G4ThreeVector ini_Dir(tmp3v.unit());
+	  double theta, phi;
+	  int brkpt = 1;
+	  int brkcnt = 0;
+
+	  pAnalysis->ngenerated = 0;
+	  pAnalysis->naperture = 0;
+
+	  while(brkpt) {
+	    vx = 1.2*pargas[0]*(2*G4UniformRand()-1.0);
+	    vy = 1.2*pargas[1]*(2*G4UniformRand()-1.0);
+	    vz = RPCLayerPosZ[toptrgly];
 	    
-	    Plane2[0] =  0;
-	    Plane2[1] =  0;
-	    Plane2[2] =  WorldZDim - 1*mm;
-	    Plane2[3] = 0;
-	    Plane2[4] = 0;
-	    Plane2[5] = 1;
-	    int TopPlane = LinePlaneInt(Line2,Plane2,Point2);
-	    if(TopPlane ==1) {
-	      if(abs(Point2[0])<WorldXDim && abs(Point2[1])<WorldYDim) {
-		vertexX = Point2[0];
-		vertexY = Point2[1];
-		vertexZ = Point2[2];
-		Ini_Theta = theta;
-		Ini_Phi = phi;
-		if(Ini_Phi < -pivalGA) {
-		  Ini_Phi = Ini_Phi + 2*pivalGA;
-		} else if(Ini_Phi > pivalGA) {
-		  Ini_Phi = Ini_Phi - 2*pivalGA;
-		}
-		Ini_Enrgy = enrgy;
-		brkpt = 0;
-	      } // if(abs(Point2[0])<WorldXDim && abs(Point2[1])<WorldYDim) {
-	    } // if(TopPlane ==1) {
-	  } // if(abs(Point1[0])<pargas[0] && abs(Point1[1])<pargas[1]) {
-	} // // if(trgCheck == 1) {
-      } // while(brkpt) {	
-      // cout<<"Ini_Enrgy "<<Ini_Enrgy<<endl;
-      ini_Dir.setTheta(Ini_Theta);
-      ini_Dir.setPhi(Ini_Phi);
-      particleGun->SetParticleMomentumDirection(ini_Dir);
-      particleGun->SetParticleMomentum(Ini_Enrgy);
-      particleGun->SetParticlePosition(G4ThreeVector(vertexX, vertexY, vertexZ));
-      particleGun->GeneratePrimaryVertex(anEvent);
-      if (ij < (int)pAnalysis->ngenmx) {
-	pAnalysis->pidin[ij] = particleGun->GetParticleDefinition()->GetPDGEncoding();
-	pAnalysis->posxin[ij]= particleGun->GetParticlePosition().x();
-	pAnalysis->posyin[ij]= particleGun->GetParticlePosition().y();
-	pAnalysis->poszin[ij]= particleGun->GetParticlePosition().z();
-	if(particle->GetPDGCharge()==0) {
-	  pAnalysis->momin[ij] = particleGun->GetParticleMomentum()/GeV;
-	} else {
-	  pAnalysis->momin[ij] = (particleGun->GetParticleMomentum()/GeV)*(particle->GetPDGCharge());
-	}
-	// cout<<pAnalysis->momin[ij]<<" "<<particleGun->GetParticleMomentum()/GeV<<endl;
-	pAnalysis->thein[ij] = particleGun->GetParticleMomentumDirection().theta();
-	pAnalysis->phiin[ij] = particleGun->GetParticleMomentumDirection().phi();
-      } // if (ij < (int)pAnalysis->ngenmx) {
-    } // for (int ij=0; ij<particleGun->GetNumberOfParticles(); ij++) {
+	    if(abs(vx)<pargas[0] && abs(vy)<pargas[1]) {
+	      pAnalysis->ngenerated++;
+	    }
+	    phi = ini_Dir.phi();
+	    theta = ini_Dir.theta();
+	    double Line1[6];
+	    double Plane1[6];
+	    double Point1[3] = {-100000.,-100000.,-100000.};
+	    Line1[0] = vx;
+	    Line1[1] = vy;
+	    Line1[2] = vz;
+	    Line1[3] = -sin(theta)*cos(phi);
+	    Line1[4] = -sin(theta)*sin(phi);
+	    Line1[5] = -cos(theta);
+	    Plane1[0] =  0;
+	    Plane1[1] =  0;
+	    Plane1[2] =  RPCLayerPosZ[bottomtrgly];;
+	    Plane1[3] = 0;
+	    Plane1[4] = 0;
+	    Plane1[5] = 1;
+	    int trgCheck = LinePlaneInt(Line1,Plane1,Point1);
+	    if(trgCheck == 1) {
+	      if(abs(Point1[0])<pargas[0] && abs(Point1[1])<pargas[1]) {
+		pAnalysis->naperture++;
+		double Line2[6];
+		double Plane2[6];
+		for(int lmn=0;lmn<3;lmn++) {Point2[lmn] = Point1[lmn];}
+		Line2[0] = StackPosInWorld[0] + vx;
+		Line2[1] = StackPosInWorld[1] + vy;
+		Line2[2] = StackPosInWorld[2] + vz;
+		Line2[3] = -sin(theta)*cos(phi);
+		Line2[4] = -sin(theta)*sin(phi);
+		Line2[5] = -cos(theta);
+		
+		Plane2[0] =  0;
+		Plane2[1] =  0;
+		Plane2[2] =  WorldZDim - 1*mm;
+		Plane2[3] = 0;
+		Plane2[4] = 0;
+		Plane2[5] = 1;
+		int TopPlane = LinePlaneInt(Line2,Plane2,Point2);
+		if(TopPlane ==1) {
+		  if(abs(Point2[0])<WorldXDim && abs(Point2[1])<WorldYDim) {
+		    vertexX = Point2[0];
+		    vertexY = Point2[1];
+		    vertexZ = Point2[2];
+		    Ini_Theta = theta;
+		    Ini_Phi = phi;
+		    if(Ini_Phi < -pivalGA) {
+		      Ini_Phi = Ini_Phi + 2*pivalGA;
+		    } else if(Ini_Phi > pivalGA) {
+		      Ini_Phi = Ini_Phi - 2*pivalGA;
+		    }
+		    brkpt = 0;
+
+		  } // if(abs(Point2[0])<WorldXDim && abs(Point2[1])<WorldYDim) {
+		} // if(TopPlane ==1) {
+	      } // if(abs(Point1[0])<pargas[0] && abs(Point1[1])<pargas[1]) {
+	    }// if(trgCheck == 1) {
+	    brkcnt++;
+	    if(brkcnt>1000) {
+	      cout<<"brkcnt "<<brkcnt<<endl;
+	      vertexX = 0;
+	      vertexY = 0; //Point2[1];
+	      vertexZ = WorldZDim - 1*mm; //Point2[2];
+	      Ini_Theta = theta;
+	      Ini_Phi = phi;
+	      if(Ini_Phi < -pivalGA) {
+		Ini_Phi = Ini_Phi + 2*pivalGA;
+	      } else if(Ini_Phi > pivalGA) {
+		Ini_Phi = Ini_Phi - 2*pivalGA;
+	      }
+	      brkpt = 0;
+	      cout<<"brkt "<<brkcnt<<" "<<Ini_Theta*180/pivalGA <<" "<<Ini_Phi*180/pivalGA<<endl;
+	    }
+	  } // while(brkpt) {	
+	  // cout << " count " << count << " vertexX " << vertexX << " vertexY " << vertexY << " vertexZ " << vertexZ << endl;
+	  // cout << " mom " << tmp3v.mag() << " " << Ini_Theta << " " << Ini_Phi << endl;
+	  
+	  // Ini_Enrgy = enrgy;
+	  // double Ini_Enrgy = (G4UniformRand()*EUpLim+ELowLim)*MeV;
+	  // cout << " Ini_Enrgy " << Ini_Enrgy << endl;
+	  // cout << " ELowLim " << ELowLim << " EUpLim " << EUpLim << endl;	  
+	  
+	  ini_Dir.setTheta(Ini_Theta);
+	  ini_Dir.setPhi(Ini_Phi);
+	  particleGun->SetParticleMomentumDirection(ini_Dir);
+	  particleGun->SetParticleMomentum(tmp3v.mag());
+	  particleGun->SetParticlePosition(G4ThreeVector(vertexX, vertexY, vertexZ));
+	  particleGun->GeneratePrimaryVertex(anEvent);
+	  if (count < (int)pAnalysis->ngenmx) {
+	    pAnalysis->pidin [count]= particleGun->GetParticleDefinition()->GetPDGEncoding();
+	    pAnalysis->posxin[count]= particleGun->GetParticlePosition().x();
+	    pAnalysis->posyin[count]= particleGun->GetParticlePosition().y();
+	    pAnalysis->poszin[count]= particleGun->GetParticlePosition().z();
+	    if(particle->GetPDGCharge()==0){
+	      pAnalysis->momin[count] = particleGun->GetParticleMomentum()/GeV;
+	    } else {
+	      pAnalysis->momin[count] = (particleGun->GetParticleMomentum())*(particle->GetPDGCharge())/GeV;
+	    }
+	    pAnalysis->thein[count] = particleGun->GetParticleMomentumDirection().theta();
+	    pAnalysis->phiin[count] = particleGun->GetParticleMomentumDirection().phi();
+	  } // if (count < (int)pAnalysis->ngenmx) {
+	} // if(iC_cpid[count]!=0 && abs(iC_cpid[count])<1000000) {
+      } // for (int count=0; count<iC_npart; count++) {
+    } // if (FirstEvt+g_nevt<TreeCORSIKA->GetEntries()) {
   } else if (InputFlag==5) {
+    if (initialiseCor==0) {
+      cout << " InputFlag==5 " << endl;
+      FileFLUX->cd();
+      muFlux = (TH3F*)FileFLUX->Get("muFlux");
+      mupFlux = (TH3F*)FileFLUX->Get("mupFlux");
+      munFlux = (TH3F*)FileFLUX->Get("munFlux");
+      initialiseCor=1;
+      cout << " InputFlag==5 " << endl;
+    } // if (initialiseCor==0) {
+    if(1) {
+      pAnalysis->ievt		= g_nevt;
+      pAnalysis->ievt_wt	= 1.;
+      pAnalysis->ngent = particleGun->GetNumberOfParticles();	// number of particles
+      // cout << " npart " <<  pAnalysis->ngent << endl;
+      for (unsigned int count=0; count<pAnalysis->ngent; count++) {
+	if(1) {
+	  
+	  double Pxx,Pyy,Pzz;
+	  muFlux->GetRandom3(Pxx,Pyy,Pzz);
+	  int gBin = muFlux->FindBin(Pxx,Pyy,Pzz);
+	  double mupCnt = mupFlux->GetBinContent(gBin);
+	  double munCnt = munFlux->GetBinContent(gBin);
+
+	  int partID;
+	  if(G4UniformRand()*(mupCnt+munCnt)>munCnt) {
+	    partID = -13;
+	  } else {
+	    partID = 13;
+	  }
+	  // cout << " partID " << partID << endl;
+	  
+	  G4ParticleTable* particleTable = G4ParticleTable::GetParticleTable();
+	  G4ParticleDefinition* particle = particleTable->FindParticle(partID);
+	  particleGun->SetParticleDefinition(particle);
+	  particleGun->SetParticlePosition(G4ThreeVector(0,0,0));
+
+	  /*** Check this properly ---> MeV or GeV ***/
+	  // G4ThreeVector tmp3v(iC_cpx[count]*MeV,iC_cpy[count]*MeV,iC_cpz[count]*MeV);
+	  G4ThreeVector tmp3v(Pxx*GeV,Pyy*GeV,Pzz*GeV);
+	  
+	  double Point2[3];
+	  // double energy;
+	  double vertexX;
+	  double vertexY;
+	  double vertexZ;
+	  double Ini_Theta = 0;
+	  double Ini_Phi = 0;
+	  G4ThreeVector ini_Dir(tmp3v.unit());
+	  double theta, phi;
+	  int brkpt = 1;
+	  int brkcnt = 0;
+
+	  pAnalysis->ngenerated = 0;
+	  pAnalysis->naperture = 0;
+
+	  while(brkpt) {
+	    vx = 1.2*pargas[0]*(2*G4UniformRand()-1.0);
+	    vy = 1.2*pargas[1]*(2*G4UniformRand()-1.0);
+	    vz = RPCLayerPosZ[toptrgly];
+	    
+	    if(abs(vx)<pargas[0] && abs(vy)<pargas[1]) {
+	      pAnalysis->ngenerated++;
+	    }
+	    phi = ini_Dir.phi();
+	    theta = ini_Dir.theta();
+	    double Line1[6];
+	    double Plane1[6];
+	    double Point1[3] = {-100000.,-100000.,-100000.};
+	    Line1[0] = vx;
+	    Line1[1] = vy;
+	    Line1[2] = vz;
+	    Line1[3] = -sin(theta)*cos(phi);
+	    Line1[4] = -sin(theta)*sin(phi);
+	    Line1[5] = -cos(theta);
+	    Plane1[0] =  0;
+	    Plane1[1] =  0;
+	    Plane1[2] =  RPCLayerPosZ[bottomtrgly];;
+	    Plane1[3] = 0;
+	    Plane1[4] = 0;
+	    Plane1[5] = 1;
+	    int trgCheck = LinePlaneInt(Line1,Plane1,Point1);
+	    if(trgCheck == 1) {
+	      if(abs(Point1[0])<pargas[0] && abs(Point1[1])<pargas[1]) {
+		pAnalysis->naperture++;
+		double Line2[6];
+		double Plane2[6];
+		for(int lmn=0;lmn<3;lmn++) {Point2[lmn] = Point1[lmn];}
+		Line2[0] = StackPosInWorld[0] + vx;
+		Line2[1] = StackPosInWorld[1] + vy;
+		Line2[2] = StackPosInWorld[2] + vz;
+		Line2[3] = -sin(theta)*cos(phi);
+		Line2[4] = -sin(theta)*sin(phi);
+		Line2[5] = -cos(theta);
+		
+		Plane2[0] =  0;
+		Plane2[1] =  0;
+		Plane2[2] =  WorldZDim - 1*mm;
+		Plane2[3] = 0;
+		Plane2[4] = 0;
+		Plane2[5] = 1;
+		int TopPlane = LinePlaneInt(Line2,Plane2,Point2);
+		if(TopPlane ==1) {
+		  if(abs(Point2[0])<WorldXDim && abs(Point2[1])<WorldYDim) {
+		    vertexX = Point2[0];
+		    vertexY = Point2[1];
+		    vertexZ = Point2[2];
+		    Ini_Theta = theta;
+		    Ini_Phi = phi;
+		    if(Ini_Phi < -pivalGA) {
+		      Ini_Phi = Ini_Phi + 2*pivalGA;
+		    } else if(Ini_Phi > pivalGA) {
+		      Ini_Phi = Ini_Phi - 2*pivalGA;
+		    }
+		    brkpt = 0;
+
+		  } // if(abs(Point2[0])<WorldXDim && abs(Point2[1])<WorldYDim) {
+		} // if(TopPlane ==1) {
+	      } // if(abs(Point1[0])<pargas[0] && abs(Point1[1])<pargas[1]) {
+	    }// if(trgCheck == 1) {
+	    brkcnt++;
+	    if(brkcnt>1000) {
+	      cout<<"brkcnt "<<brkcnt<<endl;
+	      vertexX = 0;
+	      vertexY = 0; //Point2[1];
+	      vertexZ = WorldZDim - 1*mm; //Point2[2];
+	      Ini_Theta = theta;
+	      Ini_Phi = phi;
+	      if(Ini_Phi < -pivalGA) {
+		Ini_Phi = Ini_Phi + 2*pivalGA;
+	      } else if(Ini_Phi > pivalGA) {
+		Ini_Phi = Ini_Phi - 2*pivalGA;
+	      }
+	      brkpt = 0;
+	      cout<<"brkt "<<brkcnt<<" "<<Ini_Theta*180/pivalGA <<" "<<Ini_Phi*180/pivalGA<<endl;
+	    }
+	  } // while(brkpt) {	
+	  // cout << " count " << count << " vertexX " << vertexX << " vertexY " << vertexY << " vertexZ " << vertexZ << endl;
+	  // cout << " mom " << tmp3v.mag() << " " << Ini_Theta << " " << Ini_Phi << endl;
+	  
+	  // Ini_Enrgy = enrgy;
+	  double Ini_Enrgy = (G4UniformRand()*EUpLim+ELowLim)*MeV;
+	  // cout << " Ini_Enrgy " << Ini_Enrgy << endl;
+	  // cout << " ELowLim " << ELowLim << " EUpLim " << EUpLim << endl;	  
+	  
+	  // Ini_Phi = pivalGA*(2*G4UniformRand()-1)*rad;
+	  
+	  ini_Dir.setTheta(Ini_Theta);
+	  ini_Dir.setPhi(Ini_Phi);
+	  particleGun->SetParticleMomentumDirection(ini_Dir);
+	  // particleGun->SetParticleMomentum(tmp3v.mag());
+	  particleGun->SetParticleMomentum(Ini_Enrgy);
+	  particleGun->SetParticlePosition(G4ThreeVector(vertexX, vertexY, vertexZ));
+	  particleGun->GeneratePrimaryVertex(anEvent);
+	  if (count < (int)pAnalysis->ngenmx) {
+	    pAnalysis->pidin [count]= particleGun->GetParticleDefinition()->GetPDGEncoding();
+	    pAnalysis->posxin[count]= particleGun->GetParticlePosition().x();
+	    pAnalysis->posyin[count]= particleGun->GetParticlePosition().y();
+	    pAnalysis->poszin[count]= particleGun->GetParticlePosition().z();
+	    if(particle->GetPDGCharge()==0){
+	      pAnalysis->momin[count] = particleGun->GetParticleMomentum()/GeV;
+	    } else {
+	      pAnalysis->momin[count] = (particleGun->GetParticleMomentum())*(particle->GetPDGCharge())/GeV;
+	    }
+	    pAnalysis->thein[count] = particleGun->GetParticleMomentumDirection().theta();
+	    pAnalysis->phiin[count] = particleGun->GetParticleMomentumDirection().phi();
+	  } // if (count < (int)pAnalysis->ngenmx) {
+	} // if(iC_cpid[count]!=0 && abs(iC_cpid[count])<1000000) {
+      } // for (int count=0; count<iC_npart; count++) {
+    } // if (FirstEvt+g_nevt<TreeCORSIKA->GetEntries()) {
+  } else if (InputFlag==6) {
     if (initialiseCor==0) {
       TreeCORSIKA = (TTree*)FileCORSIKA->Get("corsikaTreeAll");
       TreeCORSIKA->SetBranchAddress("iC_nevt",&iC_nevt);
@@ -915,6 +1121,19 @@ void micalPrimaryGeneratorAction::CloseFileCORSIKA() {
   
   FileCORSIKA->Close();
   delete FileCORSIKA;
+}
+
+void micalPrimaryGeneratorAction::OpenFileFLUX() {
+  G4String infile;
+  infile = CorsikaFileDir;
+  infile.append(FluxFileName);
+  cout<<"FluxFileName "<<FluxFileName<<endl;
+  FileFLUX = new TFile(infile,"READ","flux file");
+}
+
+void micalPrimaryGeneratorAction::CloseFileFLUX() {
+  FileFLUX->Close();
+  delete FileFLUX;
 }
 
 void micalPrimaryGeneratorAction::SetInputFlag(G4int p) {

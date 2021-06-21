@@ -13,6 +13,7 @@
 #include "G4SDManager.hh"
 #include "G4RegionStore.hh"
 #include "G4Region.hh"
+#include "G4MagIntegratorDriver.hh"
 
 class G4Box;
 class G4Trd;

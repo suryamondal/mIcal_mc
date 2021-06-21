@@ -395,12 +395,13 @@ void micalDetectorParameterDef::UpdateDetectorParameterDef(){
   parcurvedcoil[2]= CoilWidth; //31.25*cm ;
   parcurvedcoil[3]= CurvedCoilPhiMin; //0*rad ;
   parcurvedcoil[4]= CurvedCoilPhiMax; //M_PI/2*rad ;
-
+  
   //Top Scintillator
   partopscint[0] = nUnitTop*nScintInUnit*ScintUnitX/2;
   partopscint[1] = ScintUnitY/2;
   partopscint[2] = ScintUnitZ/2;
-  
+  cout <<"partopscint "<<partopscint[0]<<"*mm, "<<partopscint[1]<<"*mm, "<<partopscint[2]<<"*mm"<<endl;
+
   //Wall Scintillator
   parwallscint[0] = nUnitWall*nScintInUnit*ScintUnitX/2;
   parwallscint[1] = ScintUnitY/2;
@@ -410,11 +411,13 @@ void micalDetectorParameterDef::UpdateDetectorParameterDef(){
   parmagnet[0] = parchm[0]*2 + 2*mm; // 1606.01*cm;
   parmagnet[1] = parchm[1]*2 + 2*mm; //706.01*cm;
   parmagnet[2] = parvcoil[2] + CurvedCoilOutRadii + 5*mm;//parairroom[2];
+  cout <<"parmagnet "<<parmagnet[0]<<"*mm, "<<parmagnet[1]<<"*mm, "<<parmagnet[2]<<"*mm"<<endl;
 
   //INO
   parino[0] = 1.1*(partopscint[0]+ScintUnitZ); // 1606.01*cm;
   parino[1] = 1.1*(partopscint[1]+ScintUnitZ); //706.01*cm;
   parino[2] = parairroom[2];//1.01*(parwallscint[0] + ScintFromBottom/2);
+  cout <<"parino "<<parino[0]<<"*mm, "<<parino[1]<<"*mm, "<<parino[2]<<"*mm"<<endl;
   
   // RPC layer
   parlay[0]=parchm[0]*2; //800.0*cm; //1600.0*cm;
@@ -484,8 +487,8 @@ void micalDetectorParameterDef::UpdateDetectorParameterDef(){
   INOroomPos[1] = -parroom[1] + 2*RoomWallThickness + parairroom[1] + 2*parstaircaseair[1];
   INOroomPos[2] = -parroom[2] + RoomWallThicknessZ + parairroom[2];
   
-  // cout<<"StackPosInRoom "<<StackPosInRoom[0]<<" "<<StackPosInRoom[1]<<" "<<StackPosInRoom[2]<<endl;
-  // cout<<"INOroomPos "<<INOroomPos[0]<<" "<<INOroomPos[1]<<" "<<INOroomPos[2]<<endl;
+  cout<<"StackPosInRoom "<<StackPosInRoom[0]<<" "<<StackPosInRoom[1]<<" "<<StackPosInRoom[2]<<endl;
+  cout<<"INOroomPos "<<INOroomPos[0]<<" "<<INOroomPos[1]<<" "<<INOroomPos[2]<<endl;
   // for(int ij=0; ij<nLayer; ij++) {
   //   cout<<"Layer["<<ij<<"] = "<<RPCLayerPosZ[ij]<<endl;
   // }

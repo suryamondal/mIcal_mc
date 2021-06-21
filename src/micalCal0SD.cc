@@ -231,8 +231,8 @@ G4bool micalcal0SD::ProcessHits(G4Step* aStep, G4TouchableHistory*) {
   
   G4ThreeVector localpos = theTouchable->GetHistory()->GetTopTransform().TransformPoint(glbpos); // 0.5*(aStep->GetPreStepPoint()->GetPosition() + aStep->GetPostStepPoint()->GetPosition()));
   
-  // cout<<"glb "<<glbpos<<" loc "<<localpos<<endl;
-
+  cout<<"glb "<<glbpos<<" loc "<<localpos<<endl;
+  
   // cout<<"XXXXXXXXXXXXXXXXXXXX"<<endl;
   // cout<<"atime "<<atime<<"     nInT "<<nInT<<endl;
   // cout<<"localpos "<< 1.e-1*localpos.x()<<" "<< 1.e-1*localpos.y()<<" "<< 1.e-1*localpos.z()<<endl;
@@ -263,7 +263,7 @@ G4bool micalcal0SD::ProcessHits(G4Step* aStep, G4TouchableHistory*) {
   nInY[0] = int(yy/Ystrwd);
   G4double xx = pargas[0] + localpos.x(); // /m; // /cm; 
   nInX[0] = int(xx/Xstrwd);
-  // cout<<"nInX[0] "<<nInX[0] <<" "<<nInY[0]<<" "<<nInLA<<endl;
+  cout<<"nInX[0] "<<nInX[0] <<" "<<nInY[0]<<" "<<nInLA<<endl;
   
   for (int ix = 0; ix < UsedMxStrip; ix++) {
     if(!multiplicity && ix>0) continue;
@@ -290,7 +290,7 @@ G4bool micalcal0SD::ProcessHits(G4Step* aStep, G4TouchableHistory*) {
 
       // cout<<"recxpos "<<dd1<<" genxpos "<<glbpos.x()<<endl;
       // cout<<"recypos "<<dd2<<" genypos "<<glbpos.y()<<endl;
-
+      
       pAnalysis->pPosX->Fill(0.1*dd1 - 0.1*glbpos.x());
       pAnalysis->pPosY->Fill(0.1*dd1 - 0.1*glbpos.x());
 
@@ -661,11 +661,12 @@ void micalcal0SD::EndOfEvent(G4HCofThisEvent*) {
     }
     pAnalysis->pRootFile->cd(); 
   }
+  // cout << " InputOutput " << (pAnalysis->InputOutput) << endl;
   if (pAnalysis->InputOutput <=4) {
-    if (pAnalysis->InputOutput==2) { 
+    if(pAnalysis->InputOutput==2) { 
       pAnalysis->pRootFile->cd();
       pAnalysis->nsimht = cal0Collection->entries();
-      cout<<" "<<cal0Collection->entries()<<" "<<pAnalysis->nsimht<<endl;
+      cout<<" cal0Collection entries "<<cal0Collection->entries()<<" "<<pAnalysis->nsimht<<endl;
       if (pAnalysis->nsimht >pAnalysis->nsimhtmx) pAnalysis->nsimht =pAnalysis->nsimhtmx;
       for (int ij=0; ij< cal0Collection->entries() && ij<(int)pAnalysis->nsimht; ij++) {
 	pAnalysis->detid[ij] =  (*cal0Collection)[ij]->GetHitId();
@@ -739,7 +740,9 @@ void micalcal0SD::EndOfEvent(G4HCofThisEvent*) {
 	nInY[0] = detid%128;
 	detid>>=7;
 	nInX[0] = detid%128;
-	
+
+	cout << " nInX[0] " << nInX[0] << " nInY[0] " << nInY[0] << endl;
+
 	if (nInX[0] <0 && nInY[0] <0) { continue;}
 	
 	detid>>=7;
@@ -775,15 +778,19 @@ void micalcal0SD::EndOfEvent(G4HCofThisEvent*) {
 	int nInT = int(atime/TimeToDigiConv); // Assuming Minimum scale of timing ~100 ps = 0.1 ns
 	if (nInT < iMnT) { iMnT = nInT;} 
 	if (nInT > iMxT) { iMxT = nInT;}
+
+	cout << " nInX[0] " << nInX[0] << " nInY[0] " << nInY[0] << endl;
 	
 	G4double gapX = (pargas[0] + (*cal0Collection)[ij]->GetLocalXPos() - nInX[0]*Xstrwd)/Xstrwd  - 0.5;
 	G4double gapY = (pargas[1] + (*cal0Collection)[ij]->GetLocalYPos() - nInY[0]*Ystrwd)/Ystrwd  - 0.5;
 	int nxmul=1;
 	int nymul=1;
 	if (nInX[0] >=0 && NewMultiplicity) {
-	  // cout<<"Hello X World"<<endl;
+	  cout<<"Hello X World"<<endl;
 	  if(pAnalysis->collatedIn) {
-	    nxmul = GetRandomXY(gapX,pAnalysis->strp_xmulsim_cor[nInLA]);
+	    // nxmul = GetRandomXY(gapX,pAnalysis->strp_xmulsim_cor[nInLA]);
+	    nxmul = GetRandomXY(gapX,pAnalysis->block_xmulsim[nInLA][int(nInX[0]/4.)][int(nInY[0]/4.)]);
+	    cout << " nxmul " << nxmul << endl;
 	  } else {
 	    double arand=gRandom->Rndm();
 	    if (arand<0.1) { //10% case three strip hits
@@ -807,7 +814,9 @@ void micalcal0SD::EndOfEvent(G4HCofThisEvent*) {
 	
 	if (nInY[0] >=0 && NewMultiplicity) {
 	  if(pAnalysis->collatedIn) {
-	    nymul = GetRandomXY(gapY,pAnalysis->strp_ymulsim_cor[nInLA]);
+	    // nymul = GetRandomXY(gapY,pAnalysis->strp_ymulsim_cor[nInLA]);
+	    nymul = GetRandomXY(gapY,pAnalysis->block_ymulsim[nInLA][int(nInX[0]/4.)][int(nInY[0]/4.)]);
+	    cout << " nxmul " << nxmul << endl;
 	  } else {
 	    double arand=gRandom->Rndm();
 	    if (arand<0.1) {nymul = 3;}

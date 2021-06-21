@@ -22,6 +22,8 @@ public:
   ~micalPrimaryGeneratorAction();
   void OpenFileCORSIKA();
   void CloseFileCORSIKA();
+  void OpenFileFLUX();
+  void CloseFileFLUX();
   static micalPrimaryGeneratorAction* AnPointer;
   void GeneratePrimaries(G4Event*);
   void SetRunNumber(G4int p) { RunNumber = p;}
@@ -40,6 +42,7 @@ public:
   void SetIncVzSmr(G4double p) {incVzSmr =p;}
   void SetCorsikaFileName(G4String p) {CorsikaFileName=p;}
   void SetCorsikaFileDir(G4String p) {CorsikaFileDir=p;}
+  void SetFluxFileName(G4String p) {FluxFileName=p;}
   //For inputflag 1
   void SetPowerCosTheta(G4double p) {PowCosTheta=p;}
   void SetDetectorThetaCover(G4double p) {DetThetaCov=p*pivalGA/180.;}
@@ -52,8 +55,10 @@ public:
   int LinePlaneInt(double* Line, double* Plane, double* Point);
   double energy_func(double x1);
   
+  TFile *FileFLUX;
   TFile *FileCORSIKA;
   TTree *TreeCORSIKA;
+  TH3F *muFlux, *mupFlux, *munFlux;
   TH3D *corsikaFlux;
   TH3D *corsikaFluxMuM;
   TH3D *corsikaFluxMuP;
@@ -127,6 +132,7 @@ public:
   
   G4String CorsikaFileDir;
   G4String CorsikaFileName;
+  G4String FluxFileName;
 };
 
 #endif

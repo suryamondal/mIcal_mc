@@ -730,19 +730,19 @@ G4VPhysicalVolume* micalDetectorConstruction::ConstructCalorimeter() {
   // coil in vertical direction
   solidVCOIL = new G4Box("VCOIL", parvcoil[0], parvcoil[1], parvcoil[2]); 
   logicVCOIL = new G4LogicalVolume(solidVCOIL,
-				   Iron,
+				   Copper,//Iron,
 				   "VCOILlog");
   
   // coil in horizontal direction
   solidHCOIL = new G4Box("HCOIL", parhcoil[0], parhcoil[1], parhcoil[2]); 
   logicHCOIL = new G4LogicalVolume(solidHCOIL,
-				   Iron,
+				   Copper,//Iron,
 				   "HCOILlog");
 
   // curved portion of coil
   solidCurvedCOIL = new G4Tubs("CurvedCOIL", parcurvedcoil[0], parcurvedcoil[1], parcurvedcoil[2], parcurvedcoil[3],  parcurvedcoil[4] ); 
   logicCurvedCOIL = new G4LogicalVolume(solidCurvedCOIL,
-					Iron,
+					Copper,//Iron,
 					"CurvedCOILlog");
   
   //coil support
@@ -1028,113 +1028,113 @@ G4VPhysicalVolume* micalDetectorConstruction::ConstructCalorimeter() {
 				 false,
 				 0);
   
-  xpos = 0.0;
-  ypos = 0.0;
-  zpos = posmagnet + parmagnet[2] + 180 + partopscint[2];
-  char namexs[100];
-  char namexl[100];
-  char namexp[100];
-  for(int nsc=0; nsc<nScintLayer; nsc++) {
-    sprintf(namexs,"TopScintSolid_%i",nsc);
-    sprintf(namexl,"TopScintLogic_%i",nsc);
-    sprintf(namexp,"TopScintPhysi_%i",nsc);
-    solidTopScint[nsc] = new G4Box(namexs,partopscint[0],partopscint[1],partopscint[2]);
-    logicTopScint[nsc] = new G4LogicalVolume(solidTopScint[nsc],
-					     Air,
-					     namexl);
-    physiTopScint[nsc] = new  G4PVPlacement(0,
-					    G4ThreeVector(xpos,ypos,zpos),
-					    logicTopScint[nsc],
-					    namexp,
-					    logicINOM,
-					    false,
-					    nsc);
-    zpos += AirGapScintTop + ScintUnitZ;
-  }
+  // xpos = 0.0;
+  // ypos = 0.0;
+  // zpos = posmagnet + parmagnet[2] + 180 + partopscint[2];
+  // char namexs[100];
+  // char namexl[100];
+  // char namexp[100];
+  // for(int nsc=0; nsc<nScintLayer; nsc++) {
+  //   sprintf(namexs,"TopScintSolid_%i",nsc);
+  //   sprintf(namexl,"TopScintLogic_%i",nsc);
+  //   sprintf(namexp,"TopScintPhysi_%i",nsc);
+  //   solidTopScint[nsc] = new G4Box(namexs,partopscint[0],partopscint[1],partopscint[2]);
+  //   logicTopScint[nsc] = new G4LogicalVolume(solidTopScint[nsc],
+  // 					     Air,
+  // 					     namexl);
+  //   physiTopScint[nsc] = new  G4PVPlacement(0,
+  // 					    G4ThreeVector(xpos,ypos,zpos),
+  // 					    logicTopScint[nsc],
+  // 					    namexp,
+  // 					    logicINOM,
+  // 					    false,
+  // 					    nsc);
+  //   zpos += AirGapScintTop + ScintUnitZ;
+  // }
   
-  xpos = 0.0;
-  ypos = -partopscint[1] - 1*mm - parwallscint[2];
-  zpos = -parino[2] + ScintFromBottom + parwallscint[0];
-  for(int nsc=0; nsc<nScintLayer; nsc++) {
-    sprintf(namexs,"WallScintFrontSolid_%i",nsc);
-    sprintf(namexl,"WallScintFrontLogic_%i",nsc);
-    sprintf(namexp,"WallScintFrontPhysi_%i",nsc);
-    solidWallScintFront[nsc] = new G4Box(namexs,parwallscint[1],parwallscint[2],parwallscint[0]);
-    logicWallScintFront[nsc] = new G4LogicalVolume(solidWallScintFront[nsc],
-					     Air,
-					     namexl);
-    physiWallScintFront[nsc] = new  G4PVPlacement(0,
-					    G4ThreeVector(xpos,ypos,zpos),
-					    logicWallScintFront[nsc],
-					    namexp,
-					    logicINOM,
-					    false,
-					    nsc);
-    ypos += -AirGapScintWall - ScintUnitZ;
-  }
+  // xpos = 0.0;
+  // ypos = -partopscint[1] - 1*mm - parwallscint[2];
+  // zpos = -parino[2] + ScintFromBottom + parwallscint[0];
+  // for(int nsc=0; nsc<nScintLayer; nsc++) {
+  //   sprintf(namexs,"WallScintFrontSolid_%i",nsc);
+  //   sprintf(namexl,"WallScintFrontLogic_%i",nsc);
+  //   sprintf(namexp,"WallScintFrontPhysi_%i",nsc);
+  //   solidWallScintFront[nsc] = new G4Box(namexs,parwallscint[1],parwallscint[2],parwallscint[0]);
+  //   logicWallScintFront[nsc] = new G4LogicalVolume(solidWallScintFront[nsc],
+  // 					     Air,
+  // 					     namexl);
+  //   physiWallScintFront[nsc] = new  G4PVPlacement(0,
+  // 					    G4ThreeVector(xpos,ypos,zpos),
+  // 					    logicWallScintFront[nsc],
+  // 					    namexp,
+  // 					    logicINOM,
+  // 					    false,
+  // 					    nsc);
+  //   ypos += -AirGapScintWall - ScintUnitZ;
+  // }
   
-  xpos = 0.0;
-  ypos = partopscint[1] + 1*mm + parwallscint[2];
-  zpos = -parino[2] + ScintFromBottom + parwallscint[0];
-  for(int nsc=0; nsc<nScintLayer; nsc++) {
-    sprintf(namexs,"WallScintBackSolid_%i",nsc);
-    sprintf(namexl,"WallScintBackLogic_%i",nsc);
-    sprintf(namexp,"WallScintBackPhysi_%i",nsc);
-    solidWallScintBack[nsc] = new G4Box(namexs,parwallscint[1],parwallscint[2],parwallscint[0]);
-    logicWallScintBack[nsc] = new G4LogicalVolume(solidWallScintBack[nsc],
-  					     Air,
-  					     namexl);
-    physiWallScintBack[nsc] = new  G4PVPlacement(0,
-  					    G4ThreeVector(xpos,ypos,zpos),
-  					    logicWallScintBack[nsc],
-  					    namexp,
-  					    logicINOM,
-  					    false,
-  					    nsc);
-    ypos += AirGapScintWall + ScintUnitZ;
-  }
+  // xpos = 0.0;
+  // ypos = partopscint[1] + 1*mm + parwallscint[2];
+  // zpos = -parino[2] + ScintFromBottom + parwallscint[0];
+  // for(int nsc=0; nsc<nScintLayer; nsc++) {
+  //   sprintf(namexs,"WallScintBackSolid_%i",nsc);
+  //   sprintf(namexl,"WallScintBackLogic_%i",nsc);
+  //   sprintf(namexp,"WallScintBackPhysi_%i",nsc);
+  //   solidWallScintBack[nsc] = new G4Box(namexs,parwallscint[1],parwallscint[2],parwallscint[0]);
+  //   logicWallScintBack[nsc] = new G4LogicalVolume(solidWallScintBack[nsc],
+  // 					     Air,
+  // 					     namexl);
+  //   physiWallScintBack[nsc] = new  G4PVPlacement(0,
+  // 					    G4ThreeVector(xpos,ypos,zpos),
+  // 					    logicWallScintBack[nsc],
+  // 					    namexp,
+  // 					    logicINOM,
+  // 					    false,
+  // 					    nsc);
+  //   ypos += AirGapScintWall + ScintUnitZ;
+  // }
 
-  xpos = partopscint[0] + 1*mm + parwallscint[2];
-  ypos = 0.0;
-  zpos = -parino[2] + ScintFromBottom + parwallscint[0];
-  for(int nsc=0; nsc<nScintLayer; nsc++) {
-    sprintf(namexs,"WallScintRightSolid_%i",nsc);
-    sprintf(namexl,"WallScintRightLogic_%i",nsc);
-    sprintf(namexp,"WallScintRightPhysi_%i",nsc);
-    solidWallScintRight[nsc] = new G4Box(namexs,parwallscint[2],parwallscint[1],parwallscint[0]);
-    logicWallScintRight[nsc] = new G4LogicalVolume(solidWallScintRight[nsc],
-  					     Air,
-  					     namexl);
-    physiWallScintRight[nsc] = new  G4PVPlacement(0,
-  					    G4ThreeVector(xpos,ypos,zpos),
-  					    logicWallScintRight[nsc],
-  					    namexp,
-  					    logicINOM,
-  					    false,
-  					    nsc);
-    xpos += AirGapScintWall + ScintUnitZ;
-  }
+  // xpos = partopscint[0] + 1*mm + parwallscint[2];
+  // ypos = 0.0;
+  // zpos = -parino[2] + ScintFromBottom + parwallscint[0];
+  // for(int nsc=0; nsc<nScintLayer; nsc++) {
+  //   sprintf(namexs,"WallScintRightSolid_%i",nsc);
+  //   sprintf(namexl,"WallScintRightLogic_%i",nsc);
+  //   sprintf(namexp,"WallScintRightPhysi_%i",nsc);
+  //   solidWallScintRight[nsc] = new G4Box(namexs,parwallscint[2],parwallscint[1],parwallscint[0]);
+  //   logicWallScintRight[nsc] = new G4LogicalVolume(solidWallScintRight[nsc],
+  // 					     Air,
+  // 					     namexl);
+  //   physiWallScintRight[nsc] = new  G4PVPlacement(0,
+  // 					    G4ThreeVector(xpos,ypos,zpos),
+  // 					    logicWallScintRight[nsc],
+  // 					    namexp,
+  // 					    logicINOM,
+  // 					    false,
+  // 					    nsc);
+  //   xpos += AirGapScintWall + ScintUnitZ;
+  // }
 
-  xpos = -partopscint[0] - 1*mm - parwallscint[2];
-  ypos = 0.0;
-  zpos = -parino[2] + ScintFromBottom + parwallscint[0];
-  for(int nsc=0; nsc<nScintLayer; nsc++) {
-    sprintf(namexs,"WallScintLeftSolid_%i",nsc);
-    sprintf(namexl,"WallScintLeftLogic_%i",nsc);
-    sprintf(namexp,"WallScintLeftPhysi_%i",nsc);
-    solidWallScintLeft[nsc] = new G4Box(namexs,parwallscint[2],parwallscint[1],parwallscint[0]);
-    logicWallScintLeft[nsc] = new G4LogicalVolume(solidWallScintLeft[nsc],
-  					     Air,
-  					     namexl);
-    physiWallScintLeft[nsc] = new  G4PVPlacement(0,
-  					    G4ThreeVector(xpos,ypos,zpos),
-  					    logicWallScintLeft[nsc],
-  					    namexp,
-  					    logicINOM,
-  					    false,
-  					    nsc);
-    xpos += -AirGapScintWall - ScintUnitZ;
-  }
+  // xpos = -partopscint[0] - 1*mm - parwallscint[2];
+  // ypos = 0.0;
+  // zpos = -parino[2] + ScintFromBottom + parwallscint[0];
+  // for(int nsc=0; nsc<nScintLayer; nsc++) {
+  //   sprintf(namexs,"WallScintLeftSolid_%i",nsc);
+  //   sprintf(namexl,"WallScintLeftLogic_%i",nsc);
+  //   sprintf(namexp,"WallScintLeftPhysi_%i",nsc);
+  //   solidWallScintLeft[nsc] = new G4Box(namexs,parwallscint[2],parwallscint[1],parwallscint[0]);
+  //   logicWallScintLeft[nsc] = new G4LogicalVolume(solidWallScintLeft[nsc],
+  // 					     Air,
+  // 					     namexl);
+  //   physiWallScintLeft[nsc] = new  G4PVPlacement(0,
+  // 					    G4ThreeVector(xpos,ypos,zpos),
+  // 					    logicWallScintLeft[nsc],
+  // 					    namexp,
+  // 					    logicINOM,
+  // 					    false,
+  // 					    nsc);
+  //   xpos += -AirGapScintWall - ScintUnitZ;
+  // }
 
   xpos = paradef->GetStackPosInRoom(0); 
   ypos = paradef->GetStackPosInRoom(1); 
@@ -1361,13 +1361,13 @@ G4VPhysicalVolume* micalDetectorConstruction::ConstructCalorimeter() {
   logicCOAT->SetVisAttributes(visNull);
   logicQURZ->SetVisAttributes(visNull);
   logicGASR->SetVisAttributes(visNull);
-  for(int nsc=0; nsc<nScintLayer; nsc++) {
-    logicTopScint[nsc]->SetVisAttributes(visGreen);
-    logicWallScintFront[nsc]->SetVisAttributes(visNull);
-    logicWallScintBack[nsc]->SetVisAttributes(visNull);
-    logicWallScintRight[nsc]->SetVisAttributes(visNull);
-    logicWallScintLeft[nsc]->SetVisAttributes(visNull);
-  }
+  // for(int nsc=0; nsc<nScintLayer; nsc++) {
+  //   logicTopScint[nsc]->SetVisAttributes(visGreen);
+  //   logicWallScintFront[nsc]->SetVisAttributes(visNull);
+  //   logicWallScintBack[nsc]->SetVisAttributes(visNull);
+  //   logicWallScintRight[nsc]->SetVisAttributes(visNull);
+  //   logicWallScintLeft[nsc]->SetVisAttributes(visNull);
+  // }
   logicVCOIL->SetVisAttributes(visNull);
   logicHCOIL->SetVisAttributes(visNull);
   logicCurvedCOIL->SetVisAttributes(visNull);

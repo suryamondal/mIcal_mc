@@ -219,6 +219,9 @@ void MultiSimAnalysis::OpenRootfiles(G4String infile,  G4String outfile, G4Strin
       pgPointer->OpenFileCORSIKA();
     }
   }
+  if(pgPointer->InputFlag==4 || pgPointer->InputFlag==5) {
+    pgPointer->OpenFileFLUX();
+  }
 
   if(pgPointer->InputFlag==1) {
     if( InputOutput==0 || InputOutput==1|| InputOutput==2) {

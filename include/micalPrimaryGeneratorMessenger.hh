@@ -38,6 +38,7 @@ private:
   G4UIcmdWithAString*          RndmCmd;
   G4UIcmdWithAString*          CorsikaFileDirCmd;
   G4UIcmdWithAString*          CorsikaFileNameCmd;
+  G4UIcmdWithAString*          FluxFileNameCmd;
   // InputFlag == 0 commands
   G4UIcmdWithAnInteger*        partIdCmd;
   G4UIcmdWithADoubleAndUnit*   incEnergyCmd;

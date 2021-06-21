@@ -55,6 +55,11 @@ micalPrimaryGeneratorMessenger::micalPrimaryGeneratorMessenger(
   CorsikaFileNameCmd->SetParameterName("corsika_file",true, true);
   CorsikaFileNameCmd->SetDefaultValue("corsika_file");
 
+  FluxFileNameCmd = new G4UIcmdWithAString("/mical/gun/flux_file",this);
+  FluxFileNameCmd->SetGuidance(" FluxFile name");
+  FluxFileNameCmd->SetParameterName("flux_file",true, true);
+  FluxFileNameCmd->SetDefaultValue("flux_file");
+
   partIdCmd = new G4UIcmdWithAnInteger("/mical/gun/pid",this);
   partIdCmd->SetGuidance("Set incident energy of particle ID (PDG)");
   partIdCmd->SetParameterName("partID",true, true);
@@ -169,6 +174,7 @@ micalPrimaryGeneratorMessenger::~micalPrimaryGeneratorMessenger() {
   if (RndmCmd){delete RndmCmd;}
   if (CorsikaFileDirCmd){delete CorsikaFileDirCmd;}
   if (CorsikaFileNameCmd){delete CorsikaFileNameCmd;}
+  if (FluxFileNameCmd){delete FluxFileNameCmd;}
   if (partIdCmd){delete  partIdCmd;}
   if (incEnergyCmd){delete incEnergyCmd;}
   if (incEnergySmrCmd){delete incEnergySmrCmd;}
@@ -204,6 +210,8 @@ void micalPrimaryGeneratorMessenger::SetNewValue(G4UIcommand* command, G4String 
     { micalAction->SetCorsikaFileDir(newValue);}
   if( command == CorsikaFileNameCmd )
     { micalAction->SetCorsikaFileName(newValue);}
+  if( command == FluxFileNameCmd )
+    { micalAction->SetFluxFileName(newValue);}
   if( command == partIdCmd )
     { micalAction->SetPartId(partIdCmd->GetNewIntValue(newValue));}
   if( command == incEnergyCmd )

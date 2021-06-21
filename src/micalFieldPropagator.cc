@@ -52,7 +52,12 @@ micalFieldPropagator::micalFieldPropagator() {
 
   fieldxin = (TH2D*)pMagFile->Get("xyvsbxin");
   fieldyin = (TH2D*)pMagFile->Get("xyvsbyin");
-
+  
+  fieldxin->Scale(0.85);
+  fieldyin->Scale(0.85);
+  // fieldxin->Scale(0.);
+  // fieldyin->Scale(0.);
+  
   PrintFieldMap();
 }
 
@@ -119,8 +124,10 @@ void micalFieldPropagator::ElectroMagneticField(const double xyzc[3], double &Bx
   if(strstr(geometryIn->GetCurrentVolume()->GetName(),"IRLAYElog")) {
     // cout<<"xyzc[0] 111 "<<xyzc[0]<<" "<<xyzc[1]<<" "<<xyzc[2]<<" "<<geometryIn->GetCurrentVolume()->GetName()<<endl;
     F2int(igrid,Bxf,Byf);
-    Bx = Bxf*tesla;
-    By = Byf*tesla;
+    // Bx = -Bxf*tesla;
+    // By = -Byf*tesla;
+    Bx = -1.5*tesla;
+    By = -1.5*tesla;
   } else {
     Bx = 0*tesla;
     By = 0*tesla;
