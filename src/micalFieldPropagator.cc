@@ -19,7 +19,10 @@ micalFieldPropagator::micalFieldPropagator() {
     parino[ij] = paradef->GetParino(ij);
     parirlay[ij] = paradef->GetParirlay(ij);
     StackShift[ij] = paradef->GetStackPosInRoom(ij) + paradef->GetINOroomPos(ij);
+    if(ij==2) {StackShift[ij] += (- paradef->GetParino(ij) + paradef->GetParmagnet(ij));}
+    // StackShift[ij] = - paradef->GetParino(ij) + paradef->GetParmagnet(ij) + paradef->GetStackPosInRoom(ij) + paradef->GetINOroomPos(ij);
     // cout<<"StackShift "<<ij<<" "<<StackShift[ij]<<" "<<paradef->GetStackPosInRoom(ij)<<" "<<paradef->GetINOroomPos(ij)<<endl;
+    cout<<"StackShift "<<ij<<" "<<StackShift[ij]<<endl;
   }
   for(int ij=0; ij<nIRLayer; ij++) {
     IRONLayerPosZ[ij] = paradef->GetIRONLayerPosZ(ij);
@@ -111,9 +114,13 @@ void micalFieldPropagator::ElectroMagneticField(const double xyzc[3], double &Bx
   igrid[2]= (int)(tmppos[2]*mm);
   
   double local_pos1[3], local_dir1[3];
-  local_pos1[0] = xyzc[0]/10;
-  local_pos1[1] = xyzc[1]/10;
-  local_pos1[2] = xyzc[2]/10;
+  local_pos1[0] = xyzc[0]/10.;	// in cm
+  local_pos1[1] = xyzc[1]/10.;
+  local_pos1[2] = xyzc[2]/10.;
+  
+  // local_pos1[0] = xyzc[0]*mm;
+  // local_pos1[1] = xyzc[1]*mm;
+  // local_pos1[2] = xyzc[2]*mm;
   
   local_dir1[0] = 0.0;
   local_dir1[1] = 0.0;
@@ -123,11 +130,13 @@ void micalFieldPropagator::ElectroMagneticField(const double xyzc[3], double &Bx
   // cout<<"xyzc[0] "<<xyzc[0]<<" "<<xyzc[1]<<" "<<xyzc[2]<<" "<<geometryIn->GetCurrentVolume()->GetName()<<endl;
   if(strstr(geometryIn->GetCurrentVolume()->GetName(),"IRLAYElog")) {
     // cout<<"xyzc[0] 111 "<<xyzc[0]<<" "<<xyzc[1]<<" "<<xyzc[2]<<" "<<geometryIn->GetCurrentVolume()->GetName()<<endl;
+    // cout<<"igrid[0] 111 "<<igrid[0]<<" "<<igrid[1]<<" "<<igrid[2]<<endl;
     F2int(igrid,Bxf,Byf);
-    // Bx = -Bxf*tesla;
-    // By = -Byf*tesla;
-    Bx = -1.5*tesla;
-    By = -1.5*tesla;
+    Bx = -Bxf*tesla;
+    By = -Byf*tesla;
+    // Bx = -1.5*tesla;
+    // By = -1.5*tesla;
+    // cout<<" Bx "<<Bx<<" By "<<By<<endl;
   } else {
     Bx = 0*tesla;
     By = 0*tesla;
@@ -155,14 +164,14 @@ void micalFieldPropagator::F2int(int* ag_f2i, double& bx_f2i, double& by_f2i) {
   fgridy_loc[3] = fieldyin->GetBinContent(binx+1,biny+1);
   bx_f2i = bilinearInterpolation(fgridx_loc,pgrid_loc,ag_f2i);
   by_f2i = bilinearInterpolation(fgridy_loc,pgrid_loc,ag_f2i);
-  if (fabs(bx_f2i)< 2 && fabs(bx_f2i) >0) {
+  if (fabs(bx_f2i)< 2 && fabs(bx_f2i) >=0) {
     // return bx_f2i;
   } else {
     cout<<"nan  : "<< ag_f2i[0]<<" "<<ag_f2i[1] <<" "<< bx_f2i<<endl;
     bx_f2i = 0;
     // return 0;
   }
-  if (fabs(by_f2i)< 2 && fabs(by_f2i) >0) {
+  if (fabs(by_f2i)< 2 && fabs(by_f2i) >=0) {
     // return by_f2i;
   } else {
     cout<<"nan  : "<< ag_f2i[0]<<" "<<ag_f2i[1] <<" "<< by_f2i<<endl;

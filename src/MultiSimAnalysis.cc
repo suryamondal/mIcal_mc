@@ -141,6 +141,7 @@ MultiSimAnalysis::MultiSimAnalysis(G4String sprefix) {
 void MultiSimAnalysis::OpenRootfiles(G4String infile,  G4String outfile, G4String collFile) {
   // cout<<"void MultiSimAnalysis::OpenRootfiles(G4String infile,  G4String outfile) {..."<<endl;
   cout<<"my infile is "<<infile<<endl;
+  cout<<"my collated is "<<collFile<<endl;
   //  inputRootFile = new TFile(infile, "read");
   
   //  G4String fname(sprefix.data());  // file name without .root
@@ -180,42 +181,128 @@ void MultiSimAnalysis::OpenRootfiles(G4String infile,  G4String outfile, G4Strin
       cout << "Error opening collated file !" << endl;
       exit(-1);
     }
+
+    /* Please check this size of the arrays in .hh file */
     char namex[200];
-    for(int iki=0; iki<numberInLA; iki++) {
-      sprintf(namex,"inefficiency_corx_l%i",iki);
-      inefficiency_corx[iki] = (TH2D*)collatedRootFile->Get(namex);
-      sprintf(namex,"inefficiency_uncx_l%i",iki);
-      inefficiency_uncx[iki] = (TH2D*)collatedRootFile->Get(namex);
-      cout<<"inefficiency_uncx["<<iki<<"] "<<inefficiency_uncx[iki]<<endl;
-      sprintf(namex,"inefficiency_uncy_l%i",iki);
-      inefficiency_uncy[iki] = (TH2D*)collatedRootFile->Get(namex);
-      cout<<"inefficiency_uncy["<<iki<<"] "<<inefficiency_uncy[iki]<<endl;
-      sprintf(namex,"triggereffi_xevt_l%i",iki);
-      triggereffi_xevt[iki] = (TH2D*)collatedRootFile->Get(namex);
-      sprintf(namex,"triggereffi_yevt_l%i",iki);
-      triggereffi_yevt[iki] = (TH2D*)collatedRootFile->Get(namex);
-      sprintf(namex,"strp_xmulsim_cor_l%i",iki);
-      strp_xmulsim_cor[iki] = (TH2D*)collatedRootFile->Get(namex);
-      sprintf(namex,"strp_ymulsim_cor_l%i",iki);
-      strp_ymulsim_cor[iki] = (TH2D*)collatedRootFile->Get(namex);
-    }
-    for(int iki=0; iki<numberInLA; iki++) {
-      for(int ikj=0; ikj<16; ikj++) {
-	for(int ikk=0; ikk<16; ikk++) {
-	  sprintf(namex,"strp_xmullaysim_l%i_%i_%i",iki,ikj,ikk);
-	  block_xmulsim[iki][ikj][ikk] = (TH2D*)collatedRootFile->Get(namex);
-	  sprintf(namex,"strp_ymullaysim_l%i_%i_%i",iki,ikj,ikk);
-	  block_ymulsim[iki][ikj][ikk] = (TH2D*)collatedRootFile->Get(namex);
-	}
-      }
-    } // for(int iki=0; iki<numberInLA; iki++) {
+    // for(int iki=0; iki<numberInLA; iki++) {
+    //   sprintf(namex,"inefficiency_cor_m0_xr0_yr0_l%i",iki);
+    //   inefficiency_corx[iki] = (TH2D*)collatedRootFile->Get(namex);
+    //   sprintf(namex,"inefficiency_unc_m0_xr0_yr0_x%i",iki);
+    //   inefficiency_uncx[iki] = (TH2D*)collatedRootFile->Get(namex);
+    //   sprintf(namex,"inefficiency_unc_m0_xr0_yr0_y%i",iki);
+    //   inefficiency_uncy[iki] = (TH2D*)collatedRootFile->Get(namex);
+    //   sprintf(namex,"triggereffi_evt_m0_xr0_yr0_x%i",iki);
+    //   triggereffi_xevt[iki] = (TH2D*)collatedRootFile->Get(namex);
+    //   sprintf(namex,"triggereffi_evt_m0_xr0_yr0_y%i",iki);
+    //   triggereffi_yevt[iki] = (TH2D*)collatedRootFile->Get(namex);
+    //   // sprintf(namex,"strp_xmulsim_cor_l%i",iki);
+    //   // strp_xmulsim_cor[iki] = (TH2D*)collatedRootFile->Get(namex);
+    //   // sprintf(namex,"strp_ymulsim_cor_l%i",iki);
+    //   // strp_ymulsim_cor[iki] = (TH2D*)collatedRootFile->Get(namex);
+    // }
+    
+    // for(int iki=0; iki<numberInLA; iki++) {
+    //   cout<<"rading mul hist "<<iki<<endl;
+    //   for(int ikj=0; ikj<64; ikj++) {
+    // 	for(int ikk=0; ikk<64; ikk++) {
+    // 	  sprintf(namex,"strp_xmullaysim_m0_xr0_yr0_l%i_%i_%i",iki,ikj,ikk);
+    // 	  // block_xmulsim[iki][ikj][ikk] = (TH2D*)((TH2D*)collatedRootFile->Get(namex))->Clone(namex);
+    // 	  block_xmulsim[iki][ikj][ikk] = (TH2D*)collatedRootFile->Get(namex);
+    // 	  sprintf(namex,"strp_ymullaysim_m0_xr0_yr0_l%i_%i_%i",iki,ikj,ikk);
+    // 	  // block_ymulsim[iki][ikj][ikk] = (TH2D*)((TH2D*)collatedRootFile->Get(namex))->Clone(namex);
+    // 	  block_ymulsim[iki][ikj][ikk] = (TH2D*)collatedRootFile->Get(namex);
+    // 	}
+    //   }
+    // } // for(int iki=0; iki<numberInLA; iki++) {
+    
+    // for(int iki=0; iki<numberInLA; iki++) {
+    //   for(int ikj=0; ikj<16; ikj++) {
+    // 	for(int ikk=0; ikk<16; ikk++) {
+    // 	  sprintf(namex,"blk_xmullaysim_m0_xr0_yr0_l%i_%i_%i",iki,ikj,ikk);
+    // 	  block_xmulsim[iki][ikj][ikk] = (TH2D*)collatedRootFile->Get(namex);
+    // 	  sprintf(namex,"blk_ymullaysim_m0_xr0_yr0_l%i_%i_%i",iki,ikj,ikk);
+    // 	  block_ymulsim[iki][ikj][ikk] = (TH2D*)collatedRootFile->Get(namex);
+    // 	}
+    //   }
+    // } // for(int iki=0; iki<numberInLA; iki++) {
+
+    if(InputOutput==1 || InputOutput==3 || InputOutput==4) {
+      cout<<" reading strp sensitivity "<<endl;
+      system("free");
+      // for(int iki=0; iki<numberInLA; iki++) {
+      //   for(int nj=0;nj<2;nj++) {
+      // 	sprintf(namex,"laymul_2D_m0_xr0_yr0_%s%i",nj==0?"x":"y",iki);
+      // 	// laymul_2D[nj][iki] = (TH3D*)((TH3D*)collatedRootFile->Get(namex))->Clone();
+      // 	laymul_2D[nj][iki] = (TH3S*)collatedRootFile->Get(namex);
+      // 	system("free");
+      //   }} // for(int iki=0; iki<numberInLA; iki++) {
+      for(int iki=0; iki<numberInLA; iki++) {
+	for(int nj=0;nj<2;nj++) {
+	  // sprintf(namex,"laymul_2Dpos_m0_xr0_yr0_%s%i",nj==0?"x":"y",iki);
+	  // laymul_2D[nj][iki] = (TH3S*)collatedRootFile->Get(namex);
+	  for(int ns=0;ns<64;ns++) {
+	    sprintf(namex,"laymul_2Dstrp_m0_xr0_yr0_%s%i_s%i",nj==0?"x":"y",iki,ns);
+	    // laymul_2Dstrp_m0_xr0_yr0_y9_s63
+	    laymul_2Dstrp[nj][iki][ns] = (TH2S*)collatedRootFile->Get(namex);
+	    // system("free");
+	  }
+	}} // for(int iki=0; iki<numberInLA; iki++) {
+      cout<<" reading strp sensitivity : end "<<endl;
+      system("free");
+    } // if(InputOutput==1 || InputOutput==3 || InputOutput==4) {
+    
+    // fnMul[0] = new TF1("fn2",
+    // 		       "[0]+exp([1]+[2]*pow(x,2))",
+    // 		       -0.5,0.5);
+    // fnMul[1] = new TF1("fn2inv",
+    // 		       "[0]+exp([1]+[2]*pow(0.5-fabs(x),2))",
+    // 		       -0.5,0.5);    
+    // for(int iki=0;iki<nparMul;iki++) {
+    //   sprintf(namex,"proportion_vs_mul_par%i",iki);
+    //   profoutMul[iki] = (TH2D*)collatedRootFile->Get(namex);}
+    // for(int iki=0; iki<numberInLA; iki++) {
+    //   sprintf(namex,"layblocktotmul_m0_xr0_yr0_x%i",iki);
+    //   layblocktotmul[iki][0] = (TH3D*)collatedRootFile->Get(namex);
+    //   sprintf(namex,"layblocktotmul_m0_xr0_yr0_y%i",iki);
+    //   layblocktotmul[iki][1] = (TH3D*)collatedRootFile->Get(namex);}
+    
+    
+    // for(int iki=0; iki<numberInLA; iki++) {
+    //   sprintf(namex,"inefficiency_corx_l%i",iki);
+    //   inefficiency_corx[iki] = (TH2D*)collatedRootFile->Get(namex);
+    //   sprintf(namex,"inefficiency_uncx_l%i",iki);
+    //   inefficiency_uncx[iki] = (TH2D*)collatedRootFile->Get(namex);
+    //   cout<<"inefficiency_uncx["<<iki<<"] "<<inefficiency_uncx[iki]<<endl;
+    //   sprintf(namex,"inefficiency_uncy_l%i",iki);
+    //   inefficiency_uncy[iki] = (TH2D*)collatedRootFile->Get(namex);
+    //   cout<<"inefficiency_uncy["<<iki<<"] "<<inefficiency_uncy[iki]<<endl;
+    //   sprintf(namex,"triggereffi_xevt_l%i",iki);
+    //   triggereffi_xevt[iki] = (TH2D*)collatedRootFile->Get(namex);
+    //   sprintf(namex,"triggereffi_yevt_l%i",iki);
+    //   triggereffi_yevt[iki] = (TH2D*)collatedRootFile->Get(namex);
+    //   sprintf(namex,"strp_xmulsim_cor_l%i",iki);
+    //   strp_xmulsim_cor[iki] = (TH2D*)collatedRootFile->Get(namex);
+    //   sprintf(namex,"strp_ymulsim_cor_l%i",iki);
+    //   strp_ymulsim_cor[iki] = (TH2D*)collatedRootFile->Get(namex);
+    // }
+    // for(int iki=0; iki<numberInLA; iki++) {
+    //   for(int ikj=0; ikj<16; ikj++) {
+    // 	for(int ikk=0; ikk<16; ikk++) {
+    // 	  sprintf(namex,"strp_xmullaysim_l%i_%i_%i",iki,ikj,ikk);
+    // 	  block_xmulsim[iki][ikj][ikk] = (TH2D*)collatedRootFile->Get(namex);
+    // 	  sprintf(namex,"strp_ymullaysim_l%i_%i_%i",iki,ikj,ikk);
+    // 	  block_ymulsim[iki][ikj][ikk] = (TH2D*)collatedRootFile->Get(namex);
+    // 	}
+    //   }
+    // } // for(int iki=0; iki<numberInLA; iki++) {
     
   } 
   
   micalPrimaryGeneratorAction *pgPointer = micalPrimaryGeneratorAction::AnPointer;
   
   if(pgPointer->InputFlag>1) {
-    if(InputOutput==0 || InputOutput==1|| InputOutput==2) {
+    if((InputOutput==0 || InputOutput==1|| InputOutput==2) &&
+       (pgPointer->InputFlag<=3)) {
       pgPointer->OpenFileCORSIKA();
     }
   }
@@ -246,6 +333,8 @@ void MultiSimAnalysis::OpenRootfiles(G4String infile,  G4String outfile, G4Strin
     inputEventTree->SetBranchAddress("simpx", simpx);
     inputEventTree->SetBranchAddress("simpy", simpy);
     inputEventTree->SetBranchAddress("simpz", simpz);
+    inputEventTree->SetBranchAddress("simlocvx", simlocvx);
+    inputEventTree->SetBranchAddress("simlocvy", simlocvy);
   } else if (InputOutput==5) {
     // Input is digitisation file
     // inputRootFile = new TFile("digitisation.root", "read");
@@ -744,10 +833,14 @@ void MultiSimAnalysis::CloseRootfiles() {
   // timeAsciiOutput.close();
   
   micalPrimaryGeneratorAction *pgPointer = micalPrimaryGeneratorAction::AnPointer;
-  if(pgPointer->InputFlag==2)  {
-    if(InputOutput==0) {
-      pgPointer->CloseFileCORSIKA();
-    }
+  // if(pgPointer->InputFlag==2)  {
+  //   if(InputOutput==0) {
+  //     pgPointer->CloseFileCORSIKA();
+  //   }
+  // }
+  if((InputOutput==0 || InputOutput==1|| InputOutput==2) &&
+     (pgPointer->InputFlag<=3)) {
+    pgPointer->CloseFileCORSIKA();
   }
   // if(pgPointer->InputFlag==1 && (InputOutput==0 || InputOutput==1|| InputOutput==2)) {
   //   pgPointer->CloseNuanceFile();

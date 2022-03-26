@@ -10,7 +10,12 @@
 #include "G4ParticleDefinition.hh"
 #include "Randomize.hh"
 #include "G4Box.hh"
+#include "TRandom.h"
+#include "TRandom2.h"
+#include "TRandom3.h"
+#include "TTimeStamp.h"
 
+#include <ctime>
 #include "math.h"
 #include "CLHEP/Random/RandGauss.h"
 
@@ -41,6 +46,12 @@ micalPrimaryGeneratorAction::micalPrimaryGeneratorAction(
   SetIncVxSmr(0*cm);
   SetIncVySmr(0*cm);
   SetIncVzSmr(0*cm);
+  
+  // TTimeStamp ttxx;		// initialising with system time
+  // gRandom->SetSeed(Long64_t(ttxx.AsDouble()*1000)%Long64_t(1e9));
+  // // gRandom->SetSeed(clock());
+  // // cout << "clock "<<clock()<<endl;
+  // cout<<"SetSeed PGA "<<ttxx.AsDouble()<<" "<<(Long64_t(ttxx.AsDouble()*1000)%Long64_t(1e9))<<" "<<gRandom->GetSeed()<<endl;
   
   enerin[0] = 0.3;
   enerin[1] = 0.4;
@@ -99,6 +110,7 @@ void micalPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent) {
       cout<<"GetStackPosInRoom "<<ij<<" "<<paradef->GetStackPosInRoom(ij)<<" "<<paradef->GetINOroomPos(ij)<<endl;
     }
     cout<<"StackPosInWorld[3] "<<StackPosInWorld[0]<<" "<<StackPosInWorld[1]<<" "<<StackPosInWorld[2]<<endl;
+    cout<<" toptrgly "<<toptrgly<<" bottomtrgly "<<bottomtrgly<<endl;
     
     WorldXDim = paradef->GetParworld(0);
     WorldYDim = paradef->GetParworld(1);
@@ -118,6 +130,9 @@ void micalPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent) {
     initialise = 1;
     FirstEvt=pAnalysis->FirstEvt;
   }
+
+  // cout<<" GeneratePrimaries "<<endl;
+  // system("free");
 
   //this function is called at the begining of event
   // default particle kinematic
@@ -625,6 +640,9 @@ void micalPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent) {
     } // if (FirstEvt+g_nevt<TreeCORSIKA->GetEntries()) {
     // Corsika Event By Event
   } else if (InputFlag==4) {
+    // cout<<" InputFlag==4 "<<endl;
+    // system("free");
+
     if (initialiseCor==0) {
       FileFLUX->cd();
       muFlux = (TH3F*)FileFLUX->Get("muFlux");
@@ -632,13 +650,18 @@ void micalPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent) {
       munFlux = (TH3F*)FileFLUX->Get("munFlux");
       initialiseCor=1;
     } // if (initialiseCor==0) {
+    // cout<<" InputFlag==4 1 "<<endl;
+    // system("free");
+
     if(1) {
       pAnalysis->ievt		= g_nevt;
       pAnalysis->ievt_wt	= 1.;
       pAnalysis->ngent = particleGun->GetNumberOfParticles();	// number of particles
       // cout << " npart " <<  pAnalysis->ngent << endl;
-      for (unsigned int count=0; count<pAnalysis->ngent; count++) {
-	if(1) {
+      if(pAnalysis->InputOutput==0 || pAnalysis->InputOutput==1 || pAnalysis->InputOutput==2) {
+      // if(1) {
+	for (unsigned int count=0; count<pAnalysis->ngent; count++) {
+	  // cout<<"seed "<<gRandom->GetSeed()<<endl;
 	  
 	  double Pxx,Pyy,Pzz;
 	  muFlux->GetRandom3(Pxx,Pyy,Pzz);
@@ -677,13 +700,18 @@ void micalPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent) {
 
 	  pAnalysis->ngenerated = 0;
 	  pAnalysis->naperture = 0;
-
+	  
 	  while(brkpt) {
-	    vx = 1.2*pargas[0]*(2*G4UniformRand()-1.0);
-	    vy = 1.2*pargas[1]*(2*G4UniformRand()-1.0);
+
+	    // vx = 2.5*pargas[0]*(2*G4UniformRand()-1.0);
+	    // vy = 2.5*pargas[1]*(2*G4UniformRand()-1.0);
+	    // vz = RPCLayerPosZ[toptrgly];
+
+	    vx = 2.0*pargas[0]*(2*G4UniformRand()-1.0);
+	    vy = 2.0*pargas[1]*(2*G4UniformRand()-1.0);
 	    vz = RPCLayerPosZ[toptrgly];
 	    
-	    if(abs(vx)<pargas[0] && abs(vy)<pargas[1]) {
+	    if(fabs(vx)<pargas[0] && fabs(vy)<pargas[1]) {
 	      pAnalysis->ngenerated++;
 	    }
 	    phi = ini_Dir.phi();
@@ -705,7 +733,7 @@ void micalPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent) {
 	    Plane1[5] = 1;
 	    int trgCheck = LinePlaneInt(Line1,Plane1,Point1);
 	    if(trgCheck == 1) {
-	      if(abs(Point1[0])<pargas[0] && abs(Point1[1])<pargas[1]) {
+	      if(fabs(Point1[0])<pargas[0] && fabs(Point1[1])<pargas[1]) {
 		pAnalysis->naperture++;
 		double Line2[6];
 		double Plane2[6];
@@ -725,7 +753,7 @@ void micalPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent) {
 		Plane2[5] = 1;
 		int TopPlane = LinePlaneInt(Line2,Plane2,Point2);
 		if(TopPlane ==1) {
-		  if(abs(Point2[0])<WorldXDim && abs(Point2[1])<WorldYDim) {
+		  if(fabs(Point2[0])<WorldXDim && fabs(Point2[1])<WorldYDim) {
 		    vertexX = Point2[0];
 		    vertexY = Point2[1];
 		    vertexZ = Point2[2];
@@ -748,7 +776,8 @@ void micalPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent) {
 	      vertexX = 0;
 	      vertexY = 0; //Point2[1];
 	      vertexZ = WorldZDim - 1*mm; //Point2[2];
-	      Ini_Theta = theta;
+	      Ini_Theta = TMath::Pi()*0.5;
+	      // Ini_Theta = theta;
 	      Ini_Phi = phi;
 	      if(Ini_Phi < -pivalGA) {
 		Ini_Phi = Ini_Phi + 2*pivalGA;
@@ -787,15 +816,21 @@ void micalPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent) {
 	    pAnalysis->phiin[count] = particleGun->GetParticleMomentumDirection().phi();
 	  } // if (count < (int)pAnalysis->ngenmx) {
 	} // if(iC_cpid[count]!=0 && abs(iC_cpid[count])<1000000) {
-      } // for (int count=0; count<iC_npart; count++) {
+      } else {
+	pAnalysis->ngent = 0;}
     } // if (FirstEvt+g_nevt<TreeCORSIKA->GetEntries()) {
+    // cout<<" InputFlag==4 end "<<endl;
+    // system("free");
+    
   } else if (InputFlag==5) {
     if (initialiseCor==0) {
       cout << " InputFlag==5 " << endl;
-      FileFLUX->cd();
-      muFlux = (TH3F*)FileFLUX->Get("muFlux");
-      mupFlux = (TH3F*)FileFLUX->Get("mupFlux");
-      munFlux = (TH3F*)FileFLUX->Get("munFlux");
+      csmn3 = TMath::Power(TMath::Cos(0.),PowCosTheta+1.);
+      csmx3 = TMath::Power(TMath::Cos(DetThetaCov),PowCosTheta+1.);
+      pwmn = TMath::Power(2.*GeV,PowCosmicEnr);
+      pwmx = TMath::Power(EUpLim+2.*GeV,PowCosmicEnr);
+      ec1 = 2.*GeV*pwmx;
+      ec2 = (EUpLim+2.*GeV)*pwmn;
       initialiseCor=1;
       cout << " InputFlag==5 " << endl;
     } // if (initialiseCor==0) {
@@ -807,19 +842,31 @@ void micalPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent) {
       for (unsigned int count=0; count<pAnalysis->ngent; count++) {
 	if(1) {
 	  
-	  double Pxx,Pyy,Pzz;
-	  muFlux->GetRandom3(Pxx,Pyy,Pzz);
-	  int gBin = muFlux->FindBin(Pxx,Pyy,Pzz);
-	  double mupCnt = mupFlux->GetBinContent(gBin);
-	  double munCnt = munFlux->GetBinContent(gBin);
-
+	  // double Pxx,Pyy,Pzz;
+	  // muFlux->GetRandom3(Pxx,Pyy,Pzz);
+	  // int gBin = muFlux->FindBin(Pxx,Pyy,Pzz);
+	  // double mupCnt = mupFlux->GetBinContent(gBin);
+	  // double munCnt = munFlux->GetBinContent(gBin);
+	  
 	  int partID;
-	  if(G4UniformRand()*(mupCnt+munCnt)>munCnt) {
+	  if(G4UniformRand()<0.5) {
 	    partID = -13;
 	  } else {
 	    partID = 13;
 	  }
 	  // cout << " partID " << partID << endl;
+
+	  double tmptheta;
+	  double tmpenergy = 0.;
+	  while(tmpenergy<ELowLim) {
+	    tmptheta = TMath::ACos(TMath::Power((G4UniformRand()*(csmx3-csmn3)+csmn3),1./(PowCosTheta+1.)));
+	    tmpenergy = TMath::Power((ec1-(ec1-ec2)*G4UniformRand())/(pwmn*pwmx),1./(1.-PowCosmicEnr));
+	    tmpenergy -= 2.*GeV/TMath::Cos(tmptheta);
+	  }
+	  // cout<<" tmptheta "<<tmptheta<<endl;
+	  // cout<<" tmpenergy "<<tmpenergy<<endl;
+	  double tmpphi = TMath::Pi()*(2.*G4UniformRand()-1.);
+	  // cout<<" "<<tmpenergy<<" "<<
 	  
 	  G4ParticleTable* particleTable = G4ParticleTable::GetParticleTable();
 	  G4ParticleDefinition* particle = particleTable->FindParticle(partID);
@@ -828,7 +875,10 @@ void micalPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent) {
 
 	  /*** Check this properly ---> MeV or GeV ***/
 	  // G4ThreeVector tmp3v(iC_cpx[count]*MeV,iC_cpy[count]*MeV,iC_cpz[count]*MeV);
-	  G4ThreeVector tmp3v(Pxx*GeV,Pyy*GeV,Pzz*GeV);
+	  G4ThreeVector tmp3v(1.,0,0);//(Pxx*GeV,Pyy*GeV,Pzz*GeV);
+	  tmp3v.setMag(tmpenergy);
+	  tmp3v.setTheta(TMath::Pi()-tmptheta);
+	  tmp3v.setPhi(tmpphi);
 	  
 	  double Point2[3];
 	  // double energy;
@@ -927,10 +977,10 @@ void micalPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent) {
 	    }
 	  } // while(brkpt) {	
 	  // cout << " count " << count << " vertexX " << vertexX << " vertexY " << vertexY << " vertexZ " << vertexZ << endl;
-	  // cout << " mom " << tmp3v.mag() << " " << Ini_Theta << " " << Ini_Phi << endl;
+	  // cout<<" mom "<<tmp3v.mag()<<" "<<tmp3v.theta()<<" "<<tmp3v.phi()<<endl;
 	  
 	  // Ini_Enrgy = enrgy;
-	  double Ini_Enrgy = (G4UniformRand()*EUpLim+ELowLim)*MeV;
+	  // double Ini_Enrgy = (G4UniformRand()*EUpLim+ELowLim)*MeV;
 	  // cout << " Ini_Enrgy " << Ini_Enrgy << endl;
 	  // cout << " ELowLim " << ELowLim << " EUpLim " << EUpLim << endl;	  
 	  
@@ -939,8 +989,8 @@ void micalPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent) {
 	  ini_Dir.setTheta(Ini_Theta);
 	  ini_Dir.setPhi(Ini_Phi);
 	  particleGun->SetParticleMomentumDirection(ini_Dir);
-	  // particleGun->SetParticleMomentum(tmp3v.mag());
-	  particleGun->SetParticleMomentum(Ini_Enrgy);
+	  particleGun->SetParticleMomentum(tmp3v.mag());
+	  // particleGun->SetParticleMomentum(Ini_Enrgy);
 	  particleGun->SetParticlePosition(G4ThreeVector(vertexX, vertexY, vertexZ));
 	  particleGun->GeneratePrimaryVertex(anEvent);
 	  if (count < (int)pAnalysis->ngenmx) {
@@ -1110,11 +1160,18 @@ double micalPrimaryGeneratorAction::energy_func(double xx) {
 } 
 
 void micalPrimaryGeneratorAction::OpenFileCORSIKA() {
+  
+  cout<<" OpenFileCORSIKA "<<endl;
+  system("free");
+
   G4String infile;
   infile = CorsikaFileDir;
   infile.append(CorsikaFileName);
   cout<<"CorsikaFileName "<<CorsikaFileName<<endl;
   FileCORSIKA = new TFile(infile,"READ","input file");
+  
+  cout<<" OpenFileCORSIKA end "<<endl;
+  system("free");
 }
 
 void micalPrimaryGeneratorAction::CloseFileCORSIKA() {
@@ -1124,11 +1181,17 @@ void micalPrimaryGeneratorAction::CloseFileCORSIKA() {
 }
 
 void micalPrimaryGeneratorAction::OpenFileFLUX() {
+  cout<<" OpenFileFLUX "<<endl;
+  system("free");
+
   G4String infile;
   infile = CorsikaFileDir;
   infile.append(FluxFileName);
-  cout<<"FluxFileName "<<FluxFileName<<endl;
+  cout<<"FluxFileName "<<infile<<endl;
   FileFLUX = new TFile(infile,"READ","flux file");
+
+  cout<<" OpenFileFLUX end "<<endl;
+  system("free");
 }
 
 void micalPrimaryGeneratorAction::CloseFileFLUX() {

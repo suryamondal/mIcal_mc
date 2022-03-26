@@ -245,6 +245,9 @@ G4VPhysicalVolume* micalDetectorConstruction::ConstructCalorimeter() {
   // cout <<"G4VPhysicalVolume* micalDetectorConstruction::ConstructCalorimeter()"<<endl;
   // Clean old geometry, if any//
   
+  cout<<" ConstructCalorimeter  "<<endl;
+  system("free");
+
   G4GeometryManager::GetInstance()->OpenGeometry();
   G4PhysicalVolumeStore::GetInstance()->Clean();
   G4LogicalVolumeStore::GetInstance()->Clean();
@@ -1373,6 +1376,8 @@ G4VPhysicalVolume* micalDetectorConstruction::ConstructCalorimeter() {
   logicCurvedCOIL->SetVisAttributes(visNull);
   logicCOILSupport->SetVisAttributes(visNull);
   
+  cout<<" ConstructCalorimeter end  "<<endl;
+  system("free");
   
   return physiWorld;
 }

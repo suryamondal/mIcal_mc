@@ -53,6 +53,17 @@ void micalSteppingAction::UserSteppingAction(const G4Step* aStep) {
   // for(int ij=0; ij<14; ij++) {
   //   cout<<"ij "<<ij<<" physiName "<<theTouchable->GetVolume(ij)->GetName()<<" material = "<<theTouchable->GetVolume(ij)->GetLogicalVolume()->GetMaterial()->GetName()<<endl;
   // }
+   
+  // int temppdgid = aStep->GetTrack()->GetDefinition()->GetPDGEncoding();
+  // if(temppdgid==-13 || temppdgid==13) {
+  //   cout<<" pox "<<aStep->GetPreStepPoint()->GetPosition()
+  // 	<<" "<<temppdgid
+  // 	<<" mom "<< aStep->GetTrack()->GetMomentum().mag()
+  // 	<<" enr "<< aStep->GetTrack()->GetTotalEnergy()
+  // 	<<" "<<material->GetName()
+  // 	<<" "<<volume->GetLogicalVolume()->GetName()<<endl;
+  // }
+  
   // cout<<"XXXXXXXXXXXXXXXXXXXXXXX"<<endl;
   if(volume->GetLogicalVolume()->GetName() == "IRLAYElog" && abs(track->GetDefinition()->GetPDGEncoding())==13) {
     // G4ThreeVector glbpos = 0.5*(aStep->GetPreStepPoint()->GetPosition() + aStep->GetPostStepPoint()->GetPosition());

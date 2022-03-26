@@ -42,6 +42,7 @@ public:
   void SetRandomNoise(G4int val);
   void SetRootRandom(G4int val);
   int GetRandomXY(double& GapX, TH2D* tmphistx);
+  // int GetRandomMul(double GapX, int ixy, int nlay, int xxstr, int yystr);
   
 private:
   micalcal0HitsCollection *cal0Collection;

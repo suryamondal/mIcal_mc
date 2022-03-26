@@ -82,7 +82,9 @@ void micalRunAction::BeginOfRunAction(const G4Run* aRun) {
   } else if (pAnalysis->InputOutput==2)	{
     output_title.append("_sim");
   }
+  system("free");
   pAnalysis->OpenRootfiles(input_title,output_title,collated_title); //VALGRIND
+  system("free");
   cout <<"input_title = "<< input_title<<endl;
   cout <<"output_title = "<<output_title<<endl;
   //cout<<"#############################"<<endl;

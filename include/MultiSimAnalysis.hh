@@ -14,6 +14,7 @@ using std::vector;
 #include "TH1.h"
 #include "TH2.h"
 #include "TH3.h"
+#include "TF1.h"
 #include "TGraph.h"
 #include "TGraphErrors.h"
 #include "TGraph2D.h"
@@ -120,7 +121,7 @@ class MultiSimAnalysis
   TH2D* xyvsbyindiff;
   TH2D* xyvsbxout;
   TH2D* xyvsbyout;
-
+  
   // Collated Histograms
   TH2D* inefficiency_corx[20];
   TH2D* inefficiency_uncx[20];
@@ -129,8 +130,17 @@ class MultiSimAnalysis
   TH2D* triggereffi_yevt[20];
   TH2D* strp_xmulsim_cor[20];
   TH2D* strp_ymulsim_cor[20];
-  TH2D* block_xmulsim[20][16][16];
-  TH2D* block_ymulsim[20][16][16];
+  
+  // 20210712: SNM -> Multi
+  TF1 *fnMul[2];
+  const int nparMul = 3;
+  TH2D *profoutMul[3];		// nparMul : Change if needed
+  // TH3D *layblocktotmul[20][2];
+  // TH2D* block_xmulsim[20][16][16];
+  // TH2D* block_ymulsim[20][16][16];
+  
+  // TH3S* laymul_2D[2][20];	// <nside><nlayer>
+  TH2S *laymul_2Dstrp[2][20][64];
   
   int  isVisOut;
   int  isXtermOut;

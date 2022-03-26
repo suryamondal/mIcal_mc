@@ -1,7 +1,11 @@
 # mIcal simulation
 
 This code is Geant4 simulation for mIcal with 10 layers of RPCs. Total 10 RPCs are placed in the center of each layer.
-The code is tested for 
+
+The code is tested for `root6.20.04`, `clhep2404` and `geant4.10.04.p03`.
+
+*Warning:*
+- The code has memory leakage. It may overflow memory. I do not recommend it for running more than 1M events.
 
 The field file is `B_mical_hist.root`, the file name is hard-coded in `src/micalFieldPropagator.cc`. The field map could be scaled down. Please look for `fieldxin->Scale(` in the same file.
 
@@ -45,6 +49,7 @@ Then execute it just once. You can break the execution moment you see the output
 
 Source in sim01: `source env.sh`
 
+Requirement only once:
 ```
 rm src/Hitsdict.cc
 rm src/HitPosdict.cc
@@ -57,3 +62,18 @@ cd ..
 ```
 
 Compile: Create or empty director named `build` and do `cd build && cmake3 .. && make -j 4 && cd ..`
+
+Run: `./mICAL run.mac`
+
+
+Batch submission to htcondor:
+```
+1. Create or empty a directory named *runFiles*.
+2. Run *./batch_create_mac 2500*. It creates 2500 run files in *runFiles*.
+3. Add the lisf of run files in *batch_surya_job.jdl*.
+4. Run *condor_submit batch_surya_job.jdl* to submit jobs.
+```
+
+*Warning:*
+- Change the parameters (i.e. `initialdir`) before submitting jobs.
+- The collated file, once read and uncompressed, occupy a lot of memory (almost 2GB). Please adjust the number of jobs per node as per the total memory available.

@@ -4,7 +4,10 @@
 #include "G4TouchableHistory.hh"
 #include "G4ios.hh"
 #include "TRandom.h"
+#include "TRandom2.h"
+#include "TRandom3.h"
 #include "TMath.h"
+#include "TTimeStamp.h"
 //#include "micalDetectorParameterDef.hh"
 
 #include "vect_manager.h"
@@ -38,7 +41,13 @@ micalcal0SD::micalcal0SD(G4String name)
   SetUnCorrTimeSmear(0.7);
   SetRootRandom(1);
   //Define All the other parameters
-
+  
+  // TTimeStamp ttxx;		// initialising with system time
+  // gRandom->SetSeed(Long64_t(ttxx.AsDouble()*1000)%Long64_t(1e9));
+  // // gRandom->SetSeed(int(ttxx.AsDouble()*100));
+  // // cout<<"SetSeed SD "<<gRandom->GetSeed()<<endl;
+  // cout<<"SetSeed SD "<<ttxx.AsDouble()<<" "<<(Long64_t(ttxx.AsDouble()*1000)%Long64_t(1e9))<<" "<<gRandom->GetSeed()<<endl;
+  
 }
 
 micalcal0SD::~micalcal0SD() {
@@ -114,18 +123,18 @@ void micalcal0SD::Initialize(G4HCofThisEvent* HCE) {
   numberInMO = 1; //paradef->GetnModule();
   numberInCH = 1; //paradef->GetnChamber();
   numberInLA = paradef->GetnLayer();
-
+  
   if ( numberInMO >8) numberInMO=8;
   if ( numberInCH >8) numberInCH=8;
   if ( numberInLA >256) numberInLA=256;
   // 12334457,1239075
   // 1202219559
-
+  
   if(RootRandom==0) {
     gRandom->SetSeed(1327511442);
   }
   // cout<<"micalcal0SD::Initialize( complete..."<<endl;
-
+  
 }
 
 G4bool micalcal0SD::ProcessHits(G4Step* aStep, G4TouchableHistory*) {
@@ -231,14 +240,14 @@ G4bool micalcal0SD::ProcessHits(G4Step* aStep, G4TouchableHistory*) {
   
   G4ThreeVector localpos = theTouchable->GetHistory()->GetTopTransform().TransformPoint(glbpos); // 0.5*(aStep->GetPreStepPoint()->GetPosition() + aStep->GetPostStepPoint()->GetPosition()));
   
-  cout<<"glb "<<glbpos<<" loc "<<localpos<<endl;
+  // cout<<"glb "<<glbpos<<" loc "<<localpos<<endl;
   
   // cout<<"XXXXXXXXXXXXXXXXXXXX"<<endl;
   // cout<<"atime "<<atime<<"     nInT "<<nInT<<endl;
   // cout<<"localpos "<< 1.e-1*localpos.x()<<" "<< 1.e-1*localpos.y()<<" "<< 1.e-1*localpos.z()<<endl;
   //  nInT = 0; // 04/02/2009
 
-  const G4int MxStrip=3;
+  const G4int MxStrip=10;
   const G4int UsedMxStrip=1;
 
   //GMA This is only for test purpose, actual smearing and storing is done in micalcal0SD::EndOfEvent(G4HCofThisEvent*)
@@ -256,14 +265,14 @@ G4bool micalcal0SD::ProcessHits(G4Step* aStep, G4TouchableHistory*) {
   //  atimeX += (YTpos - Ymin)*0.005*ns;  //5 ns/m 
   //  atimeY += (XTpos - Xmin)*0.005*ns;
 
-  G4int nInX[MxStrip]={-1, -1, -1};
-  G4int nInY[MxStrip]={-1, -1, -1};
+  G4int nInX[MxStrip]={-1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
+  G4int nInY[MxStrip]={-1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
   
   G4double yy = pargas[1] + localpos.y(); // /m; // /cm; //GMA factor 100 for meter to cm
   nInY[0] = int(yy/Ystrwd);
   G4double xx = pargas[0] + localpos.x(); // /m; // /cm; 
   nInX[0] = int(xx/Xstrwd);
-  cout<<"nInX[0] "<<nInX[0] <<" "<<nInY[0]<<" "<<nInLA<<endl;
+  // cout<<"nInX[0] "<<nInX[0] <<" "<<nInY[0]<<" "<<nInLA<<endl;
   
   for (int ix = 0; ix < UsedMxStrip; ix++) {
     if(!multiplicity && ix>0) continue;
@@ -601,7 +610,7 @@ void micalcal0SD::EndOfEvent(G4HCofThisEvent*) {
   double eMx = 100;
   int nHits = 0;
 
-  const G4int MxStrip=3;
+  const G4int MxStrip=10;
 
 
   if (pAnalysis->InputOutput ==3 || pAnalysis->InputOutput ==4) {
@@ -612,10 +621,10 @@ void micalcal0SD::EndOfEvent(G4HCofThisEvent*) {
       cout<<"\n Error: Event no. greater than total no. of entries in the input file. \n";
       exit(1);
     }
-    for(int rr1=0; rr1<cal0Collection->entries(); rr1++) {
-      cout<<rr1<<" ";
-      (*cal0Collection)[rr1]->Print();
-    }
+    // for(int rr1=0; rr1<cal0Collection->entries(); rr1++) {
+    //   cout<<rr1<<" ";
+    //   (*cal0Collection)[rr1]->Print();
+    // }
     
     cout <<"siminput "<< pAnalysis->nsimht<<endl;
     cout<<"Before loop: "<<cal0Collection->entries()<<endl;
@@ -633,16 +642,17 @@ void micalcal0SD::EndOfEvent(G4HCofThisEvent*) {
 
       newHit->SetLocalXPos(pAnalysis->simlocvx[ij]);
       newHit->SetLocalYPos(pAnalysis->simlocvy[ij]);
-      cout<<"ij "<<ij<<" "<<pos<<endl;
+      // cout<<" pAnalysis->simlocvx[ij] "<<ij<<" "<<pAnalysis->simlocvx[ij]<<" "<<pAnalysis->simlocvy[ij]<<endl;
+      // cout<<"ij "<<ij<<" "<<pos<<endl;
       // newHit->Print();
       // cout <<"newhits "<< newHit->GetTime()<<endl;
       cal0Collection->insert( newHit );
     }
     cout<<"cal0Collection->size "<<cal0Collection->entries()<<endl;
-    for(int rr1=0; rr1<cal0Collection->entries(); rr1++) {
-      cout<<rr1<<" ";
-      (*cal0Collection)[rr1]->Print();
-    }
+    // for(int rr1=0; rr1<cal0Collection->entries(); rr1++) {
+    //   cout<<rr1<<" ";
+    //   (*cal0Collection)[rr1]->Print();
+    // }
     
     if (pAnalysis->isVisOut==1&&pAnalysis->InputOutput==3 ) {
       for(unsigned ij=0;ij<pAnalysis->ngent;ij++) {
@@ -675,6 +685,7 @@ void micalcal0SD::EndOfEvent(G4HCofThisEvent*) {
 	pAnalysis->simenr[ij] = (*cal0Collection)[ij]->GetEdep();
 	
 	G4ThreeVector posvec1 = (*cal0Collection)[ij]->GetPos();
+	// cout<<"glb getpos "<<posvec1<<endl;
 	pAnalysis->simvx[ij] = posvec1.x();
 	pAnalysis->simvy[ij] = posvec1.y();
 	pAnalysis->simvz[ij] = posvec1.z();
@@ -697,7 +708,7 @@ void micalcal0SD::EndOfEvent(G4HCofThisEvent*) {
       cout<<"Nentries "<<cal0Collection->entries()<<endl;
       for (int ij=0; ij<cal0Collection->entries(); ij++) {
 	// GMA Use 90% efficiency for a hit, use poper value
-	//    float xx = gRandom->Rndm(0);
+	//    float xx = gRandom->Uniform();
 	//    if (xx>0.9) continue;
 
 
@@ -729,21 +740,26 @@ void micalcal0SD::EndOfEvent(G4HCofThisEvent*) {
 	  if (pAnalysis->isVisOut==3) pAnalysis->gens_vect[0].push_back(tmpgr);
 	}
 	
-	G4int nInX[MxStrip]={-1, -1, -1};
-	G4int nInY[MxStrip]={-1, -1, -1}; 
+	G4int nInX[MxStrip]={-1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
+	G4int nInY[MxStrip]={-1, -1, -1, -1, -1, -1, -1, -1, -1, -1}; 
 	
 	unsigned long detid = (*cal0Collection)[ij]->GetHitId();
 	
-	// if (gRandom->Rndm(0) > UnCorrYIneffiPar) {nInY[0] = detid%128;} //nInY;
+	// if (gRandom->Uniform() > UnCorrYIneffiPar) {nInY[0] = detid%128;} //nInY;
 	// detid>>=7;
-	// if (gRandom->Rndm(0) > UnCorrXIneffiPar) {nInX[0] = detid%128;} //nInX;
+	// if (gRandom->Uniform() > UnCorrXIneffiPar) {nInX[0] = detid%128;} //nInX;
 	nInY[0] = detid%128;
 	detid>>=7;
 	nInX[0] = detid%128;
 
-	cout << " nInX[0] " << nInX[0] << " nInY[0] " << nInY[0] << endl;
+	// cout << " nInX[0] " << nInX[0] << " nInY[0] " << nInY[0] << endl;
 
-	if (nInX[0] <0 && nInY[0] <0) { continue;}
+	// if (nInX[0]<0 || nInY[0]<0) { continue;}
+	
+	// if(nInX[0]<0 || nInY[0]<0 ||
+	//    nInX[0]>=nstripX || nInY[0]>=nstripY) { continue;}
+	if(nInX[0]<0 || nInY[0]<0 ||
+	   nInX[0]>=numberInX || nInY[0]>=numberInY) { continue;}
 	
 	detid>>=7;
 	int iRPCMod = detid;
@@ -755,21 +771,21 @@ void micalcal0SD::EndOfEvent(G4HCofThisEvent*) {
 	int nInLA = detid%256; //nInLA;
 	detid >>=8;
 	int nInDT = detid%4; //nInDT;
-
-	if(pAnalysis->collatedIn) {
-	  CorrIneffiPar = pAnalysis->inefficiency_corx[nInLA]->GetBinContent(nInX[0]+1,nInY[0]);
-	}
-	if(gRandom->Rndm(0) < CorrIneffiPar) continue;
-
+	
+	// if(pAnalysis->collatedIn) {
+	//   CorrIneffiPar = pAnalysis->inefficiency_corx[nInLA]->GetBinContent(nInX[0]+1,nInY[0]+1);
+	// }
+	// if(gRandom->Uniform()<CorrIneffiPar || CorrIneffiPar==0) continue;
+	
 	//Gaussian smearing and binning of timing performances
 	// GMA 05/02/2009 need to put value from hardware
 	int pdgid = (*cal0Collection)[ij]->GetpdgId();
 	double atime = (*cal0Collection)[ij]->GetTime();
 	//	double atimeX = (*cal0Collection)[ij]->GetTimeX();
 	//	double atimeY = (*cal0Collection)[ij]->GetTimeY();
-
+	
 	// atime +=G4RandGauss::shoot(0,1.0*ns); //Timing resolution is 1ns
-
+	
 	G4double CorrTimeSmr = G4RandGauss::shoot(0,TimeCorrSmr);
 	
 	G4double tmpatimeX = atime + SignalSpeed*(nInY[0]+0.5) + CorrTimeSmr; // + G4RandGauss::shoot(0,TimeUnCorrSmr);
@@ -778,78 +794,156 @@ void micalcal0SD::EndOfEvent(G4HCofThisEvent*) {
 	int nInT = int(atime/TimeToDigiConv); // Assuming Minimum scale of timing ~100 ps = 0.1 ns
 	if (nInT < iMnT) { iMnT = nInT;} 
 	if (nInT > iMxT) { iMxT = nInT;}
-
-	cout << " nInX[0] " << nInX[0] << " nInY[0] " << nInY[0] << endl;
 	
-	G4double gapX = (pargas[0] + (*cal0Collection)[ij]->GetLocalXPos() - nInX[0]*Xstrwd)/Xstrwd  - 0.5;
-	G4double gapY = (pargas[1] + (*cal0Collection)[ij]->GetLocalYPos() - nInY[0]*Ystrwd)/Ystrwd  - 0.5;
-	int nxmul=1;
-	int nymul=1;
-	if (nInX[0] >=0 && NewMultiplicity) {
-	  cout<<"Hello X World"<<endl;
-	  if(pAnalysis->collatedIn) {
-	    // nxmul = GetRandomXY(gapX,pAnalysis->strp_xmulsim_cor[nInLA]);
-	    nxmul = GetRandomXY(gapX,pAnalysis->block_xmulsim[nInLA][int(nInX[0]/4.)][int(nInY[0]/4.)]);
-	    cout << " nxmul " << nxmul << endl;
-	  } else {
-	    double arand=gRandom->Rndm();
-	    if (arand<0.1) { //10% case three strip hits
-	      nxmul=3;
-	    } else { 
-	      if (gRandom->Rndm(0) < 3.2*gapX*gapX) {
-		nxmul=2;
-	      } else {
-		nxmul=1;
-	      }
-	    }
-	  }
-	  if (nxmul==3) { //10% case three strip hits
-	    nInX[1] = nInX[0] + 1; //int(gapX/abs(max(1.e-12,gapX)));
-	    nInX[2] = nInX[0] - 1; //int(gapX/abs(max(1.e-12,gapX)));
-	  } else if (nxmul==2) { 
-	    // f(x) = ax**2, => a=3.2
-	    nInX[1] = nInX[0] + int(gapX/(max(1.e-12,abs(gapX))));
-	  } 
-	} // if (nInX[0] >=0 && NewMultiplicity) {
+	// cout<<" nInX[0] "<<nInX[0]<<" nInY[0] "<<nInY[0]<<endl;
 	
-	if (nInY[0] >=0 && NewMultiplicity) {
-	  if(pAnalysis->collatedIn) {
-	    // nymul = GetRandomXY(gapY,pAnalysis->strp_ymulsim_cor[nInLA]);
-	    nymul = GetRandomXY(gapY,pAnalysis->block_ymulsim[nInLA][int(nInX[0]/4.)][int(nInY[0]/4.)]);
-	    cout << " nxmul " << nxmul << endl;
-	  } else {
-	    double arand=gRandom->Rndm();
-	    if (arand<0.1) {nymul = 3;}
-	    else { 
-	      if (gRandom->Rndm(0) < 3.2*gapY*gapY) {nymul=2;}
-	      else {nymul=1;}
-	    }
-	  }
-	  if (nymul==3) { //10% case three strip hits
-	    nInY[1] = nInY[0] + 1; //int(gapY/abs(max(1.e-12,gapY)));
-	    nInY[2] = nInY[0] - 1; //int(gapY/abs(max(1.e-12,gapY)));
-	  } else if (nymul==2) { 
-	    nInY[1] = nInY[0] + int(gapY/(max(1.e-12,abs(gapY))));
-	  }
-	}
-	// if (gRandom->Rndm(0) > UnCorrXIneffiPar) { 
+	// if(pAnalysis->collatedIn) {
+	//   int locnIn[2] = {nInX[0], nInY[0]};
+	//   double locX = (pargas[0] + (*cal0Collection)[ij]->GetLocalXPos())/Xstrwd;
+	//   double locY = (pargas[1] + (*cal0Collection)[ij]->GetLocalYPos())/Ystrwd;
+	//   // cout<<" nInLA "<<nInLA<<" locxy "<<locX<<" "<<locY<<endl;
+	//   // G4double gapX = (pargas[0] + (*cal0Collection)[ij]->GetLocalXPos() - nInX[0]*Xstrwd)/Xstrwd  - 0.5;
+	//   // G4double gapY = (pargas[1] + (*cal0Collection)[ij]->GetLocalYPos() - nInY[0]*Ystrwd)/Ystrwd  - 0.5;
+	//   // cout<<" gapxy "<<gapX<<" "<<gapY<<endl;
+	//   CorrIneffiPar = gRandom->Uniform();
+	//   for(int nj=0;nj<2;nj++) {
+	//     int tbinx = pAnalysis->laymul_2D[nj][nInLA]->GetXaxis()->FindBin(locX);
+	//     int tbiny = pAnalysis->laymul_2D[nj][nInLA]->GetYaxis()->FindBin(locY);
+	//     int tbinzn = pAnalysis->laymul_2D[nj][nInLA]->GetNbinsZ();
+	//     int tcnt = 0;
+	//     for(int ns=0;ns<tbinzn;ns++) {
+	//       double strpProb = 0.0001*pAnalysis->laymul_2D[nj][nInLA]->GetBinContent(tbinx,tbiny,ns+1);
+	//       int strpno = locnIn[nj] + pAnalysis->laymul_2D[nj][nInLA]->GetZaxis()->GetBinCenter(ns+1);
+	//       if(strpProb<CorrIneffiPar) {strpno = -1;}
+	//       if(nj==0) {nInX[tcnt] = strpno;
+	//       } else {nInY[tcnt] = strpno;}
+	//       if(strpno>=0) {
+	// 	// cout<<"\t tcnt "<<tcnt;
+	// 	// if(nj==0) {cout<<" x "<<nInX[tcnt]<<endl;
+	// 	// } else {cout<<" y "<<nInY[tcnt]<<endl;}
+	// 	tcnt++;}
+	//     }}			// for(int nj=0;nj<2;nj++) {
+	// }			// if(pAnalysis->collatedIn) {
+	
+	if(pAnalysis->collatedIn) {
+	  int locnIn[2] = {nInX[0], nInY[0]};
+	  double locX = (pargas[0] + (*cal0Collection)[ij]->GetLocalXPos())/Xstrwd;
+	  double locY = (pargas[1] + (*cal0Collection)[ij]->GetLocalYPos())/Ystrwd;
+	  // cout<<" nInLA "<<nInLA<<" locxy "<<locX<<" "<<locY<<endl;
+	  // G4double gapX = (pargas[0] + (*cal0Collection)[ij]->GetLocalXPos() - nInX[0]*Xstrwd)/Xstrwd  - 0.5;
+	  // G4double gapY = (pargas[1] + (*cal0Collection)[ij]->GetLocalYPos() - nInY[0]*Ystrwd)/Ystrwd  - 0.5;
+	  // cout<<" gapxy "<<gapX<<" "<<gapY<<endl;
+	  CorrIneffiPar = gRandom->Uniform();
+	  for(int nj=0;nj<2;nj++) {
+	    int startStr = max(0,locnIn[nj]-2); // multiplicity hard-coded to 5 {-2,-1,0,1,2}: change if necessary
+	    int endStr = min((nj==0?numberInX:numberInY)-1,locnIn[nj]+2);
+	    int tcnt = 0;
+	    for(int ns=startStr;ns<=endStr;ns++) {
+	      int gBinN = pAnalysis->laymul_2Dstrp[nj][nInLA][ns]->FindBin(locX,locY);
+	      double strpProb = 0.0001*pAnalysis->laymul_2Dstrp[nj][nInLA][ns]->GetBinContent(gBinN);
+	      int strpno = ns;
+	      if(strpProb<CorrIneffiPar) {strpno = -1;}
+	      if(nj==0) {nInX[tcnt] = strpno;
+	      } else {nInY[tcnt] = strpno;}
+	      if(strpno>=0) {
+		// cout<<"\t tcnt "<<tcnt;
+		// if(nj==0) {cout<<" x "<<nInX[tcnt]<<endl;
+		// } else {cout<<" y "<<nInY[tcnt]<<endl;}
+		tcnt++;}
+	    }}			// for(int nj=0;nj<2;nj++) {
+	}			// if(pAnalysis->collatedIn) {
+	
+	// G4double gapX = (pargas[0] + (*cal0Collection)[ij]->GetLocalXPos() - nInX[0]*Xstrwd)/Xstrwd  - 0.5;
+	// G4double gapY = (pargas[1] + (*cal0Collection)[ij]->GetLocalYPos() - nInY[0]*Ystrwd)/Ystrwd  - 0.5;
+	// int nxmul=1;
+	// int nymul=1;
+	// // if(pAnalysis->collatedIn) {
+	// //   UnCorrXIneffiPar = pAnalysis->inefficiency_uncx[nInLA]->GetBinContent(nInX[0]+1,nInY[0]+1);
+	// //   if(gRandom->Uniform() < UnCorrXIneffiPar) {nxmul=0;}
+	// //   UnCorrYIneffiPar = pAnalysis->inefficiency_uncy[nInLA]->GetBinContent(nInX[0]+1,nInY[0]+1);
+	// //   if(gRandom->Uniform() < UnCorrYIneffiPar) {nymul=0;}
+	// // }
+	
+	// if (nInX[0] >=0 && NewMultiplicity) {
+	//   // cout<<"Hello X World"<<endl;
+	//   if(pAnalysis->collatedIn) {
+	//     if(nxmul) {
+	//       // nxmul = GetRandomXY(gapX,pAnalysis->strp_xmulsim_cor[nInLA]);
+	//       // nxmul = GetRandomXY(gapX,pAnalysis->block_xmulsim[nInLA][int(nInX[0])][int(nInY[0])]);
+	//       nxmul = GetRandomXY(gapX,pAnalysis->block_xmulsim[nInLA][int(nInX[0]/4)][int(nInY[0]/4)]);
+	//       // cout << " nxmul " << nxmul << endl;
+	//       // nxmul = GetRandomMul(gapX,0,nInLA,nInX[0],nInY[0]);
+	//       // cout<<" newmulx "<<GetRandomMul(gapX,0,nInLA,nInX[0],nInY[0])<<endl;
+	//     }
+	//   } else {
+	//     double arand=gRandom->Uniform();
+	//     if (arand<0.1) { //10% case three strip hits
+	//       nxmul=3;
+	//     } else { 
+	//       if (gRandom->Uniform() < 3.2*gapX*gapX) {
+	// 	nxmul=2;
+	//       } else {
+	// 	nxmul=1;
+	//       }
+	//     }
+	//   }
+	//   if (nxmul==3) { //10% case three strip hits
+	//     nInX[1] = nInX[0] + 1; //int(gapX/abs(max(1.e-12,gapX)));
+	//     nInX[2] = nInX[0] - 1; //int(gapX/abs(max(1.e-12,gapX)));
+	//   } else if (nxmul==2) { 
+	//     // f(x) = ax**2, => a=3.2
+	//     nInX[1] = nInX[0] + int(gapX/(max(1.e-12,abs(gapX))));
+	//   } 
+	// } // if (nInX[0] >=0 && NewMultiplicity) {
+	
+	// if (nInY[0] >=0 && NewMultiplicity) {
+	//   if(pAnalysis->collatedIn) {
+	//     if(nymul) {
+	//       // nymul = GetRandomXY(gapY,pAnalysis->strp_ymulsim_cor[nInLA]);
+	//       // nymul = GetRandomXY(gapY,pAnalysis->block_ymulsim[nInLA][int(nInX[0])][int(nInY[0])]);
+	//       nymul = GetRandomXY(gapY,pAnalysis->block_ymulsim[nInLA][int(nInX[0]/4)][int(nInY[0]/4)]);
+	//       // cout << " nymul " << nymul << endl;
+	//       // nymul = GetRandomMul(gapY,1,nInLA,nInX[0],nInY[0]);
+	//       // cout<<" newmuly "<<GetRandomMul(gapY,1,nInLA,nInX[0],nInY[0])<<endl;
+	//     }
+	//   } else {
+	//     double arand=gRandom->Uniform();
+	//     if (arand<0.1) {nymul = 3;}
+	//     else { 
+	//       if (gRandom->Uniform() < 3.2*gapY*gapY) {nymul=2;}
+	//       else {nymul=1;}
+	//     }
+	//   }
+	//   if (nymul==3) { //10% case three strip hits
+	//     nInY[1] = nInY[0] + 1; //int(gapY/abs(max(1.e-12,gapY)));
+	//     nInY[2] = nInY[0] - 1; //int(gapY/abs(max(1.e-12,gapY)));
+	//   } else if (nymul==2) { 
+	//     nInY[1] = nInY[0] + int(gapY/(max(1.e-12,abs(gapY))));
+	//   }
+	// }
+	
+	// cout<<" nInLA "<<nInLA<<" nInX[0] "<<nInX[0]<<" nInY[0] "<<nInY[0]<<" nxmul"<<nxmul<<" nymul"<<nymul<<endl;
+	
+	// if (gRandom->Uniform() > UnCorrXIneffiPar) { 
 	for (int ix=0; ix<MxStrip; ix++) { 
+	  // if(nxmul==0) continue;
 	  if(!NewMultiplicity && ix>0) continue;
-	  if (nInX[ix] <0 || nInX[ix]>=nstripX) continue;
-	  if(pAnalysis->collatedIn && nInLA!=5) {
-	    UnCorrXIneffiPar = pAnalysis->inefficiency_uncx[nInLA]->GetBinContent(nInX[ix]+1,nInY[0]+1);
-	  }
-	  if(gRandom->Rndm(0) < UnCorrXIneffiPar) continue;
-
-	  double trigeffiX = 0.0;
-	  if(pAnalysis->collatedIn) {
-	    trigeffiX = pAnalysis->triggereffi_xevt[nInLA]->GetBinContent(nInX[ix]+1,nInY[0]+1);
-	    for(int trglx=0; trglx<ntriglay; trglx++) {
-	      if((nInLA == TrgLayer[trglx]) && (G4UniformRand()<(trigeffiX))) {
-		TrgDataX[TrgLayer[trglx]]++;
-	      }
-	    }
-	  } // if(pAnalysis->collatedIn) {
+	  if (nInX[ix] <0 || nInX[ix]>=numberInX) continue;
+	  
+	  // if(pAnalysis->collatedIn) {
+	  //   UnCorrXIneffiPar = pAnalysis->inefficiency_uncx[nInLA]->GetBinContent(nInX[ix]+1,nInY[0]+1);
+	  // }
+	  // if(gRandom->Uniform() < UnCorrXIneffiPar) continue;
+	  
+	  // double trigeffiX = 0.0;
+	  // if(pAnalysis->collatedIn) {
+	  //   trigeffiX = pAnalysis->triggereffi_xevt[nInLA]->GetBinContent(nInX[ix]+1,nInY[0]+1);
+	  //   for(int trglx=0; trglx<ntriglay; trglx++) {
+	  //     if((nInLA == TrgLayer[trglx]) && (G4UniformRand()<(trigeffiX))) {
+	  // 	TrgDataX[TrgLayer[trglx]]++;
+	  //     }
+	  //   }
+	  // } // if(pAnalysis->collatedIn) {
 	  
 	  G4double atimeX = tmpatimeX +  G4RandGauss::shoot(0,TimeUnCorrSmr);
 	  int nInTX = int(atimeX/TimeToDigiConv);
@@ -928,25 +1022,27 @@ void micalcal0SD::EndOfEvent(G4HCofThisEvent*) {
 	    inoStripX_pointer->InoStripX_list.push_back(Xstrip);
 	  } // if (iold==0)
 	} // for (int ix=0; ix<MxStrip; ix++)
-	// if (gRandom->Rndm(0) > UnCorrYIneffiPar) { 
+	
+	// if (gRandom->Uniform() > UnCorrYIneffiPar) { 
 	for (int jy=0; jy<MxStrip; jy++) { 
+	  // if(nymul==0) continue;
 	  if(!NewMultiplicity && jy>0) continue;
-	  if (nInY[jy] <0 || nInY[jy]>=nstripY) continue;
-
-	  if(pAnalysis->collatedIn && nInLA!=5) {
-	    UnCorrYIneffiPar = pAnalysis->inefficiency_uncy[nInLA]->GetBinContent(nInX[0]+1,nInY[jy]+1);
-	  }
-	  if(gRandom->Rndm(0) < UnCorrYIneffiPar) continue;
-
-	  double trigeffiY = 0.0;
-	  if(pAnalysis->collatedIn) {
-	    trigeffiY = pAnalysis->triggereffi_yevt[nInLA]->GetBinContent(nInX[0]+1,nInY[jy]+1);
-	    for(int trgly=0; trgly<ntriglay; trgly++) {
-	      if((nInLA == TrgLayer[trgly]) && (G4UniformRand()<(trigeffiY))) {
-		TrgDataY[TrgLayer[trgly]]++;
-	      }
-	    }
-	  } // if(pAnalysis->collatedIn) {
+	  if (nInY[jy] <0 || nInY[jy]>=numberInY) continue;
+	  
+	  // if(pAnalysis->collatedIn) {
+	  //   UnCorrYIneffiPar = pAnalysis->inefficiency_uncy[nInLA]->GetBinContent(nInX[0]+1,nInY[jy]+1);
+	  // }
+	  // if(gRandom->Uniform() < UnCorrYIneffiPar) continue;
+	  
+	  // double trigeffiY = 0.0;
+	  // if(pAnalysis->collatedIn) {
+	  //   trigeffiY = pAnalysis->triggereffi_yevt[nInLA]->GetBinContent(nInX[0]+1,nInY[jy]+1);
+	  //   for(int trgly=0; trgly<ntriglay; trgly++) {
+	  //     if((nInLA == TrgLayer[trgly]) && (G4UniformRand()<(trigeffiY))) {
+	  // 	TrgDataY[TrgLayer[trgly]]++;
+	  //     }
+	  //   }
+	  // } // if(pAnalysis->collatedIn) {
 	  
 	  G4double atimeY = tmpatimeY +  G4RandGauss::shoot(0,TimeUnCorrSmr);
 	  int nInTY = int(atimeY/TimeToDigiConv);
@@ -1018,7 +1114,7 @@ void micalcal0SD::EndOfEvent(G4HCofThisEvent*) {
 	  } // if (iold==0)
 	} //for (int jy=0; jy<MxStrip; jy++)
 	
-	// } //if (gRandom->Rndm(0) > UnCorrYIneffiPar)
+	// } //if (gRandom->Uniform() > UnCorrYIneffiPar)
 	// cout<<"hihihi "<<ij<<endl;
       } //for (int ij=0; ij<cal0Collection->entries(); ij++)
 
@@ -1211,7 +1307,7 @@ void micalcal0SD::EndOfEvent(G4HCofThisEvent*) {
 	  InoStrip* Xstrip =tmp_striplist[jk]; 
 	  int nInX[nConseStr]={-1,-1,-1,-1};
 	  int nNoise=0;
-	  double xrnd = gRandom->Rndm(0);
+	  double xrnd = gRandom->Uniform();
 
 	  int idetid = tmp_striplist[jk]->GetId();
 	  int istrip = ((idetid>>8)&0x7f);
@@ -1319,7 +1415,7 @@ void micalcal0SD::EndOfEvent(G4HCofThisEvent*) {
 	pAnalysis->digipz[ij] = trkmom.z();
 	if (ij >=pAnalysis->ndigihtmx) break; //redundant
 
-	cout<<"ij "<<ij<<" "<<pAnalysis->digivx[ij]<<" "<<pAnalysis->digivy[ij]<<" "<<pAnalysis->digivz[ij]<<" "<<(pAnalysis->stripid[ij]>>8)<<endl;
+	// cout<<"ij "<<ij<<" "<<pAnalysis->digivx[ij]<<" "<<pAnalysis->digivy[ij]<<" "<<pAnalysis->digivz[ij]<<" "<<(pAnalysis->stripid[ij]>>8)<<endl;
 	
       }
       unsigned jk = inoStripX_pointer->InoStripX_list.size();
@@ -1342,9 +1438,9 @@ void micalcal0SD::EndOfEvent(G4HCofThisEvent*) {
 	pAnalysis->digipy[jk] = trkmom.y();
 	pAnalysis->digipz[jk] = trkmom.z();
 	if (jk >=pAnalysis->ndigihtmx) break; //redundant
-	cout<<"jk "<<jk<<" "<<pAnalysis->digivx[jk]<<" "<<pAnalysis->digivy[jk]<<" "<<pAnalysis->digivz[jk]<<" "<<(pAnalysis->stripid[jk]>>8)<<endl;
+	// cout<<"jk "<<jk<<" "<<pAnalysis->digivx[jk]<<" "<<pAnalysis->digivy[jk]<<" "<<pAnalysis->digivz[jk]<<" "<<(pAnalysis->stripid[jk]>>8)<<endl;
       }
-      cout<<"digioutput "<<pAnalysis->ndigiht<<" "<<pAnalysis->trigx<<" "<<pAnalysis->trigy<<endl;
+      // cout<<"digioutput "<<pAnalysis->ndigiht<<" "<<pAnalysis->trigx<<" "<<pAnalysis->trigy<<endl;
       pAnalysis->pEventTree->Fill();
     }
     
@@ -1611,11 +1707,12 @@ int micalcal0SD::GetRandomXY(double& GapX, TH2D* tmphistx) {
   int xbinf = tmphistx->GetXaxis()->FindBin(GapX);
   int nmult = -1;
   int iiter = 0;
-  int nmxusedhits = 3;
+  int nmxusedhits = min(3,tmphistx->GetNbinsY());
   while(nmult<=0) {
     sumX = G4UniformRand();
     double valY = 0.0;
-    for (int ijf=0; ijf<=nmxusedhits+1; ijf++) {
+    // first bin is for inefficicnecy
+    for (int ijf=0; ijf<=nmxusedhits; ijf++) {
       valY += tmphistx->GetBinContent(xbinf, ijf+1);
       if (valY > sumX) {
 	nmult = ijf; 
@@ -1629,3 +1726,60 @@ int micalcal0SD::GetRandomXY(double& GapX, TH2D* tmphistx) {
 
   return nmult;
 }
+
+
+// int micalcal0SD::GetRandomMul(double GapX,int ixy, int nlay, int xxstr, int yystr) {
+  
+//   // cout<<" gapx "<<GapX<<endl;
+//   if(xxstr<0 || yystr<0 ||
+//      xxstr>=numberInX || yystr>=numberInY) {
+//     return 1;}
+  
+//   /* bin 1 is inefficiency */
+//   int nzbins = pAnalysis->layblocktotmul[nlay][ixy]->GetNbinsZ();
+//   double sumx = 0.;
+//   for(int nh=0;nh<nzbins;nh++) {
+//     sumx += pAnalysis->layblocktotmul[nlay][ixy]->GetBinContent(xxstr+1,yystr+1,nh+1);}
+//   if(sumx==0.) {return 1;}
+  
+//   int nmxusedhits = min(3,nzbins-1);
+  
+//   double binContents[10] = {0};	// change length if required
+//   double sumxx = 0;		// form normalising binContents[]
+//   for(int nh=0;nh<nmxusedhits;nh++) {
+//     double propRatio = pAnalysis->layblocktotmul[nlay][ixy]->GetBinContent(xxstr+1,yystr+1,nh+2)/sumx;
+//     // cout<<" "<<nh+1<<" "<<propRatio<<endl;
+//     if(propRatio==0) {continue;}
+    
+//     int whichFn = ((nh+2)%2==0)?0:1;
+//     for(int ij=0;ij<(pAnalysis->nparMul);ij++) {
+//       pAnalysis->fnMul[whichFn]->SetParameter(ij,pAnalysis->profoutMul[ij]->GetBinContent(pAnalysis->profoutMul[ij]->FindBin(propRatio,nh+1)));}
+//     // Leaving 0th entry, for future use in inefficiency
+//     binContents[nh+1] = pAnalysis->fnMul[whichFn]->Eval(GapX);
+//     if(binContents[nh+1]<0) {binContents[nh+1]=0;}
+//     sumxx+=binContents[nh+1];
+//     // cout<<" "<<nh+1<<" "<<propRatio<<" "<<binContents[nh+1]<<endl;
+//   }
+//   // cout<<" sumxx "<<sumxx<<endl;
+  
+//   double sumX;// = G4UniformRand();
+//   int nmult = -1;
+//   int iiter = 0;
+//   while(nmult<=0) {
+//     sumX = sumxx*G4UniformRand();
+//     double valY = 0.0;
+//     // first bin is for inefficicnecy
+//     for (int ijf=0; ijf<=nmxusedhits; ijf++) {
+//       valY += binContents[ijf];
+//       if (valY > sumX) {
+// 	nmult = ijf; 
+// 	break;
+//       }
+//     } // for (int ijf=0; ijf<=nmxusedhits; ijf++) {
+//     if (iiter++==100) {
+//       nmult = 1;
+//     }
+//   } // while(nmult<=0) { 
+  
+//   return nmult;
+// }

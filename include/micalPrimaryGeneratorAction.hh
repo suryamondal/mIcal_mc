@@ -86,6 +86,8 @@ public:
   G4double ENorm;
   G4double ELowLim;
   G4double EUpLim;
+  double csmn3,csmx3;
+  double pwmn,pwmx,ec1,ec2;
   double pivalGA; // = 3.14159265;
   double pargas[3];
   double RPCLayerPosZ[12];
