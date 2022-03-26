@@ -1,0 +1,34 @@
+
+# Input/output option, 0:GEN->RECO, 1:GEN->DIGI, 2:GEN->SIM, 3: SIM -> RECO, 4: SIM -> DIGI, 5 : DIGI -> RECO 
+# Gen 4:3D histo from CORSIKA, 5:Standalone
+
+/mical/run/inout 1
+/mical/run/isVis 0
+/mical/run/isXterm 0
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/mical/gun/TopTrgLay 9
+/mical/gun/BottomTrgLay 6
+
+/mical/gun/Gen 4
+/gun/number 1
+
+/mical/gun/DetectorThetaCover 80.
+/mical/gun/PowerCosTheta 2.
+/mical/gun/PowerCosmicEnergy 2.7
+/mical/gun/ELowLimit 0.1
+/mical/gun/EUpLimit 50
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/mical/gun/firstEvt 0
+/mical/run/collated_input 1
+/mical/run/input_dir ./input_files/
+# /mical/run/input_file sim_file # no prefix (i.e. _sim.root) required
+/mical/run/collated_input_file Collated_201811.root
+/mical/gun/corsika_file_dir ./input_files/
+/mical/gun/flux_file flux_Pethu_FLUKA_SIBYLL.root
+/mical/run/output_dir ./temp/
+/mical/run/output_file test # no prefix (i.e. _digi.root) required
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#Give the number of event you want to run.
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/run/beamOn 100000

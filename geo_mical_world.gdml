@@ -1,0 +1,2756 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
+
+  <define/>
+
+  <materials>
+    <isotope N="54" Z="26" name="Fe540x3ce2bf0">
+      <atom unit="g/mole" value="53.9396"/>
+    </isotope>
+    <isotope N="56" Z="26" name="Fe560x3cde580">
+      <atom unit="g/mole" value="55.9349"/>
+    </isotope>
+    <isotope N="57" Z="26" name="Fe570x3ce2c80">
+      <atom unit="g/mole" value="56.9354"/>
+    </isotope>
+    <isotope N="58" Z="26" name="Fe580x3ce38b0">
+      <atom unit="g/mole" value="57.9333"/>
+    </isotope>
+    <element name="Fe0x3ce3620">
+      <fraction n="0.05845" ref="Fe540x3ce2bf0"/>
+      <fraction n="0.91754" ref="Fe560x3cde580"/>
+      <fraction n="0.02119" ref="Fe570x3ce2c80"/>
+      <fraction n="0.00282" ref="Fe580x3ce38b0"/>
+    </element>
+    <material name="G4_Fe0x3ce2b00" state="solid">
+      <T unit="K" value="293.15"/>
+      <MEE unit="eV" value="286"/>
+      <D unit="g/cm3" value="7.874"/>
+      <fraction n="1" ref="Fe0x3ce3620"/>
+    </material>
+    <isotope N="12" Z="6" name="C120x3cd5590">
+      <atom unit="g/mole" value="12"/>
+    </isotope>
+    <isotope N="13" Z="6" name="C130x3cd5600">
+      <atom unit="g/mole" value="13.0034"/>
+    </isotope>
+    <element name="C0x3cd5330">
+      <fraction n="0.9893" ref="C120x3cd5590"/>
+      <fraction n="0.0107" ref="C130x3cd5600"/>
+    </element>
+    <isotope N="19" Z="9" name="F190x3cd5830">
+      <atom unit="g/mole" value="18.9984"/>
+    </isotope>
+    <element name="F0x3cd5a70">
+      <fraction n="1" ref="F190x3cd5830"/>
+    </element>
+    <isotope N="79" Z="35" name="Br790x3ce28e0">
+      <atom unit="g/mole" value="78.9183"/>
+    </isotope>
+    <isotope N="81" Z="35" name="Br810x3ce2950">
+      <atom unit="g/mole" value="80.9163"/>
+    </isotope>
+    <element name="Br0x3ce26b0">
+      <fraction n="0.5069" ref="Br790x3ce28e0"/>
+      <fraction n="0.4931" ref="Br810x3ce2950"/>
+    </element>
+    <isotope N="1" Z="1" name="H10x3cd5eb0">
+      <atom unit="g/mole" value="1.00782503081372"/>
+    </isotope>
+    <isotope N="2" Z="1" name="H20x3cd5f20">
+      <atom unit="g/mole" value="2.01410199966617"/>
+    </isotope>
+    <element name="H0x3cd5c50">
+      <fraction n="0.999885" ref="H10x3cd5eb0"/>
+      <fraction n="0.000115" ref="H20x3cd5f20"/>
+    </element>
+    <isotope N="32" Z="16" name="S320x3cd5890">
+      <atom unit="g/mole" value="31.9721"/>
+    </isotope>
+    <isotope N="33" Z="16" name="S330x3cd5900">
+      <atom unit="g/mole" value="32.9715"/>
+    </isotope>
+    <isotope N="34" Z="16" name="S340x3cd5970">
+      <atom unit="g/mole" value="33.9679"/>
+    </isotope>
+    <isotope N="36" Z="16" name="S360x3cd5a30">
+      <atom unit="g/mole" value="35.9671"/>
+    </isotope>
+    <element name="S0x3cd5660">
+      <fraction n="0.9493" ref="S320x3cd5890"/>
+      <fraction n="0.0076" ref="S330x3cd5900"/>
+      <fraction n="0.0429" ref="S340x3cd5970"/>
+      <fraction n="0.0002" ref="S360x3cd5a30"/>
+    </element>
+    <material name="rpcgas0x3ceb7c0" state="gas">
+      <T unit="K" value="293.15"/>
+      <MEE unit="eV" value="181.363433057679"/>
+      <D unit="g/cm3" value="0.00418"/>
+      <fraction n="0.114024964523967" ref="C0x3cd5330"/>
+      <fraction n="0.366840858551507" ref="F0x3cd5a70"/>
+      <fraction n="0.510566611378915" ref="Br0x3ce26b0"/>
+      <fraction n="0.00782110936023379" ref="H0x3cd5c50"/>
+      <fraction n="0.00074645618537713" ref="S0x3cd5660"/>
+    </material>
+    <isotope N="28" Z="14" name="Si280x3cd61b0">
+      <atom unit="g/mole" value="27.9769"/>
+    </isotope>
+    <isotope N="29" Z="14" name="Si290x3cd65a0">
+      <atom unit="g/mole" value="28.9765"/>
+    </isotope>
+    <isotope N="30" Z="14" name="Si300x3cd6610">
+      <atom unit="g/mole" value="29.9738"/>
+    </isotope>
+    <element name="Si0x3cd6370">
+      <fraction n="0.922296077703922" ref="Si280x3cd61b0"/>
+      <fraction n="0.0468319531680468" ref="Si290x3cd65a0"/>
+      <fraction n="0.0308719691280309" ref="Si300x3cd6610"/>
+    </element>
+    <isotope N="16" Z="8" name="O160x3cd5e30">
+      <atom unit="g/mole" value="15.9949"/>
+    </isotope>
+    <isotope N="17" Z="8" name="O170x3cd6270">
+      <atom unit="g/mole" value="16.9991"/>
+    </isotope>
+    <isotope N="18" Z="8" name="O180x3cd6300">
+      <atom unit="g/mole" value="17.9992"/>
+    </isotope>
+    <element name="O0x3cd6010">
+      <fraction n="0.99757" ref="O160x3cd5e30"/>
+      <fraction n="0.00038" ref="O170x3cd6270"/>
+      <fraction n="0.00205" ref="O180x3cd6300"/>
+    </element>
+    <material name="G4_SILICON_DIOXIDE0x3ce9ab0" state="solid">
+      <T unit="K" value="293.15"/>
+      <MEE unit="eV" value="139.2"/>
+      <D unit="g/cm3" value="2.32"/>
+      <fraction n="0.467433841791527" ref="Si0x3cd6370"/>
+      <fraction n="0.532566158208473" ref="O0x3cd6010"/>
+    </material>
+    <material name="G4_GRAPHITE0x3ce5140" state="solid">
+      <T unit="K" value="293.15"/>
+      <MEE unit="eV" value="78"/>
+      <D unit="g/cm3" value="2.21"/>
+      <fraction n="1" ref="C0x3cd5330"/>
+    </material>
+    <material name="G4_MYLAR0x3ce63d0" state="solid">
+      <T unit="K" value="293.15"/>
+      <MEE unit="eV" value="78.7"/>
+      <D unit="g/cm3" value="1.4"/>
+      <fraction n="0.625010832340889" ref="C0x3cd5330"/>
+      <fraction n="0.0419607170679433" ref="H0x3cd5c50"/>
+      <fraction n="0.333028450591168" ref="O0x3cd6010"/>
+    </material>
+    <isotope N="63" Z="29" name="Cu630x3ce3ae0">
+      <atom unit="g/mole" value="62.9296"/>
+    </isotope>
+    <isotope N="65" Z="29" name="Cu650x3ce3aa0">
+      <atom unit="g/mole" value="64.9278"/>
+    </isotope>
+    <element name="Cu0x3ce3f70">
+      <fraction n="0.6917" ref="Cu630x3ce3ae0"/>
+      <fraction n="0.3083" ref="Cu650x3ce3aa0"/>
+    </element>
+    <material name="G4_Cu0x3ce3e80" state="solid">
+      <T unit="K" value="293.15"/>
+      <MEE unit="eV" value="322"/>
+      <D unit="g/cm3" value="8.96"/>
+      <fraction n="1" ref="Cu0x3ce3f70"/>
+    </material>
+    <material name="G4_POLYETHYLENE0x3ce66f0" state="solid">
+      <T unit="K" value="293.15"/>
+      <MEE unit="eV" value="57.4"/>
+      <D unit="g/cm3" value="0.94"/>
+      <fraction n="0.856281712255198" ref="C0x3cd5330"/>
+      <fraction n="0.143718287744802" ref="H0x3cd5c50"/>
+    </material>
+    <material Z="13" name="G4_Al0x3ce4810" state="solid">
+      <T unit="K" value="293.15"/>
+      <MEE unit="eV" value="166"/>
+      <D unit="g/cm3" value="2.699"/>
+      <atom unit="g/mole" value="26.9815"/>
+    </material>
+    <material name="G100x3ceb470" state="solid">
+      <T unit="K" value="293.15"/>
+      <MEE unit="eV" value="96.3605255313064"/>
+      <D unit="g/cm3" value="1.09"/>
+      <fraction n="0.2832894114898" ref="Si0x3cd6370"/>
+      <fraction n="0.322763009541678" ref="O0x3cd6010"/>
+      <fraction n="0.363447105286765" ref="C0x3cd5330"/>
+      <fraction n="0.0305004736817568" ref="H0x3cd5c50"/>
+    </material>
+    <isotope N="14" Z="7" name="N140x3ce7970">
+      <atom unit="g/mole" value="14.0031"/>
+    </isotope>
+    <isotope N="15" Z="7" name="N150x3ce79e0">
+      <atom unit="g/mole" value="15.0001"/>
+    </isotope>
+    <element name="N0x3ce7710">
+      <fraction n="0.99632" ref="N140x3ce7970"/>
+      <fraction n="0.00368" ref="N150x3ce79e0"/>
+    </element>
+    <isotope N="36" Z="18" name="Ar360x3ce7900">
+      <atom unit="g/mole" value="35.9675"/>
+    </isotope>
+    <isotope N="38" Z="18" name="Ar380x3ce4ce0">
+      <atom unit="g/mole" value="37.9627"/>
+    </isotope>
+    <isotope N="40" Z="18" name="Ar400x3ce7c80">
+      <atom unit="g/mole" value="39.9624"/>
+    </isotope>
+    <element name="Ar0x3ce7a20">
+      <fraction n="0.003365" ref="Ar360x3ce7900"/>
+      <fraction n="0.000632" ref="Ar380x3ce4ce0"/>
+      <fraction n="0.996003" ref="Ar400x3ce7c80"/>
+    </element>
+    <material name="G4_AIR0x3ce7060" state="gas">
+      <T unit="K" value="293.15"/>
+      <MEE unit="eV" value="85.7"/>
+      <D unit="g/cm3" value="0.00120479"/>
+      <fraction n="0.000124000124000124" ref="C0x3cd5330"/>
+      <fraction n="0.755267755267755" ref="N0x3ce7710"/>
+      <fraction n="0.231781231781232" ref="O0x3cd6010"/>
+      <fraction n="0.0128270128270128" ref="Ar0x3ce7a20"/>
+    </material>
+    <material name="FRPCarbon0x3ce14b0" state="solid">
+      <T unit="K" value="293.15"/>
+      <MEE unit="eV" value="81"/>
+      <D unit="g/cm3" value="3"/>
+      <fraction n="1" ref="C0x3cd5330"/>
+    </material>
+    <isotope N="23" Z="11" name="Na230x3ce8c00">
+      <atom unit="g/mole" value="22.9898"/>
+    </isotope>
+    <element name="Na0x3ce89d0">
+      <fraction n="1" ref="Na230x3ce8c00"/>
+    </element>
+    <isotope N="24" Z="12" name="Mg240x3ce8bc0">
+      <atom unit="g/mole" value="23.985"/>
+    </isotope>
+    <isotope N="25" Z="12" name="Mg250x3ce8e70">
+      <atom unit="g/mole" value="24.9858"/>
+    </isotope>
+    <isotope N="26" Z="12" name="Mg260x3ce8ee0">
+      <atom unit="g/mole" value="25.9826"/>
+    </isotope>
+    <element name="Mg0x3ce29c0">
+      <fraction n="0.7899" ref="Mg240x3ce8bc0"/>
+      <fraction n="0.1" ref="Mg250x3ce8e70"/>
+      <fraction n="0.1101" ref="Mg260x3ce8ee0"/>
+    </element>
+    <isotope N="27" Z="13" name="Al270x3ce44c0">
+      <atom unit="g/mole" value="26.9815"/>
+    </isotope>
+    <element name="Al0x3ce4900">
+      <fraction n="1" ref="Al270x3ce44c0"/>
+    </element>
+    <isotope N="39" Z="19" name="K390x3ce8d00">
+      <atom unit="g/mole" value="38.9637"/>
+    </isotope>
+    <isotope N="40" Z="19" name="K400x3ce8d90">
+      <atom unit="g/mole" value="39.964"/>
+    </isotope>
+    <isotope N="41" Z="19" name="K410x3ce8e20">
+      <atom unit="g/mole" value="40.9618"/>
+    </isotope>
+    <element name="K0x3ce9130">
+      <fraction n="0.932581" ref="K390x3ce8d00"/>
+      <fraction n="0.000117" ref="K400x3ce8d90"/>
+      <fraction n="0.067302" ref="K410x3ce8e20"/>
+    </element>
+    <isotope N="40" Z="20" name="Ca400x3ce9300">
+      <atom unit="g/mole" value="39.9626"/>
+    </isotope>
+    <isotope N="42" Z="20" name="Ca420x3ce95f0">
+      <atom unit="g/mole" value="41.9586"/>
+    </isotope>
+    <isotope N="43" Z="20" name="Ca430x3ce9680">
+      <atom unit="g/mole" value="42.9588"/>
+    </isotope>
+    <isotope N="44" Z="20" name="Ca440x3ce9720">
+      <atom unit="g/mole" value="43.9555"/>
+    </isotope>
+    <isotope N="46" Z="20" name="Ca460x3ce9790">
+      <atom unit="g/mole" value="45.9537"/>
+    </isotope>
+    <isotope N="48" Z="20" name="Ca480x3ce9820">
+      <atom unit="g/mole" value="47.9525"/>
+    </isotope>
+    <element name="Ca0x3ce9390">
+      <fraction n="0.96941" ref="Ca400x3ce9300"/>
+      <fraction n="0.00647" ref="Ca420x3ce95f0"/>
+      <fraction n="0.00135" ref="Ca430x3ce9680"/>
+      <fraction n="0.02086" ref="Ca440x3ce9720"/>
+      <fraction n="4e-05" ref="Ca460x3ce9790"/>
+      <fraction n="0.00187" ref="Ca480x3ce9820"/>
+    </element>
+    <material name="G4_CONCRETE0x3ce7e60" state="solid">
+      <T unit="K" value="293.15"/>
+      <MEE unit="eV" value="135.2"/>
+      <D unit="g/cm3" value="2.3"/>
+      <fraction n="0.01" ref="H0x3cd5c50"/>
+      <fraction n="0.001" ref="C0x3cd5330"/>
+      <fraction n="0.529107" ref="O0x3cd6010"/>
+      <fraction n="0.016" ref="Na0x3ce89d0"/>
+      <fraction n="0.002" ref="Mg0x3ce29c0"/>
+      <fraction n="0.033872" ref="Al0x3ce4900"/>
+      <fraction n="0.337021" ref="Si0x3cd6370"/>
+      <fraction n="0.013" ref="K0x3ce9130"/>
+      <fraction n="0.044" ref="Ca0x3ce9390"/>
+      <fraction n="0.014" ref="Fe0x3ce3620"/>
+    </material>
+  </materials>
+
+  <solids>
+    <box lunit="mm" name="NoSpaceIRONlayer0x3fdd6c0" x="4000" y="4000" z="56"/>
+    <box lunit="mm" name="CoilSpaceRPC0x3fdd750" x="80" y="794" z="56"/>
+    <subtraction name="IRLAYE0x3fdd7e0">
+      <first ref="NoSpaceIRONlayer0x3fdd6c0"/>
+      <second ref="CoilSpaceRPC0x3fdd750"/>
+      <position name="IRLAYE0x3fdd7e0_pos" unit="mm" x="-1000" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fdd9b0">
+      <first ref="IRLAYE0x3fdd7e0"/>
+      <second ref="CoilSpaceRPC0x3fdd750"/>
+      <position name="IRLAYE0x3fdd9b0_pos" unit="mm" x="-1000" y="803" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fddbd0">
+      <first ref="IRLAYE0x3fdd9b0"/>
+      <second ref="CoilSpaceRPC0x3fdd750"/>
+      <position name="IRLAYE0x3fddbd0_pos" unit="mm" x="1000" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fdddf0">
+      <first ref="IRLAYE0x3fddbd0"/>
+      <second ref="CoilSpaceRPC0x3fdd750"/>
+      <position name="IRLAYE0x3fdddf0_pos" unit="mm" x="1000" y="803" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="AirGap10x3fde010" x="5" y="810" z="56"/>
+    <subtraction name="IRLAYE0x3fde0a0">
+      <first ref="IRLAYE0x3fdddf0"/>
+      <second ref="AirGap10x3fde010"/>
+      <position name="IRLAYE0x3fde0a0_pos" unit="mm" x="-1000" y="0" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fde2c0">
+      <first ref="IRLAYE0x3fde0a0"/>
+      <second ref="AirGap10x3fde010"/>
+      <position name="IRLAYE0x3fde2c0_pos" unit="mm" x="1000" y="0" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="AirGap20x3fde4e0" x="5" y="799" z="56"/>
+    <subtraction name="IRLAYE0x3fde570">
+      <first ref="IRLAYE0x3fde2c0"/>
+      <second ref="AirGap20x3fde4e0"/>
+      <position name="IRLAYE0x3fde570_pos" unit="mm" x="-1000" y="-1600.5" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fde790">
+      <first ref="IRLAYE0x3fde570"/>
+      <second ref="AirGap20x3fde4e0"/>
+      <position name="IRLAYE0x3fde790_pos" unit="mm" x="-1000" y="1600.5" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fde9b0">
+      <first ref="IRLAYE0x3fde790"/>
+      <second ref="AirGap20x3fde4e0"/>
+      <position name="IRLAYE0x3fde9b0_pos" unit="mm" x="1000" y="-1600.5" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fdebd0">
+      <first ref="IRLAYE0x3fde9b0"/>
+      <second ref="AirGap20x3fde4e0"/>
+      <position name="IRLAYE0x3fdebd0_pos" unit="mm" x="1000" y="1600.5" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="AirGap30x3fdedf0" x="995.5" y="5" z="56"/>
+    <subtraction name="IRLAYE0x3fdee80">
+      <first ref="IRLAYE0x3fdebd0"/>
+      <second ref="AirGap30x3fdedf0"/>
+      <position name="IRLAYE0x3fdee80_pos" unit="mm" x="1501.25" y="0" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fdf0a0">
+      <first ref="IRLAYE0x3fdee80"/>
+      <second ref="AirGap30x3fdedf0"/>
+      <position name="IRLAYE0x3fdf0a0_pos" unit="mm" x="-1501.25" y="0" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="AirGap40x3fdf2c0" x="1918" y="5" z="56"/>
+    <subtraction name="IRLAYE0x3fdf350">
+      <first ref="IRLAYE0x3fdf0a0"/>
+      <second ref="AirGap40x3fdf2c0"/>
+      <position name="IRLAYE0x3fdf350_pos" unit="mm" x="0" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fdf570">
+      <first ref="IRLAYE0x3fdf350"/>
+      <second ref="AirGap40x3fdf2c0"/>
+      <position name="IRLAYE0x3fdf570_pos" unit="mm" x="0" y="803" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="NoSpaceIRONlayer0x3fdf8a0" x="4000" y="4000" z="56"/>
+    <box lunit="mm" name="CoilSpaceRPC0x3fdf930" x="80" y="794" z="56"/>
+    <subtraction name="IRLAYE0x3fdf9c0">
+      <first ref="NoSpaceIRONlayer0x3fdf8a0"/>
+      <second ref="CoilSpaceRPC0x3fdf930"/>
+      <position name="IRLAYE0x3fdf9c0_pos" unit="mm" x="-1000" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fdfbe0">
+      <first ref="IRLAYE0x3fdf9c0"/>
+      <second ref="CoilSpaceRPC0x3fdf930"/>
+      <position name="IRLAYE0x3fdfbe0_pos" unit="mm" x="-1000" y="803" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fdfe00">
+      <first ref="IRLAYE0x3fdfbe0"/>
+      <second ref="CoilSpaceRPC0x3fdf930"/>
+      <position name="IRLAYE0x3fdfe00_pos" unit="mm" x="1000" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fe0020">
+      <first ref="IRLAYE0x3fdfe00"/>
+      <second ref="CoilSpaceRPC0x3fdf930"/>
+      <position name="IRLAYE0x3fe0020_pos" unit="mm" x="1000" y="803" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="AirGap10x3fe0240" x="5" y="810" z="56"/>
+    <subtraction name="IRLAYE0x3fe02d0">
+      <first ref="IRLAYE0x3fe0020"/>
+      <second ref="AirGap10x3fe0240"/>
+      <position name="IRLAYE0x3fe02d0_pos" unit="mm" x="-1000" y="0" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fe04f0">
+      <first ref="IRLAYE0x3fe02d0"/>
+      <second ref="AirGap10x3fe0240"/>
+      <position name="IRLAYE0x3fe04f0_pos" unit="mm" x="1000" y="0" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="AirGap20x3fd7130" x="5" y="799" z="56"/>
+    <subtraction name="IRLAYE0x3fd71c0">
+      <first ref="IRLAYE0x3fe04f0"/>
+      <second ref="AirGap20x3fd7130"/>
+      <position name="IRLAYE0x3fd71c0_pos" unit="mm" x="-1000" y="-1600.5" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fd73e0">
+      <first ref="IRLAYE0x3fd71c0"/>
+      <second ref="AirGap20x3fd7130"/>
+      <position name="IRLAYE0x3fd73e0_pos" unit="mm" x="-1000" y="1600.5" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fe1290">
+      <first ref="IRLAYE0x3fd73e0"/>
+      <second ref="AirGap20x3fd7130"/>
+      <position name="IRLAYE0x3fe1290_pos" unit="mm" x="1000" y="-1600.5" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fe1480">
+      <first ref="IRLAYE0x3fe1290"/>
+      <second ref="AirGap20x3fd7130"/>
+      <position name="IRLAYE0x3fe1480_pos" unit="mm" x="1000" y="1600.5" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="AirGap30x3fe16a0" x="995.5" y="5" z="56"/>
+    <subtraction name="IRLAYE0x3fe1730">
+      <first ref="IRLAYE0x3fe1480"/>
+      <second ref="AirGap30x3fe16a0"/>
+      <position name="IRLAYE0x3fe1730_pos" unit="mm" x="1501.25" y="0" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fe1950">
+      <first ref="IRLAYE0x3fe1730"/>
+      <second ref="AirGap30x3fe16a0"/>
+      <position name="IRLAYE0x3fe1950_pos" unit="mm" x="-1501.25" y="0" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="AirGap40x3fe1b70" x="1918" y="5" z="56"/>
+    <subtraction name="IRLAYE0x3fe1c00">
+      <first ref="IRLAYE0x3fe1950"/>
+      <second ref="AirGap40x3fe1b70"/>
+      <position name="IRLAYE0x3fe1c00_pos" unit="mm" x="0" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fe1e20">
+      <first ref="IRLAYE0x3fe1c00"/>
+      <second ref="AirGap40x3fe1b70"/>
+      <position name="IRLAYE0x3fe1e20_pos" unit="mm" x="0" y="803" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="NoSpaceIRONlayer0x3fe2110" x="4000" y="4000" z="56"/>
+    <box lunit="mm" name="CoilSpaceRPC0x3fe21a0" x="80" y="794" z="56"/>
+    <subtraction name="IRLAYE0x3fe2230">
+      <first ref="NoSpaceIRONlayer0x3fe2110"/>
+      <second ref="CoilSpaceRPC0x3fe21a0"/>
+      <position name="IRLAYE0x3fe2230_pos" unit="mm" x="-1000" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fe2450">
+      <first ref="IRLAYE0x3fe2230"/>
+      <second ref="CoilSpaceRPC0x3fe21a0"/>
+      <position name="IRLAYE0x3fe2450_pos" unit="mm" x="-1000" y="803" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fe2670">
+      <first ref="IRLAYE0x3fe2450"/>
+      <second ref="CoilSpaceRPC0x3fe21a0"/>
+      <position name="IRLAYE0x3fe2670_pos" unit="mm" x="1000" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fe2890">
+      <first ref="IRLAYE0x3fe2670"/>
+      <second ref="CoilSpaceRPC0x3fe21a0"/>
+      <position name="IRLAYE0x3fe2890_pos" unit="mm" x="1000" y="803" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="AirGap10x3fe2ab0" x="5" y="810" z="56"/>
+    <subtraction name="IRLAYE0x3fe2b40">
+      <first ref="IRLAYE0x3fe2890"/>
+      <second ref="AirGap10x3fe2ab0"/>
+      <position name="IRLAYE0x3fe2b40_pos" unit="mm" x="-1000" y="0" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fe2d60">
+      <first ref="IRLAYE0x3fe2b40"/>
+      <second ref="AirGap10x3fe2ab0"/>
+      <position name="IRLAYE0x3fe2d60_pos" unit="mm" x="1000" y="0" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="AirGap20x3fe2f80" x="5" y="799" z="56"/>
+    <subtraction name="IRLAYE0x3fe3010">
+      <first ref="IRLAYE0x3fe2d60"/>
+      <second ref="AirGap20x3fe2f80"/>
+      <position name="IRLAYE0x3fe3010_pos" unit="mm" x="-1000" y="-1600.5" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fe3230">
+      <first ref="IRLAYE0x3fe3010"/>
+      <second ref="AirGap20x3fe2f80"/>
+      <position name="IRLAYE0x3fe3230_pos" unit="mm" x="-1000" y="1600.5" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fe3450">
+      <first ref="IRLAYE0x3fe3230"/>
+      <second ref="AirGap20x3fe2f80"/>
+      <position name="IRLAYE0x3fe3450_pos" unit="mm" x="1000" y="-1600.5" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fe3670">
+      <first ref="IRLAYE0x3fe3450"/>
+      <second ref="AirGap20x3fe2f80"/>
+      <position name="IRLAYE0x3fe3670_pos" unit="mm" x="1000" y="1600.5" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="AirGap30x3fe3890" x="995.5" y="5" z="56"/>
+    <subtraction name="IRLAYE0x3fe3920">
+      <first ref="IRLAYE0x3fe3670"/>
+      <second ref="AirGap30x3fe3890"/>
+      <position name="IRLAYE0x3fe3920_pos" unit="mm" x="1501.25" y="0" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fe3b40">
+      <first ref="IRLAYE0x3fe3920"/>
+      <second ref="AirGap30x3fe3890"/>
+      <position name="IRLAYE0x3fe3b40_pos" unit="mm" x="-1501.25" y="0" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="AirGap40x3fe3d60" x="1918" y="5" z="56"/>
+    <subtraction name="IRLAYE0x3fe3df0">
+      <first ref="IRLAYE0x3fe3b40"/>
+      <second ref="AirGap40x3fe3d60"/>
+      <position name="IRLAYE0x3fe3df0_pos" unit="mm" x="0" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fe4010">
+      <first ref="IRLAYE0x3fe3df0"/>
+      <second ref="AirGap40x3fe3d60"/>
+      <position name="IRLAYE0x3fe4010_pos" unit="mm" x="0" y="803" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="NoSpaceIRONlayer0x3fe4340" x="4000" y="4000" z="56"/>
+    <box lunit="mm" name="CoilSpaceRPC0x3fe43d0" x="80" y="794" z="56"/>
+    <subtraction name="IRLAYE0x3fe4460">
+      <first ref="NoSpaceIRONlayer0x3fe4340"/>
+      <second ref="CoilSpaceRPC0x3fe43d0"/>
+      <position name="IRLAYE0x3fe4460_pos" unit="mm" x="-1000" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fe4680">
+      <first ref="IRLAYE0x3fe4460"/>
+      <second ref="CoilSpaceRPC0x3fe43d0"/>
+      <position name="IRLAYE0x3fe4680_pos" unit="mm" x="-1000" y="803" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fe48a0">
+      <first ref="IRLAYE0x3fe4680"/>
+      <second ref="CoilSpaceRPC0x3fe43d0"/>
+      <position name="IRLAYE0x3fe48a0_pos" unit="mm" x="1000" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fe4ac0">
+      <first ref="IRLAYE0x3fe48a0"/>
+      <second ref="CoilSpaceRPC0x3fe43d0"/>
+      <position name="IRLAYE0x3fe4ac0_pos" unit="mm" x="1000" y="803" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="AirGap10x3fe4ce0" x="5" y="810" z="56"/>
+    <subtraction name="IRLAYE0x3fe4d70">
+      <first ref="IRLAYE0x3fe4ac0"/>
+      <second ref="AirGap10x3fe4ce0"/>
+      <position name="IRLAYE0x3fe4d70_pos" unit="mm" x="-1000" y="0" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fe4f90">
+      <first ref="IRLAYE0x3fe4d70"/>
+      <second ref="AirGap10x3fe4ce0"/>
+      <position name="IRLAYE0x3fe4f90_pos" unit="mm" x="1000" y="0" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="AirGap20x3fe51b0" x="5" y="799" z="56"/>
+    <subtraction name="IRLAYE0x3fe5240">
+      <first ref="IRLAYE0x3fe4f90"/>
+      <second ref="AirGap20x3fe51b0"/>
+      <position name="IRLAYE0x3fe5240_pos" unit="mm" x="-1000" y="-1600.5" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fe5460">
+      <first ref="IRLAYE0x3fe5240"/>
+      <second ref="AirGap20x3fe51b0"/>
+      <position name="IRLAYE0x3fe5460_pos" unit="mm" x="-1000" y="1600.5" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fe5680">
+      <first ref="IRLAYE0x3fe5460"/>
+      <second ref="AirGap20x3fe51b0"/>
+      <position name="IRLAYE0x3fe5680_pos" unit="mm" x="1000" y="-1600.5" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fe58a0">
+      <first ref="IRLAYE0x3fe5680"/>
+      <second ref="AirGap20x3fe51b0"/>
+      <position name="IRLAYE0x3fe58a0_pos" unit="mm" x="1000" y="1600.5" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="AirGap30x3fe5ac0" x="995.5" y="5" z="56"/>
+    <subtraction name="IRLAYE0x3fe5b50">
+      <first ref="IRLAYE0x3fe58a0"/>
+      <second ref="AirGap30x3fe5ac0"/>
+      <position name="IRLAYE0x3fe5b50_pos" unit="mm" x="1501.25" y="0" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fe5d70">
+      <first ref="IRLAYE0x3fe5b50"/>
+      <second ref="AirGap30x3fe5ac0"/>
+      <position name="IRLAYE0x3fe5d70_pos" unit="mm" x="-1501.25" y="0" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="AirGap40x3fe5f90" x="1918" y="5" z="56"/>
+    <subtraction name="IRLAYE0x3fe6020">
+      <first ref="IRLAYE0x3fe5d70"/>
+      <second ref="AirGap40x3fe5f90"/>
+      <position name="IRLAYE0x3fe6020_pos" unit="mm" x="0" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fe6240">
+      <first ref="IRLAYE0x3fe6020"/>
+      <second ref="AirGap40x3fe5f90"/>
+      <position name="IRLAYE0x3fe6240_pos" unit="mm" x="0" y="803" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="NoSpaceIRONlayer0x3fe6570" x="4000" y="4000" z="56"/>
+    <box lunit="mm" name="CoilSpaceRPC0x3fe6600" x="80" y="794" z="56"/>
+    <subtraction name="IRLAYE0x3fe6690">
+      <first ref="NoSpaceIRONlayer0x3fe6570"/>
+      <second ref="CoilSpaceRPC0x3fe6600"/>
+      <position name="IRLAYE0x3fe6690_pos" unit="mm" x="-1000" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fe68b0">
+      <first ref="IRLAYE0x3fe6690"/>
+      <second ref="CoilSpaceRPC0x3fe6600"/>
+      <position name="IRLAYE0x3fe68b0_pos" unit="mm" x="-1000" y="803" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fe6ad0">
+      <first ref="IRLAYE0x3fe68b0"/>
+      <second ref="CoilSpaceRPC0x3fe6600"/>
+      <position name="IRLAYE0x3fe6ad0_pos" unit="mm" x="1000" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fe6cf0">
+      <first ref="IRLAYE0x3fe6ad0"/>
+      <second ref="CoilSpaceRPC0x3fe6600"/>
+      <position name="IRLAYE0x3fe6cf0_pos" unit="mm" x="1000" y="803" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="AirGap10x3fe6f10" x="5" y="810" z="56"/>
+    <subtraction name="IRLAYE0x3fe6fa0">
+      <first ref="IRLAYE0x3fe6cf0"/>
+      <second ref="AirGap10x3fe6f10"/>
+      <position name="IRLAYE0x3fe6fa0_pos" unit="mm" x="-1000" y="0" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fe71c0">
+      <first ref="IRLAYE0x3fe6fa0"/>
+      <second ref="AirGap10x3fe6f10"/>
+      <position name="IRLAYE0x3fe71c0_pos" unit="mm" x="1000" y="0" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="AirGap20x3fe73e0" x="5" y="799" z="56"/>
+    <subtraction name="IRLAYE0x3fe7470">
+      <first ref="IRLAYE0x3fe71c0"/>
+      <second ref="AirGap20x3fe73e0"/>
+      <position name="IRLAYE0x3fe7470_pos" unit="mm" x="-1000" y="-1600.5" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fe7690">
+      <first ref="IRLAYE0x3fe7470"/>
+      <second ref="AirGap20x3fe73e0"/>
+      <position name="IRLAYE0x3fe7690_pos" unit="mm" x="-1000" y="1600.5" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fe78b0">
+      <first ref="IRLAYE0x3fe7690"/>
+      <second ref="AirGap20x3fe73e0"/>
+      <position name="IRLAYE0x3fe78b0_pos" unit="mm" x="1000" y="-1600.5" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fe7ad0">
+      <first ref="IRLAYE0x3fe78b0"/>
+      <second ref="AirGap20x3fe73e0"/>
+      <position name="IRLAYE0x3fe7ad0_pos" unit="mm" x="1000" y="1600.5" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="AirGap30x3fe7cf0" x="995.5" y="5" z="56"/>
+    <subtraction name="IRLAYE0x3fe7d80">
+      <first ref="IRLAYE0x3fe7ad0"/>
+      <second ref="AirGap30x3fe7cf0"/>
+      <position name="IRLAYE0x3fe7d80_pos" unit="mm" x="1501.25" y="0" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fe7fa0">
+      <first ref="IRLAYE0x3fe7d80"/>
+      <second ref="AirGap30x3fe7cf0"/>
+      <position name="IRLAYE0x3fe7fa0_pos" unit="mm" x="-1501.25" y="0" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="AirGap40x3fe81c0" x="1918" y="5" z="56"/>
+    <subtraction name="IRLAYE0x3fe8250">
+      <first ref="IRLAYE0x3fe7fa0"/>
+      <second ref="AirGap40x3fe81c0"/>
+      <position name="IRLAYE0x3fe8250_pos" unit="mm" x="0" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fe8470">
+      <first ref="IRLAYE0x3fe8250"/>
+      <second ref="AirGap40x3fe81c0"/>
+      <position name="IRLAYE0x3fe8470_pos" unit="mm" x="0" y="803" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="NoSpaceIRONlayer0x3fe87a0" x="4000" y="4000" z="56"/>
+    <box lunit="mm" name="CoilSpaceRPC0x3fe8830" x="80" y="794" z="56"/>
+    <subtraction name="IRLAYE0x3fe88c0">
+      <first ref="NoSpaceIRONlayer0x3fe87a0"/>
+      <second ref="CoilSpaceRPC0x3fe8830"/>
+      <position name="IRLAYE0x3fe88c0_pos" unit="mm" x="-1000" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fe8ae0">
+      <first ref="IRLAYE0x3fe88c0"/>
+      <second ref="CoilSpaceRPC0x3fe8830"/>
+      <position name="IRLAYE0x3fe8ae0_pos" unit="mm" x="-1000" y="803" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fe8d00">
+      <first ref="IRLAYE0x3fe8ae0"/>
+      <second ref="CoilSpaceRPC0x3fe8830"/>
+      <position name="IRLAYE0x3fe8d00_pos" unit="mm" x="1000" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fe8f20">
+      <first ref="IRLAYE0x3fe8d00"/>
+      <second ref="CoilSpaceRPC0x3fe8830"/>
+      <position name="IRLAYE0x3fe8f20_pos" unit="mm" x="1000" y="803" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="AirGap10x3fe9140" x="5" y="810" z="56"/>
+    <subtraction name="IRLAYE0x3fe91d0">
+      <first ref="IRLAYE0x3fe8f20"/>
+      <second ref="AirGap10x3fe9140"/>
+      <position name="IRLAYE0x3fe91d0_pos" unit="mm" x="-1000" y="0" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fe93f0">
+      <first ref="IRLAYE0x3fe91d0"/>
+      <second ref="AirGap10x3fe9140"/>
+      <position name="IRLAYE0x3fe93f0_pos" unit="mm" x="1000" y="0" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="AirGap20x3fe9610" x="5" y="799" z="56"/>
+    <subtraction name="IRLAYE0x3fe96a0">
+      <first ref="IRLAYE0x3fe93f0"/>
+      <second ref="AirGap20x3fe9610"/>
+      <position name="IRLAYE0x3fe96a0_pos" unit="mm" x="-1000" y="-1600.5" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fe98c0">
+      <first ref="IRLAYE0x3fe96a0"/>
+      <second ref="AirGap20x3fe9610"/>
+      <position name="IRLAYE0x3fe98c0_pos" unit="mm" x="-1000" y="1600.5" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fe9ae0">
+      <first ref="IRLAYE0x3fe98c0"/>
+      <second ref="AirGap20x3fe9610"/>
+      <position name="IRLAYE0x3fe9ae0_pos" unit="mm" x="1000" y="-1600.5" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fe9d00">
+      <first ref="IRLAYE0x3fe9ae0"/>
+      <second ref="AirGap20x3fe9610"/>
+      <position name="IRLAYE0x3fe9d00_pos" unit="mm" x="1000" y="1600.5" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="AirGap30x3fe9f20" x="995.5" y="5" z="56"/>
+    <subtraction name="IRLAYE0x3fe9fb0">
+      <first ref="IRLAYE0x3fe9d00"/>
+      <second ref="AirGap30x3fe9f20"/>
+      <position name="IRLAYE0x3fe9fb0_pos" unit="mm" x="1501.25" y="0" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fea1d0">
+      <first ref="IRLAYE0x3fe9fb0"/>
+      <second ref="AirGap30x3fe9f20"/>
+      <position name="IRLAYE0x3fea1d0_pos" unit="mm" x="-1501.25" y="0" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="AirGap40x3fea3f0" x="1918" y="5" z="56"/>
+    <subtraction name="IRLAYE0x3fea480">
+      <first ref="IRLAYE0x3fea1d0"/>
+      <second ref="AirGap40x3fea3f0"/>
+      <position name="IRLAYE0x3fea480_pos" unit="mm" x="0" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fea6a0">
+      <first ref="IRLAYE0x3fea480"/>
+      <second ref="AirGap40x3fea3f0"/>
+      <position name="IRLAYE0x3fea6a0_pos" unit="mm" x="0" y="803" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="NoSpaceIRONlayer0x3fea9d0" x="4000" y="4000" z="56"/>
+    <box lunit="mm" name="CoilSpaceRPC0x3feaa60" x="80" y="794" z="56"/>
+    <subtraction name="IRLAYE0x3feaaf0">
+      <first ref="NoSpaceIRONlayer0x3fea9d0"/>
+      <second ref="CoilSpaceRPC0x3feaa60"/>
+      <position name="IRLAYE0x3feaaf0_pos" unit="mm" x="-1000" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fead10">
+      <first ref="IRLAYE0x3feaaf0"/>
+      <second ref="CoilSpaceRPC0x3feaa60"/>
+      <position name="IRLAYE0x3fead10_pos" unit="mm" x="-1000" y="803" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3feaf30">
+      <first ref="IRLAYE0x3fead10"/>
+      <second ref="CoilSpaceRPC0x3feaa60"/>
+      <position name="IRLAYE0x3feaf30_pos" unit="mm" x="1000" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3feb150">
+      <first ref="IRLAYE0x3feaf30"/>
+      <second ref="CoilSpaceRPC0x3feaa60"/>
+      <position name="IRLAYE0x3feb150_pos" unit="mm" x="1000" y="803" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="AirGap10x3feb370" x="5" y="810" z="56"/>
+    <subtraction name="IRLAYE0x3feb400">
+      <first ref="IRLAYE0x3feb150"/>
+      <second ref="AirGap10x3feb370"/>
+      <position name="IRLAYE0x3feb400_pos" unit="mm" x="-1000" y="0" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3feb620">
+      <first ref="IRLAYE0x3feb400"/>
+      <second ref="AirGap10x3feb370"/>
+      <position name="IRLAYE0x3feb620_pos" unit="mm" x="1000" y="0" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="AirGap20x3feb840" x="5" y="799" z="56"/>
+    <subtraction name="IRLAYE0x3feb8d0">
+      <first ref="IRLAYE0x3feb620"/>
+      <second ref="AirGap20x3feb840"/>
+      <position name="IRLAYE0x3feb8d0_pos" unit="mm" x="-1000" y="-1600.5" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3febaf0">
+      <first ref="IRLAYE0x3feb8d0"/>
+      <second ref="AirGap20x3feb840"/>
+      <position name="IRLAYE0x3febaf0_pos" unit="mm" x="-1000" y="1600.5" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3febd10">
+      <first ref="IRLAYE0x3febaf0"/>
+      <second ref="AirGap20x3feb840"/>
+      <position name="IRLAYE0x3febd10_pos" unit="mm" x="1000" y="-1600.5" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3febf30">
+      <first ref="IRLAYE0x3febd10"/>
+      <second ref="AirGap20x3feb840"/>
+      <position name="IRLAYE0x3febf30_pos" unit="mm" x="1000" y="1600.5" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="AirGap30x3fec150" x="995.5" y="5" z="56"/>
+    <subtraction name="IRLAYE0x3fec1e0">
+      <first ref="IRLAYE0x3febf30"/>
+      <second ref="AirGap30x3fec150"/>
+      <position name="IRLAYE0x3fec1e0_pos" unit="mm" x="1501.25" y="0" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fec400">
+      <first ref="IRLAYE0x3fec1e0"/>
+      <second ref="AirGap30x3fec150"/>
+      <position name="IRLAYE0x3fec400_pos" unit="mm" x="-1501.25" y="0" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="AirGap40x3fec620" x="1918" y="5" z="56"/>
+    <subtraction name="IRLAYE0x3fec6b0">
+      <first ref="IRLAYE0x3fec400"/>
+      <second ref="AirGap40x3fec620"/>
+      <position name="IRLAYE0x3fec6b0_pos" unit="mm" x="0" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fec8d0">
+      <first ref="IRLAYE0x3fec6b0"/>
+      <second ref="AirGap40x3fec620"/>
+      <position name="IRLAYE0x3fec8d0_pos" unit="mm" x="0" y="803" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="NoSpaceIRONlayer0x3fecc00" x="4000" y="4000" z="56"/>
+    <box lunit="mm" name="CoilSpaceRPC0x3fecc90" x="80" y="794" z="56"/>
+    <subtraction name="IRLAYE0x3fecd20">
+      <first ref="NoSpaceIRONlayer0x3fecc00"/>
+      <second ref="CoilSpaceRPC0x3fecc90"/>
+      <position name="IRLAYE0x3fecd20_pos" unit="mm" x="-1000" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fecf40">
+      <first ref="IRLAYE0x3fecd20"/>
+      <second ref="CoilSpaceRPC0x3fecc90"/>
+      <position name="IRLAYE0x3fecf40_pos" unit="mm" x="-1000" y="803" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fed160">
+      <first ref="IRLAYE0x3fecf40"/>
+      <second ref="CoilSpaceRPC0x3fecc90"/>
+      <position name="IRLAYE0x3fed160_pos" unit="mm" x="1000" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fed380">
+      <first ref="IRLAYE0x3fed160"/>
+      <second ref="CoilSpaceRPC0x3fecc90"/>
+      <position name="IRLAYE0x3fed380_pos" unit="mm" x="1000" y="803" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="AirGap10x3fed5a0" x="5" y="810" z="56"/>
+    <subtraction name="IRLAYE0x3fe0630">
+      <first ref="IRLAYE0x3fed380"/>
+      <second ref="AirGap10x3fed5a0"/>
+      <position name="IRLAYE0x3fe0630_pos" unit="mm" x="-1000" y="0" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fe0850">
+      <first ref="IRLAYE0x3fe0630"/>
+      <second ref="AirGap10x3fed5a0"/>
+      <position name="IRLAYE0x3fe0850_pos" unit="mm" x="1000" y="0" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="AirGap20x3fe0a70" x="5" y="799" z="56"/>
+    <subtraction name="IRLAYE0x3fe0b00">
+      <first ref="IRLAYE0x3fe0850"/>
+      <second ref="AirGap20x3fe0a70"/>
+      <position name="IRLAYE0x3fe0b00_pos" unit="mm" x="-1000" y="-1600.5" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fe0d20">
+      <first ref="IRLAYE0x3fe0b00"/>
+      <second ref="AirGap20x3fe0a70"/>
+      <position name="IRLAYE0x3fe0d20_pos" unit="mm" x="-1000" y="1600.5" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fe0f40">
+      <first ref="IRLAYE0x3fe0d20"/>
+      <second ref="AirGap20x3fe0a70"/>
+      <position name="IRLAYE0x3fe0f40_pos" unit="mm" x="1000" y="-1600.5" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fe1160">
+      <first ref="IRLAYE0x3fe0f40"/>
+      <second ref="AirGap20x3fe0a70"/>
+      <position name="IRLAYE0x3fe1160_pos" unit="mm" x="1000" y="1600.5" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="AirGap30x3fef020" x="995.5" y="5" z="56"/>
+    <subtraction name="IRLAYE0x3fef0b0">
+      <first ref="IRLAYE0x3fe1160"/>
+      <second ref="AirGap30x3fef020"/>
+      <position name="IRLAYE0x3fef0b0_pos" unit="mm" x="1501.25" y="0" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fef2d0">
+      <first ref="IRLAYE0x3fef0b0"/>
+      <second ref="AirGap30x3fef020"/>
+      <position name="IRLAYE0x3fef2d0_pos" unit="mm" x="-1501.25" y="0" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="AirGap40x3fef4f0" x="1918" y="5" z="56"/>
+    <subtraction name="IRLAYE0x3fef580">
+      <first ref="IRLAYE0x3fef2d0"/>
+      <second ref="AirGap40x3fef4f0"/>
+      <position name="IRLAYE0x3fef580_pos" unit="mm" x="0" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fef7a0">
+      <first ref="IRLAYE0x3fef580"/>
+      <second ref="AirGap40x3fef4f0"/>
+      <position name="IRLAYE0x3fef7a0_pos" unit="mm" x="0" y="803" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="NoSpaceIRONlayer0x3fefad0" x="4000" y="4000" z="56"/>
+    <box lunit="mm" name="CoilSpaceRPC0x3fefb60" x="80" y="794" z="56"/>
+    <subtraction name="IRLAYE0x3fefbf0">
+      <first ref="NoSpaceIRONlayer0x3fefad0"/>
+      <second ref="CoilSpaceRPC0x3fefb60"/>
+      <position name="IRLAYE0x3fefbf0_pos" unit="mm" x="-1000" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3fefe10">
+      <first ref="IRLAYE0x3fefbf0"/>
+      <second ref="CoilSpaceRPC0x3fefb60"/>
+      <position name="IRLAYE0x3fefe10_pos" unit="mm" x="-1000" y="803" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3ff0030">
+      <first ref="IRLAYE0x3fefe10"/>
+      <second ref="CoilSpaceRPC0x3fefb60"/>
+      <position name="IRLAYE0x3ff0030_pos" unit="mm" x="1000" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3ff0250">
+      <first ref="IRLAYE0x3ff0030"/>
+      <second ref="CoilSpaceRPC0x3fefb60"/>
+      <position name="IRLAYE0x3ff0250_pos" unit="mm" x="1000" y="803" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="AirGap10x3ff0470" x="5" y="810" z="56"/>
+    <subtraction name="IRLAYE0x3ff0500">
+      <first ref="IRLAYE0x3ff0250"/>
+      <second ref="AirGap10x3ff0470"/>
+      <position name="IRLAYE0x3ff0500_pos" unit="mm" x="-1000" y="0" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3ff0720">
+      <first ref="IRLAYE0x3ff0500"/>
+      <second ref="AirGap10x3ff0470"/>
+      <position name="IRLAYE0x3ff0720_pos" unit="mm" x="1000" y="0" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="AirGap20x3ff0940" x="5" y="799" z="56"/>
+    <subtraction name="IRLAYE0x3ff09d0">
+      <first ref="IRLAYE0x3ff0720"/>
+      <second ref="AirGap20x3ff0940"/>
+      <position name="IRLAYE0x3ff09d0_pos" unit="mm" x="-1000" y="-1600.5" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3ff0bf0">
+      <first ref="IRLAYE0x3ff09d0"/>
+      <second ref="AirGap20x3ff0940"/>
+      <position name="IRLAYE0x3ff0bf0_pos" unit="mm" x="-1000" y="1600.5" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3ff0e10">
+      <first ref="IRLAYE0x3ff0bf0"/>
+      <second ref="AirGap20x3ff0940"/>
+      <position name="IRLAYE0x3ff0e10_pos" unit="mm" x="1000" y="-1600.5" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3ff1030">
+      <first ref="IRLAYE0x3ff0e10"/>
+      <second ref="AirGap20x3ff0940"/>
+      <position name="IRLAYE0x3ff1030_pos" unit="mm" x="1000" y="1600.5" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="AirGap30x3ff1250" x="995.5" y="5" z="56"/>
+    <subtraction name="IRLAYE0x3ff12e0">
+      <first ref="IRLAYE0x3ff1030"/>
+      <second ref="AirGap30x3ff1250"/>
+      <position name="IRLAYE0x3ff12e0_pos" unit="mm" x="1501.25" y="0" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3ff1500">
+      <first ref="IRLAYE0x3ff12e0"/>
+      <second ref="AirGap30x3ff1250"/>
+      <position name="IRLAYE0x3ff1500_pos" unit="mm" x="-1501.25" y="0" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="AirGap40x3ff1720" x="1918" y="5" z="56"/>
+    <subtraction name="IRLAYE0x3ff17b0">
+      <first ref="IRLAYE0x3ff1500"/>
+      <second ref="AirGap40x3ff1720"/>
+      <position name="IRLAYE0x3ff17b0_pos" unit="mm" x="0" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3ff19d0">
+      <first ref="IRLAYE0x3ff17b0"/>
+      <second ref="AirGap40x3ff1720"/>
+      <position name="IRLAYE0x3ff19d0_pos" unit="mm" x="0" y="803" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="NoSpaceIRONlayer0x3ff1d00" x="4000" y="4000" z="56"/>
+    <box lunit="mm" name="CoilSpaceRPC0x3ff1d90" x="80" y="794" z="56"/>
+    <subtraction name="IRLAYE0x3ff1e20">
+      <first ref="NoSpaceIRONlayer0x3ff1d00"/>
+      <second ref="CoilSpaceRPC0x3ff1d90"/>
+      <position name="IRLAYE0x3ff1e20_pos" unit="mm" x="-1000" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3ff2040">
+      <first ref="IRLAYE0x3ff1e20"/>
+      <second ref="CoilSpaceRPC0x3ff1d90"/>
+      <position name="IRLAYE0x3ff2040_pos" unit="mm" x="-1000" y="803" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3ff2260">
+      <first ref="IRLAYE0x3ff2040"/>
+      <second ref="CoilSpaceRPC0x3ff1d90"/>
+      <position name="IRLAYE0x3ff2260_pos" unit="mm" x="1000" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3ff2480">
+      <first ref="IRLAYE0x3ff2260"/>
+      <second ref="CoilSpaceRPC0x3ff1d90"/>
+      <position name="IRLAYE0x3ff2480_pos" unit="mm" x="1000" y="803" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="AirGap10x3ff26a0" x="5" y="810" z="56"/>
+    <subtraction name="IRLAYE0x3ff2730">
+      <first ref="IRLAYE0x3ff2480"/>
+      <second ref="AirGap10x3ff26a0"/>
+      <position name="IRLAYE0x3ff2730_pos" unit="mm" x="-1000" y="0" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3ff2950">
+      <first ref="IRLAYE0x3ff2730"/>
+      <second ref="AirGap10x3ff26a0"/>
+      <position name="IRLAYE0x3ff2950_pos" unit="mm" x="1000" y="0" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="AirGap20x3ff2b70" x="5" y="799" z="56"/>
+    <subtraction name="IRLAYE0x3ff2c00">
+      <first ref="IRLAYE0x3ff2950"/>
+      <second ref="AirGap20x3ff2b70"/>
+      <position name="IRLAYE0x3ff2c00_pos" unit="mm" x="-1000" y="-1600.5" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3ff2e20">
+      <first ref="IRLAYE0x3ff2c00"/>
+      <second ref="AirGap20x3ff2b70"/>
+      <position name="IRLAYE0x3ff2e20_pos" unit="mm" x="-1000" y="1600.5" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3ff3040">
+      <first ref="IRLAYE0x3ff2e20"/>
+      <second ref="AirGap20x3ff2b70"/>
+      <position name="IRLAYE0x3ff3040_pos" unit="mm" x="1000" y="-1600.5" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3ff3260">
+      <first ref="IRLAYE0x3ff3040"/>
+      <second ref="AirGap20x3ff2b70"/>
+      <position name="IRLAYE0x3ff3260_pos" unit="mm" x="1000" y="1600.5" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="AirGap30x3ff3480" x="995.5" y="5" z="56"/>
+    <subtraction name="IRLAYE0x3ff3510">
+      <first ref="IRLAYE0x3ff3260"/>
+      <second ref="AirGap30x3ff3480"/>
+      <position name="IRLAYE0x3ff3510_pos" unit="mm" x="1501.25" y="0" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3ff3730">
+      <first ref="IRLAYE0x3ff3510"/>
+      <second ref="AirGap30x3ff3480"/>
+      <position name="IRLAYE0x3ff3730_pos" unit="mm" x="-1501.25" y="0" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="AirGap40x3ff3950" x="1918" y="5" z="56"/>
+    <subtraction name="IRLAYE0x3ff39e0">
+      <first ref="IRLAYE0x3ff3730"/>
+      <second ref="AirGap40x3ff3950"/>
+      <position name="IRLAYE0x3ff39e0_pos" unit="mm" x="0" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3ff3c00">
+      <first ref="IRLAYE0x3ff39e0"/>
+      <second ref="AirGap40x3ff3950"/>
+      <position name="IRLAYE0x3ff3c00_pos" unit="mm" x="0" y="803" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="NoSpaceIRONlayer0x3ff3f30" x="4000" y="4000" z="56"/>
+    <box lunit="mm" name="CoilSpaceRPC0x3ff3fc0" x="80" y="794" z="56"/>
+    <subtraction name="IRLAYE0x3ff4050">
+      <first ref="NoSpaceIRONlayer0x3ff3f30"/>
+      <second ref="CoilSpaceRPC0x3ff3fc0"/>
+      <position name="IRLAYE0x3ff4050_pos" unit="mm" x="-1000" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3ff4270">
+      <first ref="IRLAYE0x3ff4050"/>
+      <second ref="CoilSpaceRPC0x3ff3fc0"/>
+      <position name="IRLAYE0x3ff4270_pos" unit="mm" x="-1000" y="803" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3ff4490">
+      <first ref="IRLAYE0x3ff4270"/>
+      <second ref="CoilSpaceRPC0x3ff3fc0"/>
+      <position name="IRLAYE0x3ff4490_pos" unit="mm" x="1000" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3ff46b0">
+      <first ref="IRLAYE0x3ff4490"/>
+      <second ref="CoilSpaceRPC0x3ff3fc0"/>
+      <position name="IRLAYE0x3ff46b0_pos" unit="mm" x="1000" y="803" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="AirGap10x3ff48d0" x="5" y="810" z="56"/>
+    <subtraction name="IRLAYE0x3ff4960">
+      <first ref="IRLAYE0x3ff46b0"/>
+      <second ref="AirGap10x3ff48d0"/>
+      <position name="IRLAYE0x3ff4960_pos" unit="mm" x="-1000" y="0" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3ff4b80">
+      <first ref="IRLAYE0x3ff4960"/>
+      <second ref="AirGap10x3ff48d0"/>
+      <position name="IRLAYE0x3ff4b80_pos" unit="mm" x="1000" y="0" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="AirGap20x3ff4da0" x="5" y="799" z="56"/>
+    <subtraction name="IRLAYE0x3ff4e30">
+      <first ref="IRLAYE0x3ff4b80"/>
+      <second ref="AirGap20x3ff4da0"/>
+      <position name="IRLAYE0x3ff4e30_pos" unit="mm" x="-1000" y="-1600.5" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3ff5050">
+      <first ref="IRLAYE0x3ff4e30"/>
+      <second ref="AirGap20x3ff4da0"/>
+      <position name="IRLAYE0x3ff5050_pos" unit="mm" x="-1000" y="1600.5" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3ff5270">
+      <first ref="IRLAYE0x3ff5050"/>
+      <second ref="AirGap20x3ff4da0"/>
+      <position name="IRLAYE0x3ff5270_pos" unit="mm" x="1000" y="-1600.5" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3ff5490">
+      <first ref="IRLAYE0x3ff5270"/>
+      <second ref="AirGap20x3ff4da0"/>
+      <position name="IRLAYE0x3ff5490_pos" unit="mm" x="1000" y="1600.5" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="AirGap30x3ff56b0" x="995.5" y="5" z="56"/>
+    <subtraction name="IRLAYE0x3ff5740">
+      <first ref="IRLAYE0x3ff5490"/>
+      <second ref="AirGap30x3ff56b0"/>
+      <position name="IRLAYE0x3ff5740_pos" unit="mm" x="1501.25" y="0" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3ff5960">
+      <first ref="IRLAYE0x3ff5740"/>
+      <second ref="AirGap30x3ff56b0"/>
+      <position name="IRLAYE0x3ff5960_pos" unit="mm" x="-1501.25" y="0" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="AirGap40x3ff5b80" x="1918" y="5" z="56"/>
+    <subtraction name="IRLAYE0x3ff5c10">
+      <first ref="IRLAYE0x3ff5960"/>
+      <second ref="AirGap40x3ff5b80"/>
+      <position name="IRLAYE0x3ff5c10_pos" unit="mm" x="0" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="IRLAYE0x3ff5e30">
+      <first ref="IRLAYE0x3ff5c10"/>
+      <second ref="AirGap40x3ff5b80"/>
+      <position name="IRLAYE0x3ff5e30_pos" unit="mm" x="0" y="803" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="SpacerA0x3fce110" x="40" y="400" z="45"/>
+    <box lunit="mm" name="Spacer20x3fce590" x="40" y="702" z="45"/>
+    <box lunit="mm" name="Spacer30x3fce880" x="80" y="750" z="45"/>
+    <box lunit="mm" name="Spacer40x3fced20" x="80" y="700" z="45"/>
+    <box lunit="mm" name="Rect0x3ffb290" x="1740" y="1835" z="2"/>
+    <box lunit="mm" name="CutBig10x3ffb320" x="272.700592041016" y="272.700592041016" z="2"/>
+    <subtraction name="SubSolid10x3ffb560">
+      <first ref="Rect0x3ffb290"/>
+      <second ref="CutBig10x3ffb320"/>
+      <position name="SubSolid10x3ffb560_pos" unit="mm" x="-870" y="-917.5" z="0"/>
+      <rotation name="SubSolid10x3ffb560_rot" unit="deg" x="0" y="0" z="-45"/>
+    </subtraction>
+    <box lunit="mm" name="CutBig20x3ffb3b0" x="272.700592041016" y="272.700592041016" z="2"/>
+    <subtraction name="SubSolid20x3ffb780">
+      <first ref="SubSolid10x3ffb560"/>
+      <second ref="CutBig20x3ffb3b0"/>
+      <position name="SubSolid20x3ffb780_pos" unit="mm" x="870" y="917.5" z="0"/>
+      <rotation name="SubSolid20x3ffb780_rot" unit="deg" x="0" y="0" z="45"/>
+    </subtraction>
+    <box lunit="mm" name="CutSmall10x3ffb440" x="67.0739212036133" y="67.0739212036133" z="2"/>
+    <subtraction name="SubSolid30x3ffb9a0">
+      <first ref="SubSolid20x3ffb780"/>
+      <second ref="CutSmall10x3ffb440"/>
+      <position name="SubSolid30x3ffb9a0_pos" unit="mm" x="-870" y="917.5" z="0"/>
+      <rotation name="SubSolid30x3ffb9a0_rot" unit="deg" x="0" y="0" z="-45"/>
+    </subtraction>
+    <box lunit="mm" name="CutSmall20x3ffb4d0" x="67.0739212036133" y="67.0739212036133" z="2"/>
+    <subtraction name="GASR0x3ffbc00">
+      <first ref="SubSolid30x3ffb9a0"/>
+      <second ref="CutSmall20x3ffb4d0"/>
+      <position name="GASR0x3ffbc00_pos" unit="mm" x="870" y="-917.5" z="0"/>
+      <rotation name="GASR0x3ffbc00_rot" unit="deg" x="0" y="0" z="45"/>
+    </subtraction>
+    <box lunit="mm" name="Rect0x3ffa640" x="1740.02001953125" y="1835.02001953125" z="8"/>
+    <box lunit="mm" name="CutBig10x3ffa6d0" x="272.700592041016" y="272.700592041016" z="8"/>
+    <subtraction name="SubSolid10x3ffa910">
+      <first ref="Rect0x3ffa640"/>
+      <second ref="CutBig10x3ffa6d0"/>
+      <position name="SubSolid10x3ffa910_pos" unit="mm" x="-870.010009765625" y="-917.510009765625" z="0"/>
+      <rotation name="SubSolid10x3ffa910_rot" unit="deg" x="0" y="0" z="-45"/>
+    </subtraction>
+    <box lunit="mm" name="CutBig20x3ffa760" x="272.700592041016" y="272.700592041016" z="8"/>
+    <subtraction name="SubSolid20x3ffab30">
+      <first ref="SubSolid10x3ffa910"/>
+      <second ref="CutBig20x3ffa760"/>
+      <position name="SubSolid20x3ffab30_pos" unit="mm" x="870.010009765625" y="917.510009765625" z="0"/>
+      <rotation name="SubSolid20x3ffab30_rot" unit="deg" x="0" y="0" z="45"/>
+    </subtraction>
+    <box lunit="mm" name="CutSmall10x3ffa7f0" x="67.0739212036133" y="67.0739212036133" z="8"/>
+    <subtraction name="SubSolid30x3ffad50">
+      <first ref="SubSolid20x3ffab30"/>
+      <second ref="CutSmall10x3ffa7f0"/>
+      <position name="SubSolid30x3ffad50_pos" unit="mm" x="-870.010009765625" y="917.510009765625" z="0"/>
+      <rotation name="SubSolid30x3ffad50_rot" unit="deg" x="0" y="0" z="-45"/>
+    </subtraction>
+    <box lunit="mm" name="CutSmall20x3ffa880" x="67.0739212036133" y="67.0739212036133" z="8"/>
+    <subtraction name="QURZ0x3ffafb0">
+      <first ref="SubSolid30x3ffad50"/>
+      <second ref="CutSmall20x3ffa880"/>
+      <position name="QURZ0x3ffafb0_pos" unit="mm" x="870.010009765625" y="-917.510009765625" z="0"/>
+      <rotation name="QURZ0x3ffafb0_rot" unit="deg" x="0" y="0" z="45"/>
+    </subtraction>
+    <box lunit="mm" name="Rect0x3ff99f0" x="1740.02001953125" y="1835.02001953125" z="8.0600004196167"/>
+    <box lunit="mm" name="CutBig10x3ff9a80" x="272.700592041016" y="272.700592041016" z="8.0600004196167"/>
+    <subtraction name="SubSolid10x3ff9cc0">
+      <first ref="Rect0x3ff99f0"/>
+      <second ref="CutBig10x3ff9a80"/>
+      <position name="SubSolid10x3ff9cc0_pos" unit="mm" x="-870.010009765625" y="-917.510009765625" z="0"/>
+      <rotation name="SubSolid10x3ff9cc0_rot" unit="deg" x="0" y="0" z="-45"/>
+    </subtraction>
+    <box lunit="mm" name="CutBig20x3ff9b10" x="272.700592041016" y="272.700592041016" z="8.0600004196167"/>
+    <subtraction name="SubSolid20x3ff9ee0">
+      <first ref="SubSolid10x3ff9cc0"/>
+      <second ref="CutBig20x3ff9b10"/>
+      <position name="SubSolid20x3ff9ee0_pos" unit="mm" x="870.010009765625" y="917.510009765625" z="0"/>
+      <rotation name="SubSolid20x3ff9ee0_rot" unit="deg" x="0" y="0" z="45"/>
+    </subtraction>
+    <box lunit="mm" name="CutSmall10x3ff9ba0" x="67.0739212036133" y="67.0739212036133" z="8.0600004196167"/>
+    <subtraction name="SubSolid30x3ffa100">
+      <first ref="SubSolid20x3ff9ee0"/>
+      <second ref="CutSmall10x3ff9ba0"/>
+      <position name="SubSolid30x3ffa100_pos" unit="mm" x="-870.010009765625" y="917.510009765625" z="0"/>
+      <rotation name="SubSolid30x3ffa100_rot" unit="deg" x="0" y="0" z="-45"/>
+    </subtraction>
+    <box lunit="mm" name="CutSmall20x3ff9c30" x="67.0739212036133" y="67.0739212036133" z="8.0600004196167"/>
+    <subtraction name="COAT0x3ffa360">
+      <first ref="SubSolid30x3ffa100"/>
+      <second ref="CutSmall20x3ff9c30"/>
+      <position name="COAT0x3ffa360_pos" unit="mm" x="870.010009765625" y="-917.510009765625" z="0"/>
+      <rotation name="COAT0x3ffa360_rot" unit="deg" x="0" y="0" z="45"/>
+    </subtraction>
+    <box lunit="mm" name="Rect0x3ff8da0" x="1740.0400390625" y="1835.0400390625" z="8.26000022888184"/>
+    <box lunit="mm" name="CutBig10x3ff8e30" x="272.700592041016" y="272.700592041016" z="8.26000022888184"/>
+    <subtraction name="SubSolid10x3ff9070">
+      <first ref="Rect0x3ff8da0"/>
+      <second ref="CutBig10x3ff8e30"/>
+      <position name="SubSolid10x3ff9070_pos" unit="mm" x="-870.02001953125" y="-917.52001953125" z="0"/>
+      <rotation name="SubSolid10x3ff9070_rot" unit="deg" x="0" y="0" z="-45"/>
+    </subtraction>
+    <box lunit="mm" name="CutBig20x3ff8ec0" x="272.700592041016" y="272.700592041016" z="8.26000022888184"/>
+    <subtraction name="SubSolid20x3ff9290">
+      <first ref="SubSolid10x3ff9070"/>
+      <second ref="CutBig20x3ff8ec0"/>
+      <position name="SubSolid20x3ff9290_pos" unit="mm" x="870.02001953125" y="917.52001953125" z="0"/>
+      <rotation name="SubSolid20x3ff9290_rot" unit="deg" x="0" y="0" z="45"/>
+    </subtraction>
+    <box lunit="mm" name="CutSmall10x3ff8f50" x="67.0739212036133" y="67.0739212036133" z="8.26000022888184"/>
+    <subtraction name="SubSolid30x3ff94b0">
+      <first ref="SubSolid20x3ff9290"/>
+      <second ref="CutSmall10x3ff8f50"/>
+      <position name="SubSolid30x3ff94b0_pos" unit="mm" x="-870.02001953125" y="917.52001953125" z="0"/>
+      <rotation name="SubSolid30x3ff94b0_rot" unit="deg" x="0" y="0" z="-45"/>
+    </subtraction>
+    <box lunit="mm" name="CutSmall20x3ff8fe0" x="67.0739212036133" y="67.0739212036133" z="8.26000022888184"/>
+    <subtraction name="MYLAR0x3ff9710">
+      <first ref="SubSolid30x3ff94b0"/>
+      <second ref="CutSmall20x3ff8fe0"/>
+      <position name="MYLAR0x3ff9710_pos" unit="mm" x="870.02001953125" y="-917.52001953125" z="0"/>
+      <rotation name="MYLAR0x3ff9710_rot" unit="deg" x="0" y="0" z="45"/>
+    </subtraction>
+    <box lunit="mm" name="Rect0x3ff8150" x="1740.06005859375" y="1835.06005859375" z="8.46000003814697"/>
+    <box lunit="mm" name="CutBig10x3ff81e0" x="272.700592041016" y="272.700592041016" z="2.20000004768372"/>
+    <subtraction name="SubSolid10x3ff8420">
+      <first ref="Rect0x3ff8150"/>
+      <second ref="CutBig10x3ff81e0"/>
+      <position name="SubSolid10x3ff8420_pos" unit="mm" x="-870.030029296875" y="-917.530029296875" z="0"/>
+      <rotation name="SubSolid10x3ff8420_rot" unit="deg" x="0" y="0" z="-45"/>
+    </subtraction>
+    <box lunit="mm" name="CutBig20x3ff8270" x="272.700592041016" y="272.700592041016" z="2.20000004768372"/>
+    <subtraction name="SubSolid20x3ff8640">
+      <first ref="SubSolid10x3ff8420"/>
+      <second ref="CutBig20x3ff8270"/>
+      <position name="SubSolid20x3ff8640_pos" unit="mm" x="870.030029296875" y="917.530029296875" z="0"/>
+      <rotation name="SubSolid20x3ff8640_rot" unit="deg" x="0" y="0" z="45"/>
+    </subtraction>
+    <box lunit="mm" name="CutSmall10x3ff8300" x="67.0739212036133" y="67.0739212036133" z="8.46000003814697"/>
+    <subtraction name="SubSolid30x3ff8860">
+      <first ref="SubSolid20x3ff8640"/>
+      <second ref="CutSmall10x3ff8300"/>
+      <position name="SubSolid30x3ff8860_pos" unit="mm" x="-870.030029296875" y="917.530029296875" z="0"/>
+      <rotation name="SubSolid30x3ff8860_rot" unit="deg" x="0" y="0" z="-45"/>
+    </subtraction>
+    <box lunit="mm" name="CutSmall20x3ff8390" x="67.0739212036133" y="67.0739212036133" z="8.46000003814697"/>
+    <subtraction name="CUPL0x3ff8ac0">
+      <first ref="SubSolid30x3ff8860"/>
+      <second ref="CutSmall20x3ff8390"/>
+      <position name="CUPL0x3ff8ac0_pos" unit="mm" x="870.030029296875" y="-917.530029296875" z="0"/>
+      <rotation name="CUPL0x3ff8ac0_rot" unit="deg" x="0" y="0" z="45"/>
+    </subtraction>
+    <box lunit="mm" name="Rect0x3ff7500" x="1740.080078125" y="1835.080078125" z="18.4599990844727"/>
+    <box lunit="mm" name="CutBig10x3ff7590" x="272.700592041016" y="272.700592041016" z="12.1999998092651"/>
+    <subtraction name="SubSolid10x3ff77d0">
+      <first ref="Rect0x3ff7500"/>
+      <second ref="CutBig10x3ff7590"/>
+      <position name="SubSolid10x3ff77d0_pos" unit="mm" x="-870.0400390625" y="-917.5400390625" z="0"/>
+      <rotation name="SubSolid10x3ff77d0_rot" unit="deg" x="0" y="0" z="-45"/>
+    </subtraction>
+    <box lunit="mm" name="CutBig20x3ff7620" x="272.700592041016" y="272.700592041016" z="12.1999998092651"/>
+    <subtraction name="SubSolid20x3ff79f0">
+      <first ref="SubSolid10x3ff77d0"/>
+      <second ref="CutBig20x3ff7620"/>
+      <position name="SubSolid20x3ff79f0_pos" unit="mm" x="870.0400390625" y="917.5400390625" z="0"/>
+      <rotation name="SubSolid20x3ff79f0_rot" unit="deg" x="0" y="0" z="45"/>
+    </subtraction>
+    <box lunit="mm" name="CutSmall10x3ff76b0" x="67.0739212036133" y="67.0739212036133" z="18.4599990844727"/>
+    <subtraction name="SubSolid30x3ff7c10">
+      <first ref="SubSolid20x3ff79f0"/>
+      <second ref="CutSmall10x3ff76b0"/>
+      <position name="SubSolid30x3ff7c10_pos" unit="mm" x="-870.0400390625" y="917.5400390625" z="0"/>
+      <rotation name="SubSolid30x3ff7c10_rot" unit="deg" x="0" y="0" z="-45"/>
+    </subtraction>
+    <box lunit="mm" name="CutSmall20x3ff7740" x="67.0739212036133" y="67.0739212036133" z="18.4599990844727"/>
+    <subtraction name="HneyComb0x3ff7e70">
+      <first ref="SubSolid30x3ff7c10"/>
+      <second ref="CutSmall20x3ff7740"/>
+      <position name="HneyComb0x3ff7e70_pos" unit="mm" x="870.0400390625" y="-917.5400390625" z="0"/>
+      <rotation name="HneyComb0x3ff7e70_rot" unit="deg" x="0" y="0" z="45"/>
+    </subtraction>
+    <box lunit="mm" name="Rect0x3ff68b0" x="1740.10009765625" y="1835.10009765625" z="18.7599983215332"/>
+    <box lunit="mm" name="CutBig10x3ff6940" x="272.700592041016" y="272.700592041016" z="12.5"/>
+    <subtraction name="SubSolid10x3ff6b80">
+      <first ref="Rect0x3ff68b0"/>
+      <second ref="CutBig10x3ff6940"/>
+      <position name="SubSolid10x3ff6b80_pos" unit="mm" x="-870.050048828125" y="-917.550048828125" z="0"/>
+      <rotation name="SubSolid10x3ff6b80_rot" unit="deg" x="0" y="0" z="-45"/>
+    </subtraction>
+    <box lunit="mm" name="CutBig20x3ff69d0" x="272.700592041016" y="272.700592041016" z="12.5"/>
+    <subtraction name="SubSolid20x3ff6da0">
+      <first ref="SubSolid10x3ff6b80"/>
+      <second ref="CutBig20x3ff69d0"/>
+      <position name="SubSolid20x3ff6da0_pos" unit="mm" x="870.050048828125" y="917.550048828125" z="0"/>
+      <rotation name="SubSolid20x3ff6da0_rot" unit="deg" x="0" y="0" z="45"/>
+    </subtraction>
+    <box lunit="mm" name="CutSmall10x3ff6a60" x="67.0739212036133" y="67.0739212036133" z="18.7599983215332"/>
+    <subtraction name="SubSolid30x3ff6fc0">
+      <first ref="SubSolid20x3ff6da0"/>
+      <second ref="CutSmall10x3ff6a60"/>
+      <position name="SubSolid30x3ff6fc0_pos" unit="mm" x="-870.050048828125" y="917.550048828125" z="0"/>
+      <rotation name="SubSolid30x3ff6fc0_rot" unit="deg" x="0" y="0" z="-45"/>
+    </subtraction>
+    <box lunit="mm" name="CutSmall20x3ff6af0" x="67.0739212036133" y="67.0739212036133" z="18.7599983215332"/>
+    <subtraction name="AL0x3ff7220">
+      <first ref="SubSolid30x3ff6fc0"/>
+      <second ref="CutSmall20x3ff6af0"/>
+      <position name="AL0x3ff7220_pos" unit="mm" x="870.050048828125" y="-917.550048828125" z="0"/>
+      <rotation name="AL0x3ff7220_rot" unit="deg" x="0" y="0" z="45"/>
+    </subtraction>
+    <trd lunit="mm" name="G10Trap10x3ff6470" x1="0.0199999995529652" x2="176.776702880859" y1="5" y2="5" z="88.3883514404297"/>
+    <trd lunit="mm" name="G10Trap20x3ff6690" x1="0.0199999995529652" x2="141.421356201172" y1="5" y2="5" z="70.7106781005859"/>
+    <box lunit="mm" name="AirBox0x3ff62e0" x="1900" y="1930" z="25"/>
+    <box lunit="mm" name="FRPBox0x3ff6150" x="1910" y="1940" z="34"/>
+    <box lunit="mm" name="NoSpaceRPCLayer0x3fcd670" x="4000" y="4000" z="45"/>
+    <box lunit="mm" name="CoilSpaceRPC0x3fcd700" x="80" y="794" z="45"/>
+    <subtraction name="LAYE0x3fcd790">
+      <first ref="NoSpaceRPCLayer0x3fcd670"/>
+      <second ref="CoilSpaceRPC0x3fcd700"/>
+      <position name="LAYE0x3fcd790_pos" unit="mm" x="-1000" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="LAYE0x3fcd9b0">
+      <first ref="LAYE0x3fcd790"/>
+      <second ref="CoilSpaceRPC0x3fcd700"/>
+      <position name="LAYE0x3fcd9b0_pos" unit="mm" x="-1000" y="803" z="0"/>
+    </subtraction>
+    <subtraction name="LAYE0x3fcdbd0">
+      <first ref="LAYE0x3fcd9b0"/>
+      <second ref="CoilSpaceRPC0x3fcd700"/>
+      <position name="LAYE0x3fcdbd0_pos" unit="mm" x="1000" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="LAYE0x3fcddf0">
+      <first ref="LAYE0x3fcdbd0"/>
+      <second ref="CoilSpaceRPC0x3fcd700"/>
+      <position name="LAYE0x3fcddf0_pos" unit="mm" x="1000" y="803" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="SpacerA0x3fcfa40" x="40" y="400" z="45"/>
+    <box lunit="mm" name="Spacer20x3fcfe80" x="40" y="702" z="45"/>
+    <box lunit="mm" name="Spacer30x3fd0170" x="80" y="750" z="45"/>
+    <box lunit="mm" name="Spacer40x3fd0610" x="80" y="700" z="45"/>
+    <box lunit="mm" name="NoSpaceRPCLayer0x3fceff0" x="4000" y="4000" z="45"/>
+    <box lunit="mm" name="CoilSpaceRPC0x3fcf080" x="80" y="794" z="45"/>
+    <subtraction name="LAYE0x3fcf110">
+      <first ref="NoSpaceRPCLayer0x3fceff0"/>
+      <second ref="CoilSpaceRPC0x3fcf080"/>
+      <position name="LAYE0x3fcf110_pos" unit="mm" x="-1000" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="LAYE0x3fcf2e0">
+      <first ref="LAYE0x3fcf110"/>
+      <second ref="CoilSpaceRPC0x3fcf080"/>
+      <position name="LAYE0x3fcf2e0_pos" unit="mm" x="-1000" y="803" z="0"/>
+    </subtraction>
+    <subtraction name="LAYE0x3fcf500">
+      <first ref="LAYE0x3fcf2e0"/>
+      <second ref="CoilSpaceRPC0x3fcf080"/>
+      <position name="LAYE0x3fcf500_pos" unit="mm" x="1000" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="LAYE0x3fcf720">
+      <first ref="LAYE0x3fcf500"/>
+      <second ref="CoilSpaceRPC0x3fcf080"/>
+      <position name="LAYE0x3fcf720_pos" unit="mm" x="1000" y="803" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="SpacerA0x3fd1330" x="40" y="400" z="45"/>
+    <box lunit="mm" name="Spacer20x3fd1770" x="40" y="702" z="45"/>
+    <box lunit="mm" name="Spacer30x3fd1a60" x="80" y="750" z="45"/>
+    <box lunit="mm" name="Spacer40x3fd1f00" x="80" y="700" z="45"/>
+    <box lunit="mm" name="NoSpaceRPCLayer0x3fd08e0" x="4000" y="4000" z="45"/>
+    <box lunit="mm" name="CoilSpaceRPC0x3fd0970" x="80" y="794" z="45"/>
+    <subtraction name="LAYE0x3fd0a00">
+      <first ref="NoSpaceRPCLayer0x3fd08e0"/>
+      <second ref="CoilSpaceRPC0x3fd0970"/>
+      <position name="LAYE0x3fd0a00_pos" unit="mm" x="-1000" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="LAYE0x3fd0bd0">
+      <first ref="LAYE0x3fd0a00"/>
+      <second ref="CoilSpaceRPC0x3fd0970"/>
+      <position name="LAYE0x3fd0bd0_pos" unit="mm" x="-1000" y="803" z="0"/>
+    </subtraction>
+    <subtraction name="LAYE0x3fd0df0">
+      <first ref="LAYE0x3fd0bd0"/>
+      <second ref="CoilSpaceRPC0x3fd0970"/>
+      <position name="LAYE0x3fd0df0_pos" unit="mm" x="1000" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="LAYE0x3fd1010">
+      <first ref="LAYE0x3fd0df0"/>
+      <second ref="CoilSpaceRPC0x3fd0970"/>
+      <position name="LAYE0x3fd1010_pos" unit="mm" x="1000" y="803" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="SpacerA0x3fd2c20" x="40" y="400" z="45"/>
+    <box lunit="mm" name="Spacer20x3fd3060" x="40" y="702" z="45"/>
+    <box lunit="mm" name="Spacer30x3fd3350" x="80" y="750" z="45"/>
+    <box lunit="mm" name="Spacer40x3fd37f0" x="80" y="700" z="45"/>
+    <box lunit="mm" name="NoSpaceRPCLayer0x3fd21d0" x="4000" y="4000" z="45"/>
+    <box lunit="mm" name="CoilSpaceRPC0x3fd2260" x="80" y="794" z="45"/>
+    <subtraction name="LAYE0x3fd22f0">
+      <first ref="NoSpaceRPCLayer0x3fd21d0"/>
+      <second ref="CoilSpaceRPC0x3fd2260"/>
+      <position name="LAYE0x3fd22f0_pos" unit="mm" x="-1000" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="LAYE0x3fd24c0">
+      <first ref="LAYE0x3fd22f0"/>
+      <second ref="CoilSpaceRPC0x3fd2260"/>
+      <position name="LAYE0x3fd24c0_pos" unit="mm" x="-1000" y="803" z="0"/>
+    </subtraction>
+    <subtraction name="LAYE0x3fd26e0">
+      <first ref="LAYE0x3fd24c0"/>
+      <second ref="CoilSpaceRPC0x3fd2260"/>
+      <position name="LAYE0x3fd26e0_pos" unit="mm" x="1000" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="LAYE0x3fd2900">
+      <first ref="LAYE0x3fd26e0"/>
+      <second ref="CoilSpaceRPC0x3fd2260"/>
+      <position name="LAYE0x3fd2900_pos" unit="mm" x="1000" y="803" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="SpacerA0x3fd4510" x="40" y="400" z="45"/>
+    <box lunit="mm" name="Spacer20x3fd4950" x="40" y="702" z="45"/>
+    <box lunit="mm" name="Spacer30x3fd4c40" x="80" y="750" z="45"/>
+    <box lunit="mm" name="Spacer40x3fd50e0" x="80" y="700" z="45"/>
+    <box lunit="mm" name="NoSpaceRPCLayer0x3fd3ac0" x="4000" y="4000" z="45"/>
+    <box lunit="mm" name="CoilSpaceRPC0x3fd3b50" x="80" y="794" z="45"/>
+    <subtraction name="LAYE0x3fd3be0">
+      <first ref="NoSpaceRPCLayer0x3fd3ac0"/>
+      <second ref="CoilSpaceRPC0x3fd3b50"/>
+      <position name="LAYE0x3fd3be0_pos" unit="mm" x="-1000" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="LAYE0x3fd3db0">
+      <first ref="LAYE0x3fd3be0"/>
+      <second ref="CoilSpaceRPC0x3fd3b50"/>
+      <position name="LAYE0x3fd3db0_pos" unit="mm" x="-1000" y="803" z="0"/>
+    </subtraction>
+    <subtraction name="LAYE0x3fd3fd0">
+      <first ref="LAYE0x3fd3db0"/>
+      <second ref="CoilSpaceRPC0x3fd3b50"/>
+      <position name="LAYE0x3fd3fd0_pos" unit="mm" x="1000" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="LAYE0x3fd41f0">
+      <first ref="LAYE0x3fd3fd0"/>
+      <second ref="CoilSpaceRPC0x3fd3b50"/>
+      <position name="LAYE0x3fd41f0_pos" unit="mm" x="1000" y="803" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="SpacerA0x3fd5e00" x="40" y="400" z="45"/>
+    <box lunit="mm" name="Spacer20x3fd6240" x="40" y="702" z="45"/>
+    <box lunit="mm" name="Spacer30x3fd6530" x="80" y="750" z="45"/>
+    <box lunit="mm" name="Spacer40x3fd69d0" x="80" y="700" z="45"/>
+    <box lunit="mm" name="NoSpaceRPCLayer0x3fd53b0" x="4000" y="4000" z="45"/>
+    <box lunit="mm" name="CoilSpaceRPC0x3fd5440" x="80" y="794" z="45"/>
+    <subtraction name="LAYE0x3fd54d0">
+      <first ref="NoSpaceRPCLayer0x3fd53b0"/>
+      <second ref="CoilSpaceRPC0x3fd5440"/>
+      <position name="LAYE0x3fd54d0_pos" unit="mm" x="-1000" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="LAYE0x3fd56a0">
+      <first ref="LAYE0x3fd54d0"/>
+      <second ref="CoilSpaceRPC0x3fd5440"/>
+      <position name="LAYE0x3fd56a0_pos" unit="mm" x="-1000" y="803" z="0"/>
+    </subtraction>
+    <subtraction name="LAYE0x3fd58c0">
+      <first ref="LAYE0x3fd56a0"/>
+      <second ref="CoilSpaceRPC0x3fd5440"/>
+      <position name="LAYE0x3fd58c0_pos" unit="mm" x="1000" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="LAYE0x3fd5ae0">
+      <first ref="LAYE0x3fd58c0"/>
+      <second ref="CoilSpaceRPC0x3fd5440"/>
+      <position name="LAYE0x3fd5ae0_pos" unit="mm" x="1000" y="803" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="SpacerA0x3fd7a10" x="40" y="400" z="45"/>
+    <box lunit="mm" name="Spacer20x3fd7e50" x="40" y="702" z="45"/>
+    <box lunit="mm" name="Spacer30x3fd8140" x="80" y="750" z="45"/>
+    <box lunit="mm" name="Spacer40x3fd85e0" x="80" y="700" z="45"/>
+    <box lunit="mm" name="NoSpaceRPCLayer0x3fd6ca0" x="4000" y="4000" z="45"/>
+    <box lunit="mm" name="CoilSpaceRPC0x3fd6d30" x="80" y="794" z="45"/>
+    <subtraction name="LAYE0x3fd6dc0">
+      <first ref="NoSpaceRPCLayer0x3fd6ca0"/>
+      <second ref="CoilSpaceRPC0x3fd6d30"/>
+      <position name="LAYE0x3fd6dc0_pos" unit="mm" x="-1000" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="LAYE0x3fd6f90">
+      <first ref="LAYE0x3fd6dc0"/>
+      <second ref="CoilSpaceRPC0x3fd6d30"/>
+      <position name="LAYE0x3fd6f90_pos" unit="mm" x="-1000" y="803" z="0"/>
+    </subtraction>
+    <subtraction name="LAYE0x3fc2140">
+      <first ref="LAYE0x3fd6f90"/>
+      <second ref="CoilSpaceRPC0x3fd6d30"/>
+      <position name="LAYE0x3fc2140_pos" unit="mm" x="1000" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="LAYE0x3fd7750">
+      <first ref="LAYE0x3fc2140"/>
+      <second ref="CoilSpaceRPC0x3fd6d30"/>
+      <position name="LAYE0x3fd7750_pos" unit="mm" x="1000" y="803" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="SpacerA0x3fd9300" x="40" y="400" z="45"/>
+    <box lunit="mm" name="Spacer20x3fd9740" x="40" y="702" z="45"/>
+    <box lunit="mm" name="Spacer30x3fd9a30" x="80" y="750" z="45"/>
+    <box lunit="mm" name="Spacer40x3fd9ed0" x="80" y="700" z="45"/>
+    <box lunit="mm" name="NoSpaceRPCLayer0x3fd88b0" x="4000" y="4000" z="45"/>
+    <box lunit="mm" name="CoilSpaceRPC0x3fd8940" x="80" y="794" z="45"/>
+    <subtraction name="LAYE0x3fd89d0">
+      <first ref="NoSpaceRPCLayer0x3fd88b0"/>
+      <second ref="CoilSpaceRPC0x3fd8940"/>
+      <position name="LAYE0x3fd89d0_pos" unit="mm" x="-1000" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="LAYE0x3fd8ba0">
+      <first ref="LAYE0x3fd89d0"/>
+      <second ref="CoilSpaceRPC0x3fd8940"/>
+      <position name="LAYE0x3fd8ba0_pos" unit="mm" x="-1000" y="803" z="0"/>
+    </subtraction>
+    <subtraction name="LAYE0x3fd8dc0">
+      <first ref="LAYE0x3fd8ba0"/>
+      <second ref="CoilSpaceRPC0x3fd8940"/>
+      <position name="LAYE0x3fd8dc0_pos" unit="mm" x="1000" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="LAYE0x3fd8fe0">
+      <first ref="LAYE0x3fd8dc0"/>
+      <second ref="CoilSpaceRPC0x3fd8940"/>
+      <position name="LAYE0x3fd8fe0_pos" unit="mm" x="1000" y="803" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="SpacerA0x3fdabf0" x="40" y="400" z="45"/>
+    <box lunit="mm" name="Spacer20x3fc1980" x="40" y="702" z="45"/>
+    <box lunit="mm" name="Spacer30x3fdb650" x="80" y="750" z="45"/>
+    <box lunit="mm" name="Spacer40x3fdbaf0" x="80" y="700" z="45"/>
+    <box lunit="mm" name="NoSpaceRPCLayer0x3fda1a0" x="4000" y="4000" z="45"/>
+    <box lunit="mm" name="CoilSpaceRPC0x3fda230" x="80" y="794" z="45"/>
+    <subtraction name="LAYE0x3fda2c0">
+      <first ref="NoSpaceRPCLayer0x3fda1a0"/>
+      <second ref="CoilSpaceRPC0x3fda230"/>
+      <position name="LAYE0x3fda2c0_pos" unit="mm" x="-1000" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="LAYE0x3fda490">
+      <first ref="LAYE0x3fda2c0"/>
+      <second ref="CoilSpaceRPC0x3fda230"/>
+      <position name="LAYE0x3fda490_pos" unit="mm" x="-1000" y="803" z="0"/>
+    </subtraction>
+    <subtraction name="LAYE0x3fda6b0">
+      <first ref="LAYE0x3fda490"/>
+      <second ref="CoilSpaceRPC0x3fda230"/>
+      <position name="LAYE0x3fda6b0_pos" unit="mm" x="1000" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="LAYE0x3fda8d0">
+      <first ref="LAYE0x3fda6b0"/>
+      <second ref="CoilSpaceRPC0x3fda230"/>
+      <position name="LAYE0x3fda8d0_pos" unit="mm" x="1000" y="803" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="SpacerA0x3fdc810" x="40" y="400" z="45"/>
+    <box lunit="mm" name="Spacer20x3fdcc50" x="40" y="702" z="45"/>
+    <box lunit="mm" name="Spacer30x3fdcf40" x="80" y="750" z="45"/>
+    <box lunit="mm" name="Spacer40x3fdd3e0" x="80" y="700" z="45"/>
+    <box lunit="mm" name="NoSpaceRPCLayer0x3fdbdc0" x="4000" y="4000" z="45"/>
+    <box lunit="mm" name="CoilSpaceRPC0x3fdbe50" x="80" y="794" z="45"/>
+    <subtraction name="LAYE0x3fdbee0">
+      <first ref="NoSpaceRPCLayer0x3fdbdc0"/>
+      <second ref="CoilSpaceRPC0x3fdbe50"/>
+      <position name="LAYE0x3fdbee0_pos" unit="mm" x="-1000" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="LAYE0x3fdc0b0">
+      <first ref="LAYE0x3fdbee0"/>
+      <second ref="CoilSpaceRPC0x3fdbe50"/>
+      <position name="LAYE0x3fdc0b0_pos" unit="mm" x="-1000" y="803" z="0"/>
+    </subtraction>
+    <subtraction name="LAYE0x3fdc2d0">
+      <first ref="LAYE0x3fdc0b0"/>
+      <second ref="CoilSpaceRPC0x3fdbe50"/>
+      <position name="LAYE0x3fdc2d0_pos" unit="mm" x="1000" y="-803" z="0"/>
+    </subtraction>
+    <subtraction name="LAYE0x3fdc4f0">
+      <first ref="LAYE0x3fdc2d0"/>
+      <second ref="CoilSpaceRPC0x3fdbe50"/>
+      <position name="LAYE0x3fdc4f0_pos" unit="mm" x="1000" y="803" z="0"/>
+    </subtraction>
+    <box lunit="mm" name="VCOIL0x3ffbee0" x="30" y="744" z="1266"/>
+    <box lunit="mm" name="HCOIL0x3ffc070" x="1600" y="744" z="30"/>
+    <tube aunit="deg" deltaphi="90.0000025044782" lunit="mm" name="CurvedCOIL0x3ffc200" rmax="215" rmin="185" startphi="0" z="744"/>
+    <box lunit="mm" name="MagnetSolid0x3fcd4e0" x="4004" y="4004" z="1706"/>
+    <box lunit="mm" name="INOM0x3fcd350" x="4862" y="5082" z="3000"/>
+    <box lunit="mm" name="AirRoomSolid0x3fcc6b0" x="6000" y="12000" z="3000"/>
+    <box lunit="mm" name="AirRoomSolidUp0x3fcc840" x="6000" y="12000" z="3000"/>
+    <box lunit="mm" name="AirRoom3Solid0x3fcc9d0" x="6000" y="3000" z="3000"/>
+    <box lunit="mm" name="StairCaseLSolid0x3fccd10" x="1500" y="2998" z="150"/>
+    <box lunit="mm" name="StairCaseSolid0x3fccea0" x="3500" y="1400" z="150"/>
+    <box lunit="mm" name="AirStairCaseSolid0x3fccb70" x="6000" y="3000" z="3000"/>
+    <box lunit="mm" name="AirRoom2Solid0x3fcd030" x="6000" y="18000" z="3000"/>
+    <box lunit="mm" name="AirRoom2SolidUp0x3fcd1c0" x="6000" y="18000" z="3000"/>
+    <box lunit="mm" name="BuildingSolid0x3fcc520" x="6460" y="40380" z="6660"/>
+    <box lunit="mm" name="WorldSolid0x3fc2310" x="2000000" y="2000000" z="6726.60009765625"/>
+  </solids>
+
+  <structure>
+    <volume name="IRLAYElog0x3fdf790">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="IRLAYE0x3fdf570"/>
+    </volume>
+    <volume name="IRLAYElog0x3fe2040">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="IRLAYE0x3fe1e20"/>
+    </volume>
+    <volume name="IRLAYElog0x3fe4230">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="IRLAYE0x3fe4010"/>
+    </volume>
+    <volume name="IRLAYElog0x3fe6460">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="IRLAYE0x3fe6240"/>
+    </volume>
+    <volume name="IRLAYElog0x3fe8690">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="IRLAYE0x3fe8470"/>
+    </volume>
+    <volume name="IRLAYElog0x3fea8c0">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="IRLAYE0x3fea6a0"/>
+    </volume>
+    <volume name="IRLAYElog0x3fecaf0">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="IRLAYE0x3fec8d0"/>
+    </volume>
+    <volume name="IRLAYElog0x3fef9c0">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="IRLAYE0x3fef7a0"/>
+    </volume>
+    <volume name="IRLAYElog0x3ff1bf0">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="IRLAYE0x3ff19d0"/>
+    </volume>
+    <volume name="IRLAYElog0x3ff3e20">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="IRLAYE0x3ff3c00"/>
+    </volume>
+    <volume name="IRLAYElog0x3ff6050">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="IRLAYE0x3ff5e30"/>
+    </volume>
+    <volume name="SpacerAlog0x3fce1a0">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="SpacerA0x3fce110"/>
+    </volume>
+    <volume name="SpacerBlog0x3fce620">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="Spacer20x3fce590"/>
+    </volume>
+    <volume name="SpacerClog0x3fce910">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="Spacer30x3fce880"/>
+    </volume>
+    <volume name="SpacerDlog0x3fcedb0">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="Spacer40x3fced20"/>
+    </volume>
+    <volume name="GASRlog0x3ffbe20">
+      <materialref ref="rpcgas0x3ceb7c0"/>
+      <solidref ref="GASR0x3ffbc00"/>
+    </volume>
+    <volume name="QURZlog0x3ffb1d0">
+      <materialref ref="G4_SILICON_DIOXIDE0x3ce9ab0"/>
+      <solidref ref="QURZ0x3ffafb0"/>
+      <physvol name="GASRphy0x3ffc5a0">
+        <volumeref ref="GASRlog0x3ffbe20"/>
+      </physvol>
+    </volume>
+    <volume name="COATlog0x3ffa580">
+      <materialref ref="G4_GRAPHITE0x3ce5140"/>
+      <solidref ref="COAT0x3ffa360"/>
+      <physvol name="QURZphy0x3ffc640">
+        <volumeref ref="QURZlog0x3ffb1d0"/>
+      </physvol>
+    </volume>
+    <volume name="MYLARlog0x3ff9930">
+      <materialref ref="G4_MYLAR0x3ce63d0"/>
+      <solidref ref="MYLAR0x3ff9710"/>
+      <physvol name="COATphy0x3ffc700">
+        <volumeref ref="COATlog0x3ffa580"/>
+      </physvol>
+    </volume>
+    <volume name="CUPLlog0x3ff8ce0">
+      <materialref ref="G4_Cu0x3ce3e80"/>
+      <solidref ref="CUPL0x3ff8ac0"/>
+      <physvol name="MYLARphy0x3ffc7c0">
+        <volumeref ref="MYLARlog0x3ff9930"/>
+      </physvol>
+    </volume>
+    <volume name="HoneyComblog0x3ff8090">
+      <materialref ref="G4_POLYETHYLENE0x3ce66f0"/>
+      <solidref ref="HneyComb0x3ff7e70"/>
+      <physvol name="CUPLphy0x3ffc880">
+        <volumeref ref="CUPLlog0x3ff8ce0"/>
+      </physvol>
+    </volume>
+    <volume name="ALlog0x3ff7440">
+      <materialref ref="G4_Al0x3ce4810"/>
+      <solidref ref="AL0x3ff7220"/>
+      <physvol name="HoneyCombphy0x3ffc940">
+        <volumeref ref="HoneyComblog0x3ff8090"/>
+      </physvol>
+    </volume>
+    <volume name="G10Trap1log0x3ff6590">
+      <materialref ref="G100x3ceb470"/>
+      <solidref ref="G10Trap10x3ff6470"/>
+    </volume>
+    <volume name="G10Trap2log0x3ff67b0">
+      <materialref ref="G100x3ceb470"/>
+      <solidref ref="G10Trap20x3ff6690"/>
+    </volume>
+    <volume name="AIRBOXlog0x3ff6370">
+      <materialref ref="G4_AIR0x3ce7060"/>
+      <solidref ref="AirBox0x3ff62e0"/>
+      <physvol name="ALhy0x3ffca00">
+        <volumeref ref="ALlog0x3ff7440"/>
+        <position name="ALhy0x3ffca00_pos" unit="mm" x="39.050048828125" y="38.550048828125" z="-3.1200008392334"/>
+      </physvol>
+      <physvol name="G10Trap1phy0x3ffcac0">
+        <volumeref ref="G10Trap1log0x3ff6590"/>
+        <position name="G10Trap1phy0x3ffcac0_pos" unit="mm" x="-795.5" y="-873.75" z="-10"/>
+        <rotation name="G10Trap1phy0x3ffcac0_rot" unit="deg" x="90" y="-45" z="0"/>
+      </physvol>
+      <physvol name="G10Trap2phy0x3ffcbd0">
+        <volumeref ref="G10Trap2log0x3ff67b0"/>
+        <position name="G10Trap2phy0x3ffcbd0_pos" unit="mm" x="887" y="924" z="-10"/>
+        <rotation name="G10Trap2phy0x3ffcbd0_rot" unit="deg" x="-90" y="45" z="0"/>
+      </physvol>
+    </volume>
+    <volume name="FRPBoxlog0x3ff61e0">
+      <materialref ref="FRPCarbon0x3ce14b0"/>
+      <solidref ref="FRPBox0x3ff6150"/>
+      <physvol name="AIRBOXphy0x3ffccf0">
+        <volumeref ref="AIRBOXlog0x3ff6370"/>
+        <position name="AIRBOXphy0x3ffccf0_pos" unit="mm" x="0" y="0" z="4.5"/>
+      </physvol>
+    </volume>
+    <volume name="LAYElog0x3fce010">
+      <materialref ref="G4_AIR0x3ce7060"/>
+      <solidref ref="LAYE0x3fcddf0"/>
+      <physvol name="SpacerAphy0x3fce2a0">
+        <volumeref ref="SpacerAlog0x3fce1a0"/>
+        <position name="SpacerAphy0x3fce2a0_pos" unit="mm" x="-1980" y="-1800" z="0"/>
+      </physvol>
+      <physvol copynumber="1" name="SpacerAphy0x3fce360">
+        <volumeref ref="SpacerAlog0x3fce1a0"/>
+        <position name="SpacerAphy0x3fce360_pos" unit="mm" x="1980" y="-1800" z="0"/>
+      </physvol>
+      <physvol copynumber="2" name="SpacerAphy0x3fce420">
+        <volumeref ref="SpacerAlog0x3fce1a0"/>
+        <position name="SpacerAphy0x3fce420_pos" unit="mm" x="-1980" y="1800" z="0"/>
+      </physvol>
+      <physvol copynumber="3" name="SpacerAphy0x3fce4f0">
+        <volumeref ref="SpacerAlog0x3fce1a0"/>
+        <position name="SpacerAphy0x3fce4f0_pos" unit="mm" x="1980" y="1800" z="0"/>
+      </physvol>
+      <physvol name="SpacerBphy0x3fce720">
+        <volumeref ref="SpacerBlog0x3fce620"/>
+        <position name="SpacerBphy0x3fce720_pos" unit="mm" x="-1980" y="0" z="0"/>
+      </physvol>
+      <physvol copynumber="1" name="SpacerBphy0x3fce7e0">
+        <volumeref ref="SpacerBlog0x3fce620"/>
+        <position name="SpacerBphy0x3fce7e0_pos" unit="mm" x="1980" y="0" z="0"/>
+      </physvol>
+      <physvol name="SpacerCphy0x3fcea10">
+        <volumeref ref="SpacerClog0x3fce910"/>
+        <position name="SpacerCphy0x3fcea10_pos" unit="mm" x="-1000" y="-1625" z="0"/>
+      </physvol>
+      <physvol copynumber="1" name="SpacerCphy0x3fceab0">
+        <volumeref ref="SpacerClog0x3fce910"/>
+        <position name="SpacerCphy0x3fceab0_pos" unit="mm" x="1000" y="-1625" z="0"/>
+      </physvol>
+      <physvol copynumber="2" name="SpacerCphy0x3fceb50">
+        <volumeref ref="SpacerClog0x3fce910"/>
+        <position name="SpacerCphy0x3fceb50_pos" unit="mm" x="-1000" y="1625" z="0"/>
+      </physvol>
+      <physvol copynumber="3" name="SpacerCphy0x3fcec80">
+        <volumeref ref="SpacerClog0x3fce910"/>
+        <position name="SpacerCphy0x3fcec80_pos" unit="mm" x="1000" y="1625" z="0"/>
+      </physvol>
+      <physvol name="SpacerDphy0x3fceeb0">
+        <volumeref ref="SpacerDlog0x3fcedb0"/>
+        <position name="SpacerDphy0x3fceeb0_pos" unit="mm" x="-1000" y="0" z="0"/>
+      </physvol>
+      <physvol copynumber="1" name="SpacerDphy0x3fcef50">
+        <volumeref ref="SpacerDlog0x3fcedb0"/>
+        <position name="SpacerDphy0x3fcef50_pos" unit="mm" x="1000" y="0" z="0"/>
+      </physvol>
+      <physvol name="FRPBOXphy0x3ffcd90">
+        <volumeref ref="FRPBoxlog0x3ff61e0"/>
+        <position name="FRPBOXphy0x3ffcd90_pos" unit="mm" x="0" y="0" z="-5.5"/>
+      </physvol>
+    </volume>
+    <volume name="SpacerAlog0x3fcfad0">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="SpacerA0x3fcfa40"/>
+    </volume>
+    <volume name="SpacerBlog0x3fcff10">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="Spacer20x3fcfe80"/>
+    </volume>
+    <volume name="SpacerClog0x3fd0200">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="Spacer30x3fd0170"/>
+    </volume>
+    <volume name="SpacerDlog0x3fd06a0">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="Spacer40x3fd0610"/>
+    </volume>
+    <volume name="LAYElog0x3fcf940">
+      <materialref ref="G4_AIR0x3ce7060"/>
+      <solidref ref="LAYE0x3fcf720"/>
+      <physvol name="SpacerAphy0x3fcfbd0">
+        <volumeref ref="SpacerAlog0x3fcfad0"/>
+        <position name="SpacerAphy0x3fcfbd0_pos" unit="mm" x="-1980" y="-1800" z="0"/>
+      </physvol>
+      <physvol copynumber="1" name="SpacerAphy0x3fcfc70">
+        <volumeref ref="SpacerAlog0x3fcfad0"/>
+        <position name="SpacerAphy0x3fcfc70_pos" unit="mm" x="1980" y="-1800" z="0"/>
+      </physvol>
+      <physvol copynumber="2" name="SpacerAphy0x3fcfd10">
+        <volumeref ref="SpacerAlog0x3fcfad0"/>
+        <position name="SpacerAphy0x3fcfd10_pos" unit="mm" x="-1980" y="1800" z="0"/>
+      </physvol>
+      <physvol copynumber="3" name="SpacerAphy0x3fcfde0">
+        <volumeref ref="SpacerAlog0x3fcfad0"/>
+        <position name="SpacerAphy0x3fcfde0_pos" unit="mm" x="1980" y="1800" z="0"/>
+      </physvol>
+      <physvol name="SpacerBphy0x3fd0010">
+        <volumeref ref="SpacerBlog0x3fcff10"/>
+        <position name="SpacerBphy0x3fd0010_pos" unit="mm" x="-1980" y="0" z="0"/>
+      </physvol>
+      <physvol copynumber="1" name="SpacerBphy0x3fd00d0">
+        <volumeref ref="SpacerBlog0x3fcff10"/>
+        <position name="SpacerBphy0x3fd00d0_pos" unit="mm" x="1980" y="0" z="0"/>
+      </physvol>
+      <physvol name="SpacerCphy0x3fd0300">
+        <volumeref ref="SpacerClog0x3fd0200"/>
+        <position name="SpacerCphy0x3fd0300_pos" unit="mm" x="-1000" y="-1625" z="0"/>
+      </physvol>
+      <physvol copynumber="1" name="SpacerCphy0x3fd03a0">
+        <volumeref ref="SpacerClog0x3fd0200"/>
+        <position name="SpacerCphy0x3fd03a0_pos" unit="mm" x="1000" y="-1625" z="0"/>
+      </physvol>
+      <physvol copynumber="2" name="SpacerCphy0x3fd0440">
+        <volumeref ref="SpacerClog0x3fd0200"/>
+        <position name="SpacerCphy0x3fd0440_pos" unit="mm" x="-1000" y="1625" z="0"/>
+      </physvol>
+      <physvol copynumber="3" name="SpacerCphy0x3fd0570">
+        <volumeref ref="SpacerClog0x3fd0200"/>
+        <position name="SpacerCphy0x3fd0570_pos" unit="mm" x="1000" y="1625" z="0"/>
+      </physvol>
+      <physvol name="SpacerDphy0x3fd07a0">
+        <volumeref ref="SpacerDlog0x3fd06a0"/>
+        <position name="SpacerDphy0x3fd07a0_pos" unit="mm" x="-1000" y="0" z="0"/>
+      </physvol>
+      <physvol copynumber="1" name="SpacerDphy0x3fd0840">
+        <volumeref ref="SpacerDlog0x3fd06a0"/>
+        <position name="SpacerDphy0x3fd0840_pos" unit="mm" x="1000" y="0" z="0"/>
+      </physvol>
+      <physvol name="FRPBOXphy0x3ffce30">
+        <volumeref ref="FRPBoxlog0x3ff61e0"/>
+        <position name="FRPBOXphy0x3ffce30_pos" unit="mm" x="0" y="0" z="-5.5"/>
+      </physvol>
+    </volume>
+    <volume name="SpacerAlog0x3fd13c0">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="SpacerA0x3fd1330"/>
+    </volume>
+    <volume name="SpacerBlog0x3fd1800">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="Spacer20x3fd1770"/>
+    </volume>
+    <volume name="SpacerClog0x3fd1af0">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="Spacer30x3fd1a60"/>
+    </volume>
+    <volume name="SpacerDlog0x3fd1f90">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="Spacer40x3fd1f00"/>
+    </volume>
+    <volume name="LAYElog0x3fd1230">
+      <materialref ref="G4_AIR0x3ce7060"/>
+      <solidref ref="LAYE0x3fd1010"/>
+      <physvol name="SpacerAphy0x3fd14c0">
+        <volumeref ref="SpacerAlog0x3fd13c0"/>
+        <position name="SpacerAphy0x3fd14c0_pos" unit="mm" x="-1980" y="-1800" z="0"/>
+      </physvol>
+      <physvol copynumber="1" name="SpacerAphy0x3fd1560">
+        <volumeref ref="SpacerAlog0x3fd13c0"/>
+        <position name="SpacerAphy0x3fd1560_pos" unit="mm" x="1980" y="-1800" z="0"/>
+      </physvol>
+      <physvol copynumber="2" name="SpacerAphy0x3fd1600">
+        <volumeref ref="SpacerAlog0x3fd13c0"/>
+        <position name="SpacerAphy0x3fd1600_pos" unit="mm" x="-1980" y="1800" z="0"/>
+      </physvol>
+      <physvol copynumber="3" name="SpacerAphy0x3fd16d0">
+        <volumeref ref="SpacerAlog0x3fd13c0"/>
+        <position name="SpacerAphy0x3fd16d0_pos" unit="mm" x="1980" y="1800" z="0"/>
+      </physvol>
+      <physvol name="SpacerBphy0x3fd1900">
+        <volumeref ref="SpacerBlog0x3fd1800"/>
+        <position name="SpacerBphy0x3fd1900_pos" unit="mm" x="-1980" y="0" z="0"/>
+      </physvol>
+      <physvol copynumber="1" name="SpacerBphy0x3fd19c0">
+        <volumeref ref="SpacerBlog0x3fd1800"/>
+        <position name="SpacerBphy0x3fd19c0_pos" unit="mm" x="1980" y="0" z="0"/>
+      </physvol>
+      <physvol name="SpacerCphy0x3fd1bf0">
+        <volumeref ref="SpacerClog0x3fd1af0"/>
+        <position name="SpacerCphy0x3fd1bf0_pos" unit="mm" x="-1000" y="-1625" z="0"/>
+      </physvol>
+      <physvol copynumber="1" name="SpacerCphy0x3fd1c90">
+        <volumeref ref="SpacerClog0x3fd1af0"/>
+        <position name="SpacerCphy0x3fd1c90_pos" unit="mm" x="1000" y="-1625" z="0"/>
+      </physvol>
+      <physvol copynumber="2" name="SpacerCphy0x3fd1d30">
+        <volumeref ref="SpacerClog0x3fd1af0"/>
+        <position name="SpacerCphy0x3fd1d30_pos" unit="mm" x="-1000" y="1625" z="0"/>
+      </physvol>
+      <physvol copynumber="3" name="SpacerCphy0x3fd1e60">
+        <volumeref ref="SpacerClog0x3fd1af0"/>
+        <position name="SpacerCphy0x3fd1e60_pos" unit="mm" x="1000" y="1625" z="0"/>
+      </physvol>
+      <physvol name="SpacerDphy0x3fd2090">
+        <volumeref ref="SpacerDlog0x3fd1f90"/>
+        <position name="SpacerDphy0x3fd2090_pos" unit="mm" x="-1000" y="0" z="0"/>
+      </physvol>
+      <physvol copynumber="1" name="SpacerDphy0x3fd2130">
+        <volumeref ref="SpacerDlog0x3fd1f90"/>
+        <position name="SpacerDphy0x3fd2130_pos" unit="mm" x="1000" y="0" z="0"/>
+      </physvol>
+      <physvol name="FRPBOXphy0x3ffced0">
+        <volumeref ref="FRPBoxlog0x3ff61e0"/>
+        <position name="FRPBOXphy0x3ffced0_pos" unit="mm" x="0" y="0" z="-5.5"/>
+      </physvol>
+    </volume>
+    <volume name="SpacerAlog0x3fd2cb0">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="SpacerA0x3fd2c20"/>
+    </volume>
+    <volume name="SpacerBlog0x3fd30f0">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="Spacer20x3fd3060"/>
+    </volume>
+    <volume name="SpacerClog0x3fd33e0">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="Spacer30x3fd3350"/>
+    </volume>
+    <volume name="SpacerDlog0x3fd3880">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="Spacer40x3fd37f0"/>
+    </volume>
+    <volume name="LAYElog0x3fd2b20">
+      <materialref ref="G4_AIR0x3ce7060"/>
+      <solidref ref="LAYE0x3fd2900"/>
+      <physvol name="SpacerAphy0x3fd2db0">
+        <volumeref ref="SpacerAlog0x3fd2cb0"/>
+        <position name="SpacerAphy0x3fd2db0_pos" unit="mm" x="-1980" y="-1800" z="0"/>
+      </physvol>
+      <physvol copynumber="1" name="SpacerAphy0x3fd2e50">
+        <volumeref ref="SpacerAlog0x3fd2cb0"/>
+        <position name="SpacerAphy0x3fd2e50_pos" unit="mm" x="1980" y="-1800" z="0"/>
+      </physvol>
+      <physvol copynumber="2" name="SpacerAphy0x3fd2ef0">
+        <volumeref ref="SpacerAlog0x3fd2cb0"/>
+        <position name="SpacerAphy0x3fd2ef0_pos" unit="mm" x="-1980" y="1800" z="0"/>
+      </physvol>
+      <physvol copynumber="3" name="SpacerAphy0x3fd2fc0">
+        <volumeref ref="SpacerAlog0x3fd2cb0"/>
+        <position name="SpacerAphy0x3fd2fc0_pos" unit="mm" x="1980" y="1800" z="0"/>
+      </physvol>
+      <physvol name="SpacerBphy0x3fd31f0">
+        <volumeref ref="SpacerBlog0x3fd30f0"/>
+        <position name="SpacerBphy0x3fd31f0_pos" unit="mm" x="-1980" y="0" z="0"/>
+      </physvol>
+      <physvol copynumber="1" name="SpacerBphy0x3fd32b0">
+        <volumeref ref="SpacerBlog0x3fd30f0"/>
+        <position name="SpacerBphy0x3fd32b0_pos" unit="mm" x="1980" y="0" z="0"/>
+      </physvol>
+      <physvol name="SpacerCphy0x3fd34e0">
+        <volumeref ref="SpacerClog0x3fd33e0"/>
+        <position name="SpacerCphy0x3fd34e0_pos" unit="mm" x="-1000" y="-1625" z="0"/>
+      </physvol>
+      <physvol copynumber="1" name="SpacerCphy0x3fd3580">
+        <volumeref ref="SpacerClog0x3fd33e0"/>
+        <position name="SpacerCphy0x3fd3580_pos" unit="mm" x="1000" y="-1625" z="0"/>
+      </physvol>
+      <physvol copynumber="2" name="SpacerCphy0x3fd3620">
+        <volumeref ref="SpacerClog0x3fd33e0"/>
+        <position name="SpacerCphy0x3fd3620_pos" unit="mm" x="-1000" y="1625" z="0"/>
+      </physvol>
+      <physvol copynumber="3" name="SpacerCphy0x3fd3750">
+        <volumeref ref="SpacerClog0x3fd33e0"/>
+        <position name="SpacerCphy0x3fd3750_pos" unit="mm" x="1000" y="1625" z="0"/>
+      </physvol>
+      <physvol name="SpacerDphy0x3fd3980">
+        <volumeref ref="SpacerDlog0x3fd3880"/>
+        <position name="SpacerDphy0x3fd3980_pos" unit="mm" x="-1000" y="0" z="0"/>
+      </physvol>
+      <physvol copynumber="1" name="SpacerDphy0x3fd3a20">
+        <volumeref ref="SpacerDlog0x3fd3880"/>
+        <position name="SpacerDphy0x3fd3a20_pos" unit="mm" x="1000" y="0" z="0"/>
+      </physvol>
+      <physvol name="FRPBOXphy0x3ffcf70">
+        <volumeref ref="FRPBoxlog0x3ff61e0"/>
+        <position name="FRPBOXphy0x3ffcf70_pos" unit="mm" x="0" y="0" z="-5.5"/>
+      </physvol>
+    </volume>
+    <volume name="SpacerAlog0x3fd45a0">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="SpacerA0x3fd4510"/>
+    </volume>
+    <volume name="SpacerBlog0x3fd49e0">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="Spacer20x3fd4950"/>
+    </volume>
+    <volume name="SpacerClog0x3fd4cd0">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="Spacer30x3fd4c40"/>
+    </volume>
+    <volume name="SpacerDlog0x3fd5170">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="Spacer40x3fd50e0"/>
+    </volume>
+    <volume name="LAYElog0x3fd4410">
+      <materialref ref="G4_AIR0x3ce7060"/>
+      <solidref ref="LAYE0x3fd41f0"/>
+      <physvol name="SpacerAphy0x3fd46a0">
+        <volumeref ref="SpacerAlog0x3fd45a0"/>
+        <position name="SpacerAphy0x3fd46a0_pos" unit="mm" x="-1980" y="-1800" z="0"/>
+      </physvol>
+      <physvol copynumber="1" name="SpacerAphy0x3fd4740">
+        <volumeref ref="SpacerAlog0x3fd45a0"/>
+        <position name="SpacerAphy0x3fd4740_pos" unit="mm" x="1980" y="-1800" z="0"/>
+      </physvol>
+      <physvol copynumber="2" name="SpacerAphy0x3fd47e0">
+        <volumeref ref="SpacerAlog0x3fd45a0"/>
+        <position name="SpacerAphy0x3fd47e0_pos" unit="mm" x="-1980" y="1800" z="0"/>
+      </physvol>
+      <physvol copynumber="3" name="SpacerAphy0x3fd48b0">
+        <volumeref ref="SpacerAlog0x3fd45a0"/>
+        <position name="SpacerAphy0x3fd48b0_pos" unit="mm" x="1980" y="1800" z="0"/>
+      </physvol>
+      <physvol name="SpacerBphy0x3fd4ae0">
+        <volumeref ref="SpacerBlog0x3fd49e0"/>
+        <position name="SpacerBphy0x3fd4ae0_pos" unit="mm" x="-1980" y="0" z="0"/>
+      </physvol>
+      <physvol copynumber="1" name="SpacerBphy0x3fd4ba0">
+        <volumeref ref="SpacerBlog0x3fd49e0"/>
+        <position name="SpacerBphy0x3fd4ba0_pos" unit="mm" x="1980" y="0" z="0"/>
+      </physvol>
+      <physvol name="SpacerCphy0x3fd4dd0">
+        <volumeref ref="SpacerClog0x3fd4cd0"/>
+        <position name="SpacerCphy0x3fd4dd0_pos" unit="mm" x="-1000" y="-1625" z="0"/>
+      </physvol>
+      <physvol copynumber="1" name="SpacerCphy0x3fd4e70">
+        <volumeref ref="SpacerClog0x3fd4cd0"/>
+        <position name="SpacerCphy0x3fd4e70_pos" unit="mm" x="1000" y="-1625" z="0"/>
+      </physvol>
+      <physvol copynumber="2" name="SpacerCphy0x3fd4f10">
+        <volumeref ref="SpacerClog0x3fd4cd0"/>
+        <position name="SpacerCphy0x3fd4f10_pos" unit="mm" x="-1000" y="1625" z="0"/>
+      </physvol>
+      <physvol copynumber="3" name="SpacerCphy0x3fd5040">
+        <volumeref ref="SpacerClog0x3fd4cd0"/>
+        <position name="SpacerCphy0x3fd5040_pos" unit="mm" x="1000" y="1625" z="0"/>
+      </physvol>
+      <physvol name="SpacerDphy0x3fd5270">
+        <volumeref ref="SpacerDlog0x3fd5170"/>
+        <position name="SpacerDphy0x3fd5270_pos" unit="mm" x="-1000" y="0" z="0"/>
+      </physvol>
+      <physvol copynumber="1" name="SpacerDphy0x3fd5310">
+        <volumeref ref="SpacerDlog0x3fd5170"/>
+        <position name="SpacerDphy0x3fd5310_pos" unit="mm" x="1000" y="0" z="0"/>
+      </physvol>
+      <physvol name="FRPBOXphy0x3ffd010">
+        <volumeref ref="FRPBoxlog0x3ff61e0"/>
+        <position name="FRPBOXphy0x3ffd010_pos" unit="mm" x="0" y="0" z="-5.5"/>
+      </physvol>
+    </volume>
+    <volume name="SpacerAlog0x3fd5e90">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="SpacerA0x3fd5e00"/>
+    </volume>
+    <volume name="SpacerBlog0x3fd62d0">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="Spacer20x3fd6240"/>
+    </volume>
+    <volume name="SpacerClog0x3fd65c0">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="Spacer30x3fd6530"/>
+    </volume>
+    <volume name="SpacerDlog0x3fd6a60">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="Spacer40x3fd69d0"/>
+    </volume>
+    <volume name="LAYElog0x3fd5d00">
+      <materialref ref="G4_AIR0x3ce7060"/>
+      <solidref ref="LAYE0x3fd5ae0"/>
+      <physvol name="SpacerAphy0x3fd5f90">
+        <volumeref ref="SpacerAlog0x3fd5e90"/>
+        <position name="SpacerAphy0x3fd5f90_pos" unit="mm" x="-1980" y="-1800" z="0"/>
+      </physvol>
+      <physvol copynumber="1" name="SpacerAphy0x3fd6030">
+        <volumeref ref="SpacerAlog0x3fd5e90"/>
+        <position name="SpacerAphy0x3fd6030_pos" unit="mm" x="1980" y="-1800" z="0"/>
+      </physvol>
+      <physvol copynumber="2" name="SpacerAphy0x3fd60d0">
+        <volumeref ref="SpacerAlog0x3fd5e90"/>
+        <position name="SpacerAphy0x3fd60d0_pos" unit="mm" x="-1980" y="1800" z="0"/>
+      </physvol>
+      <physvol copynumber="3" name="SpacerAphy0x3fd61a0">
+        <volumeref ref="SpacerAlog0x3fd5e90"/>
+        <position name="SpacerAphy0x3fd61a0_pos" unit="mm" x="1980" y="1800" z="0"/>
+      </physvol>
+      <physvol name="SpacerBphy0x3fd63d0">
+        <volumeref ref="SpacerBlog0x3fd62d0"/>
+        <position name="SpacerBphy0x3fd63d0_pos" unit="mm" x="-1980" y="0" z="0"/>
+      </physvol>
+      <physvol copynumber="1" name="SpacerBphy0x3fd6490">
+        <volumeref ref="SpacerBlog0x3fd62d0"/>
+        <position name="SpacerBphy0x3fd6490_pos" unit="mm" x="1980" y="0" z="0"/>
+      </physvol>
+      <physvol name="SpacerCphy0x3fd66c0">
+        <volumeref ref="SpacerClog0x3fd65c0"/>
+        <position name="SpacerCphy0x3fd66c0_pos" unit="mm" x="-1000" y="-1625" z="0"/>
+      </physvol>
+      <physvol copynumber="1" name="SpacerCphy0x3fd6760">
+        <volumeref ref="SpacerClog0x3fd65c0"/>
+        <position name="SpacerCphy0x3fd6760_pos" unit="mm" x="1000" y="-1625" z="0"/>
+      </physvol>
+      <physvol copynumber="2" name="SpacerCphy0x3fd6800">
+        <volumeref ref="SpacerClog0x3fd65c0"/>
+        <position name="SpacerCphy0x3fd6800_pos" unit="mm" x="-1000" y="1625" z="0"/>
+      </physvol>
+      <physvol copynumber="3" name="SpacerCphy0x3fd6930">
+        <volumeref ref="SpacerClog0x3fd65c0"/>
+        <position name="SpacerCphy0x3fd6930_pos" unit="mm" x="1000" y="1625" z="0"/>
+      </physvol>
+      <physvol name="SpacerDphy0x3fd6b60">
+        <volumeref ref="SpacerDlog0x3fd6a60"/>
+        <position name="SpacerDphy0x3fd6b60_pos" unit="mm" x="-1000" y="0" z="0"/>
+      </physvol>
+      <physvol copynumber="1" name="SpacerDphy0x3fd6c00">
+        <volumeref ref="SpacerDlog0x3fd6a60"/>
+        <position name="SpacerDphy0x3fd6c00_pos" unit="mm" x="1000" y="0" z="0"/>
+      </physvol>
+      <physvol name="FRPBOXphy0x3ffd0b0">
+        <volumeref ref="FRPBoxlog0x3ff61e0"/>
+        <position name="FRPBOXphy0x3ffd0b0_pos" unit="mm" x="0" y="0" z="-5.5"/>
+      </physvol>
+    </volume>
+    <volume name="SpacerAlog0x3fd7aa0">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="SpacerA0x3fd7a10"/>
+    </volume>
+    <volume name="SpacerBlog0x3fd7ee0">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="Spacer20x3fd7e50"/>
+    </volume>
+    <volume name="SpacerClog0x3fd81d0">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="Spacer30x3fd8140"/>
+    </volume>
+    <volume name="SpacerDlog0x3fd8670">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="Spacer40x3fd85e0"/>
+    </volume>
+    <volume name="LAYElog0x3fd7910">
+      <materialref ref="G4_AIR0x3ce7060"/>
+      <solidref ref="LAYE0x3fd7750"/>
+      <physvol name="SpacerAphy0x3fd7ba0">
+        <volumeref ref="SpacerAlog0x3fd7aa0"/>
+        <position name="SpacerAphy0x3fd7ba0_pos" unit="mm" x="-1980" y="-1800" z="0"/>
+      </physvol>
+      <physvol copynumber="1" name="SpacerAphy0x3fd7c40">
+        <volumeref ref="SpacerAlog0x3fd7aa0"/>
+        <position name="SpacerAphy0x3fd7c40_pos" unit="mm" x="1980" y="-1800" z="0"/>
+      </physvol>
+      <physvol copynumber="2" name="SpacerAphy0x3fd7ce0">
+        <volumeref ref="SpacerAlog0x3fd7aa0"/>
+        <position name="SpacerAphy0x3fd7ce0_pos" unit="mm" x="-1980" y="1800" z="0"/>
+      </physvol>
+      <physvol copynumber="3" name="SpacerAphy0x3fd7db0">
+        <volumeref ref="SpacerAlog0x3fd7aa0"/>
+        <position name="SpacerAphy0x3fd7db0_pos" unit="mm" x="1980" y="1800" z="0"/>
+      </physvol>
+      <physvol name="SpacerBphy0x3fd7fe0">
+        <volumeref ref="SpacerBlog0x3fd7ee0"/>
+        <position name="SpacerBphy0x3fd7fe0_pos" unit="mm" x="-1980" y="0" z="0"/>
+      </physvol>
+      <physvol copynumber="1" name="SpacerBphy0x3fd80a0">
+        <volumeref ref="SpacerBlog0x3fd7ee0"/>
+        <position name="SpacerBphy0x3fd80a0_pos" unit="mm" x="1980" y="0" z="0"/>
+      </physvol>
+      <physvol name="SpacerCphy0x3fd82d0">
+        <volumeref ref="SpacerClog0x3fd81d0"/>
+        <position name="SpacerCphy0x3fd82d0_pos" unit="mm" x="-1000" y="-1625" z="0"/>
+      </physvol>
+      <physvol copynumber="1" name="SpacerCphy0x3fd8370">
+        <volumeref ref="SpacerClog0x3fd81d0"/>
+        <position name="SpacerCphy0x3fd8370_pos" unit="mm" x="1000" y="-1625" z="0"/>
+      </physvol>
+      <physvol copynumber="2" name="SpacerCphy0x3fd8410">
+        <volumeref ref="SpacerClog0x3fd81d0"/>
+        <position name="SpacerCphy0x3fd8410_pos" unit="mm" x="-1000" y="1625" z="0"/>
+      </physvol>
+      <physvol copynumber="3" name="SpacerCphy0x3fd8540">
+        <volumeref ref="SpacerClog0x3fd81d0"/>
+        <position name="SpacerCphy0x3fd8540_pos" unit="mm" x="1000" y="1625" z="0"/>
+      </physvol>
+      <physvol name="SpacerDphy0x3fd8770">
+        <volumeref ref="SpacerDlog0x3fd8670"/>
+        <position name="SpacerDphy0x3fd8770_pos" unit="mm" x="-1000" y="0" z="0"/>
+      </physvol>
+      <physvol copynumber="1" name="SpacerDphy0x3fd8810">
+        <volumeref ref="SpacerDlog0x3fd8670"/>
+        <position name="SpacerDphy0x3fd8810_pos" unit="mm" x="1000" y="0" z="0"/>
+      </physvol>
+      <physvol name="FRPBOXphy0x3ffd150">
+        <volumeref ref="FRPBoxlog0x3ff61e0"/>
+        <position name="FRPBOXphy0x3ffd150_pos" unit="mm" x="0" y="0" z="-5.5"/>
+      </physvol>
+    </volume>
+    <volume name="SpacerAlog0x3fd9390">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="SpacerA0x3fd9300"/>
+    </volume>
+    <volume name="SpacerBlog0x3fd97d0">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="Spacer20x3fd9740"/>
+    </volume>
+    <volume name="SpacerClog0x3fd9ac0">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="Spacer30x3fd9a30"/>
+    </volume>
+    <volume name="SpacerDlog0x3fd9f60">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="Spacer40x3fd9ed0"/>
+    </volume>
+    <volume name="LAYElog0x3fd9200">
+      <materialref ref="G4_AIR0x3ce7060"/>
+      <solidref ref="LAYE0x3fd8fe0"/>
+      <physvol name="SpacerAphy0x3fd9490">
+        <volumeref ref="SpacerAlog0x3fd9390"/>
+        <position name="SpacerAphy0x3fd9490_pos" unit="mm" x="-1980" y="-1800" z="0"/>
+      </physvol>
+      <physvol copynumber="1" name="SpacerAphy0x3fd9530">
+        <volumeref ref="SpacerAlog0x3fd9390"/>
+        <position name="SpacerAphy0x3fd9530_pos" unit="mm" x="1980" y="-1800" z="0"/>
+      </physvol>
+      <physvol copynumber="2" name="SpacerAphy0x3fd95d0">
+        <volumeref ref="SpacerAlog0x3fd9390"/>
+        <position name="SpacerAphy0x3fd95d0_pos" unit="mm" x="-1980" y="1800" z="0"/>
+      </physvol>
+      <physvol copynumber="3" name="SpacerAphy0x3fd96a0">
+        <volumeref ref="SpacerAlog0x3fd9390"/>
+        <position name="SpacerAphy0x3fd96a0_pos" unit="mm" x="1980" y="1800" z="0"/>
+      </physvol>
+      <physvol name="SpacerBphy0x3fd98d0">
+        <volumeref ref="SpacerBlog0x3fd97d0"/>
+        <position name="SpacerBphy0x3fd98d0_pos" unit="mm" x="-1980" y="0" z="0"/>
+      </physvol>
+      <physvol copynumber="1" name="SpacerBphy0x3fd9990">
+        <volumeref ref="SpacerBlog0x3fd97d0"/>
+        <position name="SpacerBphy0x3fd9990_pos" unit="mm" x="1980" y="0" z="0"/>
+      </physvol>
+      <physvol name="SpacerCphy0x3fd9bc0">
+        <volumeref ref="SpacerClog0x3fd9ac0"/>
+        <position name="SpacerCphy0x3fd9bc0_pos" unit="mm" x="-1000" y="-1625" z="0"/>
+      </physvol>
+      <physvol copynumber="1" name="SpacerCphy0x3fd9c60">
+        <volumeref ref="SpacerClog0x3fd9ac0"/>
+        <position name="SpacerCphy0x3fd9c60_pos" unit="mm" x="1000" y="-1625" z="0"/>
+      </physvol>
+      <physvol copynumber="2" name="SpacerCphy0x3fd9d00">
+        <volumeref ref="SpacerClog0x3fd9ac0"/>
+        <position name="SpacerCphy0x3fd9d00_pos" unit="mm" x="-1000" y="1625" z="0"/>
+      </physvol>
+      <physvol copynumber="3" name="SpacerCphy0x3fd9e30">
+        <volumeref ref="SpacerClog0x3fd9ac0"/>
+        <position name="SpacerCphy0x3fd9e30_pos" unit="mm" x="1000" y="1625" z="0"/>
+      </physvol>
+      <physvol name="SpacerDphy0x3fda060">
+        <volumeref ref="SpacerDlog0x3fd9f60"/>
+        <position name="SpacerDphy0x3fda060_pos" unit="mm" x="-1000" y="0" z="0"/>
+      </physvol>
+      <physvol copynumber="1" name="SpacerDphy0x3fda100">
+        <volumeref ref="SpacerDlog0x3fd9f60"/>
+        <position name="SpacerDphy0x3fda100_pos" unit="mm" x="1000" y="0" z="0"/>
+      </physvol>
+      <physvol name="FRPBOXphy0x3ffd1f0">
+        <volumeref ref="FRPBoxlog0x3ff61e0"/>
+        <position name="FRPBOXphy0x3ffd1f0_pos" unit="mm" x="0" y="0" z="-5.5"/>
+      </physvol>
+    </volume>
+    <volume name="SpacerAlog0x3fdac80">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="SpacerA0x3fdabf0"/>
+    </volume>
+    <volume name="SpacerBlog0x3fc1a10">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="Spacer20x3fc1980"/>
+    </volume>
+    <volume name="SpacerClog0x3fdb6e0">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="Spacer30x3fdb650"/>
+    </volume>
+    <volume name="SpacerDlog0x3fdbb80">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="Spacer40x3fdbaf0"/>
+    </volume>
+    <volume name="LAYElog0x3fdaaf0">
+      <materialref ref="G4_AIR0x3ce7060"/>
+      <solidref ref="LAYE0x3fda8d0"/>
+      <physvol name="SpacerAphy0x3fdad80">
+        <volumeref ref="SpacerAlog0x3fdac80"/>
+        <position name="SpacerAphy0x3fdad80_pos" unit="mm" x="-1980" y="-1800" z="0"/>
+      </physvol>
+      <physvol copynumber="1" name="SpacerAphy0x3fdae20">
+        <volumeref ref="SpacerAlog0x3fdac80"/>
+        <position name="SpacerAphy0x3fdae20_pos" unit="mm" x="1980" y="-1800" z="0"/>
+      </physvol>
+      <physvol copynumber="2" name="SpacerAphy0x3fdaec0">
+        <volumeref ref="SpacerAlog0x3fdac80"/>
+        <position name="SpacerAphy0x3fdaec0_pos" unit="mm" x="-1980" y="1800" z="0"/>
+      </physvol>
+      <physvol copynumber="3" name="SpacerAphy0x3fdaf90">
+        <volumeref ref="SpacerAlog0x3fdac80"/>
+        <position name="SpacerAphy0x3fdaf90_pos" unit="mm" x="1980" y="1800" z="0"/>
+      </physvol>
+      <physvol name="SpacerBphy0x3fc1b10">
+        <volumeref ref="SpacerBlog0x3fc1a10"/>
+        <position name="SpacerBphy0x3fc1b10_pos" unit="mm" x="-1980" y="0" z="0"/>
+      </physvol>
+      <physvol copynumber="1" name="SpacerBphy0x3fc1bd0">
+        <volumeref ref="SpacerBlog0x3fc1a10"/>
+        <position name="SpacerBphy0x3fc1bd0_pos" unit="mm" x="1980" y="0" z="0"/>
+      </physvol>
+      <physvol name="SpacerCphy0x3fdb7e0">
+        <volumeref ref="SpacerClog0x3fdb6e0"/>
+        <position name="SpacerCphy0x3fdb7e0_pos" unit="mm" x="-1000" y="-1625" z="0"/>
+      </physvol>
+      <physvol copynumber="1" name="SpacerCphy0x3fdb880">
+        <volumeref ref="SpacerClog0x3fdb6e0"/>
+        <position name="SpacerCphy0x3fdb880_pos" unit="mm" x="1000" y="-1625" z="0"/>
+      </physvol>
+      <physvol copynumber="2" name="SpacerCphy0x3fdb920">
+        <volumeref ref="SpacerClog0x3fdb6e0"/>
+        <position name="SpacerCphy0x3fdb920_pos" unit="mm" x="-1000" y="1625" z="0"/>
+      </physvol>
+      <physvol copynumber="3" name="SpacerCphy0x3fdba50">
+        <volumeref ref="SpacerClog0x3fdb6e0"/>
+        <position name="SpacerCphy0x3fdba50_pos" unit="mm" x="1000" y="1625" z="0"/>
+      </physvol>
+      <physvol name="SpacerDphy0x3fdbc80">
+        <volumeref ref="SpacerDlog0x3fdbb80"/>
+        <position name="SpacerDphy0x3fdbc80_pos" unit="mm" x="-1000" y="0" z="0"/>
+      </physvol>
+      <physvol copynumber="1" name="SpacerDphy0x3fdbd20">
+        <volumeref ref="SpacerDlog0x3fdbb80"/>
+        <position name="SpacerDphy0x3fdbd20_pos" unit="mm" x="1000" y="0" z="0"/>
+      </physvol>
+      <physvol name="FRPBOXphy0x3ffd290">
+        <volumeref ref="FRPBoxlog0x3ff61e0"/>
+        <position name="FRPBOXphy0x3ffd290_pos" unit="mm" x="0" y="0" z="-5.5"/>
+      </physvol>
+    </volume>
+    <volume name="SpacerAlog0x3fdc8a0">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="SpacerA0x3fdc810"/>
+    </volume>
+    <volume name="SpacerBlog0x3fdcce0">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="Spacer20x3fdcc50"/>
+    </volume>
+    <volume name="SpacerClog0x3fdcfd0">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="Spacer30x3fdcf40"/>
+    </volume>
+    <volume name="SpacerDlog0x3fdd470">
+      <materialref ref="G4_Fe0x3ce2b00"/>
+      <solidref ref="Spacer40x3fdd3e0"/>
+    </volume>
+    <volume name="LAYElog0x3fdc710">
+      <materialref ref="G4_AIR0x3ce7060"/>
+      <solidref ref="LAYE0x3fdc4f0"/>
+      <physvol name="SpacerAphy0x3fdc9a0">
+        <volumeref ref="SpacerAlog0x3fdc8a0"/>
+        <position name="SpacerAphy0x3fdc9a0_pos" unit="mm" x="-1980" y="-1800" z="0"/>
+      </physvol>
+      <physvol copynumber="1" name="SpacerAphy0x3fdca40">
+        <volumeref ref="SpacerAlog0x3fdc8a0"/>
+        <position name="SpacerAphy0x3fdca40_pos" unit="mm" x="1980" y="-1800" z="0"/>
+      </physvol>
+      <physvol copynumber="2" name="SpacerAphy0x3fdcae0">
+        <volumeref ref="SpacerAlog0x3fdc8a0"/>
+        <position name="SpacerAphy0x3fdcae0_pos" unit="mm" x="-1980" y="1800" z="0"/>
+      </physvol>
+      <physvol copynumber="3" name="SpacerAphy0x3fdcbb0">
+        <volumeref ref="SpacerAlog0x3fdc8a0"/>
+        <position name="SpacerAphy0x3fdcbb0_pos" unit="mm" x="1980" y="1800" z="0"/>
+      </physvol>
+      <physvol name="SpacerBphy0x3fdcde0">
+        <volumeref ref="SpacerBlog0x3fdcce0"/>
+        <position name="SpacerBphy0x3fdcde0_pos" unit="mm" x="-1980" y="0" z="0"/>
+      </physvol>
+      <physvol copynumber="1" name="SpacerBphy0x3fdcea0">
+        <volumeref ref="SpacerBlog0x3fdcce0"/>
+        <position name="SpacerBphy0x3fdcea0_pos" unit="mm" x="1980" y="0" z="0"/>
+      </physvol>
+      <physvol name="SpacerCphy0x3fdd0d0">
+        <volumeref ref="SpacerClog0x3fdcfd0"/>
+        <position name="SpacerCphy0x3fdd0d0_pos" unit="mm" x="-1000" y="-1625" z="0"/>
+      </physvol>
+      <physvol copynumber="1" name="SpacerCphy0x3fdd170">
+        <volumeref ref="SpacerClog0x3fdcfd0"/>
+        <position name="SpacerCphy0x3fdd170_pos" unit="mm" x="1000" y="-1625" z="0"/>
+      </physvol>
+      <physvol copynumber="2" name="SpacerCphy0x3fdd210">
+        <volumeref ref="SpacerClog0x3fdcfd0"/>
+        <position name="SpacerCphy0x3fdd210_pos" unit="mm" x="-1000" y="1625" z="0"/>
+      </physvol>
+      <physvol copynumber="3" name="SpacerCphy0x3fdd340">
+        <volumeref ref="SpacerClog0x3fdcfd0"/>
+        <position name="SpacerCphy0x3fdd340_pos" unit="mm" x="1000" y="1625" z="0"/>
+      </physvol>
+      <physvol name="SpacerDphy0x3fdd570">
+        <volumeref ref="SpacerDlog0x3fdd470"/>
+        <position name="SpacerDphy0x3fdd570_pos" unit="mm" x="-1000" y="0" z="0"/>
+      </physvol>
+      <physvol copynumber="1" name="SpacerDphy0x3fdd610">
+        <volumeref ref="SpacerDlog0x3fdd470"/>
+        <position name="SpacerDphy0x3fdd610_pos" unit="mm" x="1000" y="0" z="0"/>
+      </physvol>
+      <physvol name="FRPBOXphy0x3ffd330">
+        <volumeref ref="FRPBoxlog0x3ff61e0"/>
+        <position name="FRPBOXphy0x3ffd330_pos" unit="mm" x="0" y="0" z="-5.5"/>
+      </physvol>
+    </volume>
+    <volume name="VCOILlog0x3ffbf70">
+      <materialref ref="G4_Cu0x3ce3e80"/>
+      <solidref ref="VCOIL0x3ffbee0"/>
+    </volume>
+    <volume name="HCOILlog0x3ffc100">
+      <materialref ref="G4_Cu0x3ce3e80"/>
+      <solidref ref="HCOIL0x3ffc070"/>
+    </volume>
+    <volume name="CurvedCOILlog0x3ffc310">
+      <materialref ref="G4_Cu0x3ce3e80"/>
+      <solidref ref="CurvedCOIL0x3ffc200"/>
+    </volume>
+    <volume name="MagnetLog0x3fcd570">
+      <materialref ref="G4_AIR0x3ce7060"/>
+      <solidref ref="MagnetSolid0x3fcd4e0"/>
+      <physvol name="IRLAYEphy0x3ffd3d0">
+        <volumeref ref="IRLAYElog0x3fdf790"/>
+        <position name="IRLAYEphy0x3ffd3d0_pos" unit="mm" x="0" y="0" z="-505"/>
+      </physvol>
+      <physvol copynumber="1" name="IRLAYEphy0x3ffd470">
+        <volumeref ref="IRLAYElog0x3fe2040"/>
+        <position name="IRLAYEphy0x3ffd470_pos" unit="mm" x="0" y="0" z="-404"/>
+      </physvol>
+      <physvol copynumber="2" name="IRLAYEphy0x3ffd530">
+        <volumeref ref="IRLAYElog0x3fe4230"/>
+        <position name="IRLAYEphy0x3ffd530_pos" unit="mm" x="0" y="0" z="-303"/>
+      </physvol>
+      <physvol copynumber="3" name="IRLAYEphy0x3ffd600">
+        <volumeref ref="IRLAYElog0x3fe6460"/>
+        <position name="IRLAYEphy0x3ffd600_pos" unit="mm" x="0" y="0" z="-202"/>
+      </physvol>
+      <physvol copynumber="4" name="IRLAYEphy0x3ffd6a0">
+        <volumeref ref="IRLAYElog0x3fe8690"/>
+        <position name="IRLAYEphy0x3ffd6a0_pos" unit="mm" x="0" y="0" z="-101"/>
+      </physvol>
+      <physvol copynumber="5" name="IRLAYEphy0x3ffd760">
+        <volumeref ref="IRLAYElog0x3fea8c0"/>
+      </physvol>
+      <physvol copynumber="6" name="IRLAYEphy0x3ffd800">
+        <volumeref ref="IRLAYElog0x3fecaf0"/>
+        <position name="IRLAYEphy0x3ffd800_pos" unit="mm" x="0" y="0" z="101"/>
+      </physvol>
+      <physvol copynumber="7" name="IRLAYEphy0x3ffd8a0">
+        <volumeref ref="IRLAYElog0x3fef9c0"/>
+        <position name="IRLAYEphy0x3ffd8a0_pos" unit="mm" x="0" y="0" z="202"/>
+      </physvol>
+      <physvol copynumber="8" name="IRLAYEphy0x3ffd940">
+        <volumeref ref="IRLAYElog0x3ff1bf0"/>
+        <position name="IRLAYEphy0x3ffd940_pos" unit="mm" x="0" y="0" z="303"/>
+      </physvol>
+      <physvol copynumber="9" name="IRLAYEphy0x3ffda70">
+        <volumeref ref="IRLAYElog0x3ff3e20"/>
+        <position name="IRLAYEphy0x3ffda70_pos" unit="mm" x="0" y="0" z="404"/>
+      </physvol>
+      <physvol copynumber="10" name="IRLAYEphy0x3ffdb10">
+        <volumeref ref="IRLAYElog0x3ff6050"/>
+        <position name="IRLAYEphy0x3ffdb10_pos" unit="mm" x="0" y="0" z="505"/>
+      </physvol>
+      <physvol name="LAYEphy0x3ffdbb0">
+        <volumeref ref="LAYElog0x3fce010"/>
+        <position name="LAYEphy0x3ffdbb0_pos" unit="mm" x="0" y="0" z="-454.5"/>
+      </physvol>
+      <physvol copynumber="1" name="LAYEphy0x3ffdc50">
+        <volumeref ref="LAYElog0x3fcf940"/>
+        <position name="LAYEphy0x3ffdc50_pos" unit="mm" x="0" y="0" z="-353.5"/>
+      </physvol>
+      <physvol copynumber="2" name="LAYEphy0x3ffdcf0">
+        <volumeref ref="LAYElog0x3fd1230"/>
+        <position name="LAYEphy0x3ffdcf0_pos" unit="mm" x="0" y="0" z="-252.5"/>
+      </physvol>
+      <physvol copynumber="3" name="LAYEphy0x3ffdd90">
+        <volumeref ref="LAYElog0x3fd2b20"/>
+        <position name="LAYEphy0x3ffdd90_pos" unit="mm" x="0" y="0" z="-151.5"/>
+      </physvol>
+      <physvol copynumber="4" name="LAYEphy0x3ffde30">
+        <volumeref ref="LAYElog0x3fd4410"/>
+        <position name="LAYEphy0x3ffde30_pos" unit="mm" x="0" y="0" z="-50.5"/>
+      </physvol>
+      <physvol copynumber="5" name="LAYEphy0x3ffded0">
+        <volumeref ref="LAYElog0x3fd5d00"/>
+        <position name="LAYEphy0x3ffded0_pos" unit="mm" x="0" y="0" z="50.5"/>
+      </physvol>
+      <physvol copynumber="6" name="LAYEphy0x3ffd9e0">
+        <volumeref ref="LAYElog0x3fd7910"/>
+        <position name="LAYEphy0x3ffd9e0_pos" unit="mm" x="0" y="0" z="151.5"/>
+      </physvol>
+      <physvol copynumber="7" name="LAYEphy0x3ffe0b0">
+        <volumeref ref="LAYElog0x3fd9200"/>
+        <position name="LAYEphy0x3ffe0b0_pos" unit="mm" x="0" y="0" z="252.5"/>
+      </physvol>
+      <physvol copynumber="8" name="LAYEphy0x3ffe150">
+        <volumeref ref="LAYElog0x3fdaaf0"/>
+        <position name="LAYEphy0x3ffe150_pos" unit="mm" x="0" y="0" z="353.5"/>
+      </physvol>
+      <physvol copynumber="9" name="LAYEphy0x3ffe1f0">
+        <volumeref ref="LAYElog0x3fdc710"/>
+        <position name="LAYEphy0x3ffe1f0_pos" unit="mm" x="0" y="0" z="454.5"/>
+      </physvol>
+      <physvol name="VCOILphy0x3ffe290">
+        <volumeref ref="VCOILlog0x3ffbf70"/>
+        <position name="VCOILphy0x3ffe290_pos" unit="mm" x="-1000" y="-803" z="0"/>
+      </physvol>
+      <physvol copynumber="1" name="VCOILphy0x3ffe330">
+        <volumeref ref="VCOILlog0x3ffbf70"/>
+        <position name="VCOILphy0x3ffe330_pos" unit="mm" x="-1000" y="803" z="0"/>
+      </physvol>
+      <physvol copynumber="2" name="VCOILphy0x3ffe3d0">
+        <volumeref ref="VCOILlog0x3ffbf70"/>
+        <position name="VCOILphy0x3ffe3d0_pos" unit="mm" x="1000" y="-803" z="0"/>
+      </physvol>
+      <physvol copynumber="3" name="VCOILphy0x3ffe470">
+        <volumeref ref="VCOILlog0x3ffbf70"/>
+        <position name="VCOILphy0x3ffe470_pos" unit="mm" x="1000" y="803" z="0"/>
+      </physvol>
+      <physvol name="HCOILphy0x3ffe510">
+        <volumeref ref="HCOILlog0x3ffc100"/>
+        <position name="HCOILphy0x3ffe510_pos" unit="mm" x="0" y="-803" z="-833"/>
+      </physvol>
+      <physvol copynumber="1" name="HCOILphy0x3ffe5b0">
+        <volumeref ref="HCOILlog0x3ffc100"/>
+        <position name="HCOILphy0x3ffe5b0_pos" unit="mm" x="0" y="803" z="-833"/>
+      </physvol>
+      <physvol copynumber="2" name="HCOILphy0x3ffe650">
+        <volumeref ref="HCOILlog0x3ffc100"/>
+        <position name="HCOILphy0x3ffe650_pos" unit="mm" x="0" y="-803" z="833"/>
+      </physvol>
+      <physvol copynumber="3" name="HCOILphy0x3ffe6f0">
+        <volumeref ref="HCOILlog0x3ffc100"/>
+        <position name="HCOILphy0x3ffe6f0_pos" unit="mm" x="0" y="803" z="833"/>
+      </physvol>
+      <physvol name="CurvedCOILphy0x3ffe790">
+        <volumeref ref="CurvedCOILlog0x3ffc310"/>
+        <position name="CurvedCOILphy0x3ffe790_pos" unit="mm" x="-800" y="-803" z="-633"/>
+        <rotation name="CurvedCOILphy0x3ffe790_rot" unit="deg" x="-90" y="0" z="180"/>
+      </physvol>
+      <physvol copynumber="1" name="CurvedCOILphy0x3ffe830">
+        <volumeref ref="CurvedCOILlog0x3ffc310"/>
+        <position name="CurvedCOILphy0x3ffe830_pos" unit="mm" x="-800" y="803" z="-633"/>
+        <rotation name="CurvedCOILphy0x3ffe830_rot" unit="deg" x="-90" y="0" z="180"/>
+      </physvol>
+      <physvol copynumber="2" name="CurvedCOILphy0x3ffe920">
+        <volumeref ref="CurvedCOILlog0x3ffc310"/>
+        <position name="CurvedCOILphy0x3ffe920_pos" unit="mm" x="800" y="-803" z="-633"/>
+        <rotation name="CurvedCOILphy0x3ffe920_rot" unit="deg" x="90" y="0" z="0"/>
+      </physvol>
+      <physvol copynumber="3" name="CurvedCOILphy0x3ffea10">
+        <volumeref ref="CurvedCOILlog0x3ffc310"/>
+        <position name="CurvedCOILphy0x3ffea10_pos" unit="mm" x="800" y="803" z="-633"/>
+        <rotation name="CurvedCOILphy0x3ffea10_rot" unit="deg" x="90" y="0" z="0"/>
+      </physvol>
+      <physvol copynumber="4" name="CurvedCOILphy0x3ffdf70">
+        <volumeref ref="CurvedCOILlog0x3ffc310"/>
+        <position name="CurvedCOILphy0x3ffdf70_pos" unit="mm" x="-800" y="-803" z="633"/>
+        <rotation name="CurvedCOILphy0x3ffdf70_rot" unit="deg" x="90" y="0" z="180"/>
+      </physvol>
+      <physvol copynumber="5" name="CurvedCOILphy0x3ffed10">
+        <volumeref ref="CurvedCOILlog0x3ffc310"/>
+        <position name="CurvedCOILphy0x3ffed10_pos" unit="mm" x="-800" y="803" z="633"/>
+        <rotation name="CurvedCOILphy0x3ffed10_rot" unit="deg" x="90" y="0" z="180"/>
+      </physvol>
+      <physvol copynumber="6" name="CurvedCOILphy0x3ffee00">
+        <volumeref ref="CurvedCOILlog0x3ffc310"/>
+        <position name="CurvedCOILphy0x3ffee00_pos" unit="mm" x="800" y="-803" z="633"/>
+        <rotation name="CurvedCOILphy0x3ffee00_rot" unit="deg" x="-90" y="0" z="0"/>
+      </physvol>
+      <physvol copynumber="7" name="CurvedCOILphy0x3ffeef0">
+        <volumeref ref="CurvedCOILlog0x3ffc310"/>
+        <position name="CurvedCOILphy0x3ffeef0_pos" unit="mm" x="800" y="803" z="633"/>
+        <rotation name="CurvedCOILphy0x3ffeef0_rot" unit="deg" x="-90" y="0" z="0"/>
+      </physvol>
+    </volume>
+    <volume name="INOMlog0x3fcd3e0">
+      <materialref ref="G4_AIR0x3ce7060"/>
+      <solidref ref="INOM0x3fcd350"/>
+      <physvol name="MagnetPhy0x3ffefe0">
+        <volumeref ref="MagnetLog0x3fcd570"/>
+        <position name="MagnetPhy0x3ffefe0_pos" unit="mm" x="0" y="0" z="-647"/>
+      </physvol>
+    </volume>
+    <volume name="AirRoomLogic0x3fcc740">
+      <materialref ref="G4_AIR0x3ce7060"/>
+      <solidref ref="AirRoomSolid0x3fcc6b0"/>
+      <physvol name="INOMphy0x3fff080">
+        <volumeref ref="INOMlog0x3fcd3e0"/>
+        <position name="INOMphy0x3fff080_pos" unit="mm" x="0" y="1459" z="0"/>
+      </physvol>
+    </volume>
+    <volume name="AirRoomUpLogic0x3fcc8d0">
+      <materialref ref="G4_AIR0x3ce7060"/>
+      <solidref ref="AirRoomSolidUp0x3fcc840"/>
+    </volume>
+    <volume name="AirRoom3Logic0x3fcca60">
+      <materialref ref="G4_AIR0x3ce7060"/>
+      <solidref ref="AirRoom3Solid0x3fcc9d0"/>
+    </volume>
+    <volume name="StairCaseLLogic0x3fccda0">
+      <materialref ref="G4_CONCRETE0x3ce7e60"/>
+      <solidref ref="StairCaseLSolid0x3fccd10"/>
+    </volume>
+    <volume name="StairCaseLogic0x3fccf30">
+      <materialref ref="G4_CONCRETE0x3ce7e60"/>
+      <solidref ref="StairCaseSolid0x3fccea0"/>
+    </volume>
+    <volume name="AirStairCaseLogic0x3fccc10">
+      <materialref ref="G4_AIR0x3ce7060"/>
+      <solidref ref="AirStairCaseSolid0x3fccb70"/>
+      <physvol name="StairCaseL0x3fff530">
+        <volumeref ref="StairCaseLLogic0x3fccda0"/>
+        <position name="StairCaseL0x3fff530_pos" unit="mm" x="-2249" y="0" z="0"/>
+      </physvol>
+      <physvol name="StairCase_10x3fff5d0">
+        <volumeref ref="StairCaseLogic0x3fccf30"/>
+        <position name="StairCase_10x3fff5d0_pos" unit="mm" x="150" y="-799" z="-749"/>
+        <rotation name="StairCase_10x3fff5d0_rot" unit="deg" x="0" y="-22" z="0"/>
+      </physvol>
+      <physvol copynumber="1" name="StairCase_20x3fff6c0">
+        <volumeref ref="StairCaseLogic0x3fccf30"/>
+        <position name="StairCase_20x3fff6c0_pos" unit="mm" x="152" y="799" z="749"/>
+        <rotation name="StairCase_20x3fff6c0_rot" unit="deg" x="0" y="22" z="0"/>
+      </physvol>
+    </volume>
+    <volume name="AirRoom2Logic0x3fcd0c0">
+      <materialref ref="G4_AIR0x3ce7060"/>
+      <solidref ref="AirRoom2Solid0x3fcd030"/>
+    </volume>
+    <volume name="AirRoom2UpLogic0x3fcd250">
+      <materialref ref="G4_AIR0x3ce7060"/>
+      <solidref ref="AirRoom2SolidUp0x3fcd1c0"/>
+    </volume>
+    <volume name="BuildingLogic0x3fcc5b0">
+      <materialref ref="G4_CONCRETE0x3ce7e60"/>
+      <solidref ref="BuildingSolid0x3fcc520"/>
+      <physvol name="AirRoom0x3fff120">
+        <volumeref ref="AirRoomLogic0x3fcc740"/>
+        <position name="AirRoom0x3fff120_pos" unit="mm" x="0" y="-10730" z="-1610"/>
+      </physvol>
+      <physvol name="AirRoomUp0x3fff1c0">
+        <volumeref ref="AirRoomUpLogic0x3fcc8d0"/>
+        <position name="AirRoomUp0x3fff1c0_pos" unit="mm" x="0" y="-10730" z="1610"/>
+      </physvol>
+      <physvol name="AirRoom3_10x3fff260">
+        <volumeref ref="AirRoom3Logic0x3fcca60"/>
+        <position name="AirRoom3_10x3fff260_pos" unit="mm" x="0" y="-18460" z="-1610"/>
+      </physvol>
+      <physvol copynumber="1" name="AirRoom3_20x3fff330">
+        <volumeref ref="AirRoom3Logic0x3fcca60"/>
+        <position name="AirRoom3_20x3fff330_pos" unit="mm" x="0" y="-18460" z="1610"/>
+      </physvol>
+      <physvol copynumber="2" name="AirRoom3_30x3fff3d0">
+        <volumeref ref="AirRoom3Logic0x3fcca60"/>
+        <position name="AirRoom3_30x3fff3d0_pos" unit="mm" x="0" y="18460" z="-1610"/>
+      </physvol>
+      <physvol copynumber="3" name="AirRoom3_40x3fff490">
+        <volumeref ref="AirRoom3Logic0x3fcca60"/>
+        <position name="AirRoom3_40x3fff490_pos" unit="mm" x="0" y="18460" z="1610"/>
+      </physvol>
+      <physvol name="AirStairCase0x3fff7e0">
+        <volumeref ref="AirStairCaseLogic0x3fccc10"/>
+        <position name="AirStairCase0x3fff7e0_pos" unit="mm" x="0" y="-3000" z="-1610"/>
+      </physvol>
+      <physvol copynumber="1" name="AirStairCase0x3fff880">
+        <volumeref ref="AirStairCaseLogic0x3fccc10"/>
+        <position name="AirStairCase0x3fff880_pos" unit="mm" x="0" y="-3000" z="1610"/>
+      </physvol>
+      <physvol name="AirRoom20x3fff920">
+        <volumeref ref="AirRoom2Logic0x3fcd0c0"/>
+        <position name="AirRoom20x3fff920_pos" unit="mm" x="0" y="7730" z="-1610"/>
+      </physvol>
+      <physvol copynumber="1" name="AirRoom2Up0x3fffa50">
+        <volumeref ref="AirRoom2UpLogic0x3fcd250"/>
+        <position name="AirRoom2Up0x3fffa50_pos" unit="mm" x="0" y="7730" z="1610"/>
+      </physvol>
+    </volume>
+    <volume name="WorldLogic0x3fc23a0">
+      <materialref ref="G4_AIR0x3ce7060"/>
+      <solidref ref="WorldSolid0x3fc2310"/>
+      <physvol name="Building0x3fffaf0">
+        <volumeref ref="BuildingLogic0x3fcc5b0"/>
+      </physvol>
+    </volume>
+  </structure>
+
+  <setup name="Default" version="1.0">
+    <world ref="WorldLogic0x3fc23a0"/>
+  </setup>
+
+</gdml>

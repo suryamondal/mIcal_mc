@@ -1,0 +1,8 @@
+#!/bin/bash
+
+for (( ij=1;ij<=$1;ij++ ))
+do
+    foo1=$(printf "%04d" $ij)
+    cat run.mac |  sed  's/\/mical\/run\/output_file.*/\/mical\/run\/output_file test_'"${foo1}"'/g' > runFiles/run${foo1}.mac
+    echo "runFiles/run"${foo1}".mac"
+done
