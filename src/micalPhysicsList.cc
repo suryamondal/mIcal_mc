@@ -21,7 +21,7 @@
 #include "G4IonPhysics.hh"
 #include "G4HadronElasticPhysics.hh"
 
-#include "G4DataQuestionaire.hh"
+// #include "G4DataQuestionaire.hh"
 #include "G4HadronPhysicsQGSP_BERT_HP.hh"
 #include "G4RegionStore.hh"
 #include "G4Region.hh"
@@ -46,7 +46,7 @@ micalPhysicsList::micalPhysicsList(micalDetectorConstruction* adet):G4VModularPh
 	   
 	   // default cut value  (1.0mm) 
   // defaultCutValue = 1.0*mm;
-    G4DataQuestionaire it(photon, neutron, no, no, no, neutronxs);
+    // G4DataQuestionaire it(photon, neutron, no, no, no, neutronxs);
     G4cout << "<<< Geant4 Physics List: micalPhysicsList " <<G4endl;
     G4cout <<G4endl;
     defaultCutValue = 0.7*mm;

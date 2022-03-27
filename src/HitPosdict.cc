@@ -194,8 +194,8 @@ namespace {
 0
     };
     static const char* includePaths[] = {
-"/products/root/root-6.20.00/include/",
-"/home/suryanarayan/Documents/Gobinda/IICHEP/mical_20190829/include/",
+"/home/surya/products/ROOT/root_v6.22.08/include/",
+"/home/surya/Downloads/mIcal_mc/include/",
 0
     };
     static const char* fwdDeclCode = R"DICTFWDDCLS(
@@ -203,7 +203,7 @@ namespace {
 #pragma clang diagnostic ignored "-Wkeyword-compat"
 #pragma clang diagnostic ignored "-Wignored-attributes"
 #pragma clang diagnostic ignored "-Wreturn-type-c-linkage"
-extern int __Cling_Autoloading_Map;
+extern int __Cling_AutoLoading_Map;
 class __attribute__((annotate(R"ATTRDUMP(A track segment)ATTRDUMP"))) __attribute__((annotate("$clingAutoload$HitPos.h")))  HitPos;
 )DICTFWDDCLS";
     static const char* payloadCode = R"DICTPAYLOAD(

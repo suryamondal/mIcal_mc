@@ -6,6 +6,7 @@ The code is tested for `root6.20.04`, `clhep2404` and `geant4.10.04.p03`.
 
 *Warning:*
 - The code has memory leakage. It may overflow memory. I do not recommend it for running more than 1M events.
+- One might need to comment out `G4DataQuestionaire` portions in `src/micalPhysicsList.cc` for later geant4 versions.
 
 The field file is `B_mical_hist.root`, the file name is hard-coded in `src/micalFieldPropagator.cc`. The field map could be scaled down. Please look for `fieldxin->Scale(` in the same file.
 
