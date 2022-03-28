@@ -68,12 +68,10 @@ Run: `./mICAL run.mac`
 
 
 Batch submission to htcondor:
-```
-1. Create or empty a directory named *runFiles*.
-2. Run *./batch_create_mac 2500*. It creates 2500 run files in *runFiles*.
-3. Add the lisf of run files in *batch_surya_job.jdl*.
-4. Run *condor_submit batch_surya_job.jdl* to submit jobs.
-```
+1. Create or empty a directory named `runFiles`.
+2. Run `./batch_create_mac 2500`. It creates 2500 run files in `runFiles`.
+3. Add the lisf of run files in `batch_surya_job.jdl`.
+4. Run `condor_submit batch_surya_job.jdl` to submit jobs.
 
 *Warning:*
 - Change the parameters (i.e. `initialdir`) before submitting jobs.
