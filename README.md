@@ -10,7 +10,7 @@ The code is tested for `root6.20.04`, `clhep2404` and `geant4.10.04.p03`.
 
 The field file is `B_mical_hist.root`, the file name is hard-coded in `src/micalFieldPropagator.cc`. The field map could be scaled down. Please look for `fieldxin->Scale(` in the same file.
 
-InputFlag : 
+InputFlag : Set by `/mical/gun/Gen`
 ```
 0 ->
 1 ->
@@ -20,7 +20,7 @@ InputFlag :
 5 -> 
 ```
 
-InputOutput:
+InputOutput: Set by `/mical/run/inout`
 ```
 0: GEN  -> RECO
 1: GEN  -> DIGI    (tested and working)
