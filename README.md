@@ -26,10 +26,10 @@ InputOutput: Set by `/mical/run/inout`
 1: GEN  -> DIGI    (tested and working)
 2: GEN  -> SIM     (tested and working)
 3: SIM  -> RECO
-4: SIM  -> DIGI    (tested and working) : only with `InputFlag=4`. Check [here](https://github.com/suryamondal/mIcal_mc/blob/main/src/micalPrimaryGeneratorAction.cc#L661) for reference.
+4: SIM  -> DIGI    (tested and working)
 5: DIGI -> RECO 
 ```
-
+**Note**: `SIM  -> DIGI` works only with `InputFlag=4`. Check [here](https://github.com/suryamondal/mIcal_mc/blob/main/src/micalPrimaryGeneratorAction.cc#L661) for reference. One need to inplement it for other generator options too.
 
 The name of the geometry file `geo_mical_world.gdml` is also hard-coded in `src/vect_manager.cc`.
 
